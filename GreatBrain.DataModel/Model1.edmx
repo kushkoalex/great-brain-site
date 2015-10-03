@@ -1,0 +1,829 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="MainBanner" EntityType="Model1.Store.MainBanner" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ParallaxImage" EntityType="Model1.Store.ParallaxImage" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ContentAnnouncement" EntityType="Model1.Store.ContentAnnouncement" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EducationCountry" EntityType="Model1.Store.EducationCountry" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EdicationalInstitution" EntityType="Model1.Store.EdicationalInstitution" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EducationalInstitutionImage" EntityType="Model1.Store.EducationalInstitutionImage" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EducationCategory" EntityType="Model1.Store.EducationCategory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AgeGroup" EntityType="Model1.Store.AgeGroup" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BlogItem" EntityType="Model1.Store.BlogItem" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MapLocation" EntityType="Model1.Store.MapLocation" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Article" EntityType="Model1.Store.Article" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ArticleImage" EntityType="Model1.Store.ArticleImage" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ServiceContent" EntityType="Model1.Store.ServiceContent" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Content" EntityType="Model1.Store.Content" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="EducationCountryEdicationalInstitution" Association="Model1.Store.EducationCountryEdicationalInstitution">
+      <End Role="EducationCountry" EntitySet="EducationCountry" />
+      <End Role="EdicationalInstitution" EntitySet="EdicationalInstitution" />
+    </AssociationSet>
+    <AssociationSet Name="EdicationalInstitutionEducationalInstitutionImage" Association="Model1.Store.EdicationalInstitutionEducationalInstitutionImage">
+      <End Role="EdicationalInstitution" EntitySet="EdicationalInstitution" />
+      <End Role="EducationalInstitutionImage" EntitySet="EducationalInstitutionImage" />
+    </AssociationSet>
+    <AssociationSet Name="EducationCountryEducationCategory" Association="Model1.Store.EducationCountryEducationCategory">
+      <End Role="EducationCountry" EntitySet="EducationCountry" />
+      <End Role="EducationCategory" EntitySet="EducationCategory" />
+    </AssociationSet>
+    <AssociationSet Name="EducationCategoryAgeGroup" Association="Model1.Store.EducationCategoryAgeGroup">
+      <End Role="EducationCategory" EntitySet="EducationCategory" />
+      <End Role="AgeGroup" EntitySet="AgeGroup" />
+    </AssociationSet>
+    <AssociationSet Name="ArticleArticleImage" Association="Model1.Store.ArticleArticleImage">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="ArticleImage" EntitySet="ArticleImage" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="MainBanner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImageSrc" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="Title" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="TileEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="Description" Type="varchar" Nullable="true" MaxLength="500" />
+    <Property Name="DescriptionEn" Type="varchar" Nullable="true" MaxLength="500" />
+    <Property Name="Sign" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="SignEn" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="SignImageSrc" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="SortOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ParallaxImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImageSrc" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="SortOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContentAnnouncement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="TitleEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="Text" Type="longtext" Nullable="true" />
+    <Property Name="TextEn" Type="longtext" Nullable="true" />
+    <Property Name="ImageSrc" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="Url" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="SortOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EducationCountry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="TitleEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="Name" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="SortOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EdicationalInstitution">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="Title" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="TitleEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="LocationName" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="LocationTitle" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="LocationTitleEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="Gender" Type="varchar" Nullable="true" MaxLength="10" />
+    <Property Name="Type" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="PreviewImageSrc" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="Address" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="AddressEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="MapLocation" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="MinAge" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="YearOfFoundation" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="NumberOfStudents" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="RectorName" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="RectorNameEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="Contacts" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="ContactsEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="Email" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="WebSiteUrl" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="Description" Type="longtext" Nullable="true" />
+    <Property Name="DescriptionEn" Type="longtext" Nullable="true" />
+    <Property Name="LogoImageSrc" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="SortOrder" Type="int" Nullable="false" />
+    <Property Name="IsSpecial" Type="bool" Nullable="false" />
+    <Property Name="EducationCountryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EducationalInstitutionImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImageSrc" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="EdicationalInstitutionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EducationCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="Title" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="TitleEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="Age" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="AgeEn" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="SortOrder" Type="int" Nullable="false" />
+    <Property Name="EducationCountryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AgeGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="Age" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="AgeEn" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="Text" Type="longtext" Nullable="true" />
+    <Property Name="TextEn" Type="longtext" Nullable="true" />
+    <Property Name="ImageSrc" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="SortOrder" Type="int" Nullable="false" />
+    <Property Name="EducationCategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BlogItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Title" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="TitleEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="ShortDescription" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="ShortDescriptionEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="Text" Type="longtext" Nullable="true" />
+    <Property Name="TextEn" Type="longtext" Nullable="true" />
+    <Property Name="PreviewImageSrc" Type="varchar" Nullable="true" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="MapLocation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="TitleEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="LicationLat" Type="decimal" Nullable="false" />
+    <Property Name="LocationLng" Type="decimal" Nullable="false" />
+    <Property Name="LocationContent" Type="longtext" Nullable="true" />
+    <Property Name="LocationContentEn" Type="longtext" Nullable="true" />
+    <Property Name="LocationTitle" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="LocationTitleEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="SortOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Title" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="TitleEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="ShortDescription" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="ShortDescriptionEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="Text" Type="longtext" Nullable="true" />
+    <Property Name="TextEn" Type="longtext" Nullable="true" />
+    <Property Name="PreviewImageSrc" Type="varchar" Nullable="true" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="ArticleImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImageSrc" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="ArticleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ServiceContent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="Title" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="TitleEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="ServiceType" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsSpecial" Type="bool" Nullable="false" />
+    <Property Name="SortOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Content">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="Title" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="TitleEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="Text" Type="longtext" Nullable="true" />
+    <Property Name="TextEn" Type="longtext" Nullable="true" />
+    <Property Name="SortOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="EducationCountryEdicationalInstitution">
+    <End Role="EducationCountry" Type="Model1.Store.EducationCountry" Multiplicity="1" />
+    <End Role="EdicationalInstitution" Type="Model1.Store.EdicationalInstitution" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EducationCountry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EdicationalInstitution">
+        <PropertyRef Name="EducationCountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EdicationalInstitutionEducationalInstitutionImage">
+    <End Role="EdicationalInstitution" Type="Model1.Store.EdicationalInstitution" Multiplicity="1" />
+    <End Role="EducationalInstitutionImage" Type="Model1.Store.EducationalInstitutionImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EdicationalInstitution">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EducationalInstitutionImage">
+        <PropertyRef Name="EdicationalInstitutionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EducationCountryEducationCategory">
+    <End Role="EducationCountry" Type="Model1.Store.EducationCountry" Multiplicity="1" />
+    <End Role="EducationCategory" Type="Model1.Store.EducationCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EducationCountry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EducationCategory">
+        <PropertyRef Name="EducationCountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EducationCategoryAgeGroup">
+    <End Role="EducationCategory" Type="Model1.Store.EducationCategory" Multiplicity="1" />
+    <End Role="AgeGroup" Type="Model1.Store.AgeGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EducationCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AgeGroup">
+        <PropertyRef Name="EducationCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ArticleArticleImage">
+    <End Role="Article" Type="Model1.Store.Article" Multiplicity="1" />
+    <End Role="ArticleImage" Type="Model1.Store.ArticleImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ArticleImage">
+        <PropertyRef Name="ArticleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MainBanner" EntityType="Model1.MainBanner" />
+          <EntitySet Name="ParallaxImage" EntityType="Model1.ParallaxImage" />
+          <EntitySet Name="ContentAnnouncement" EntityType="Model1.ContentAnnouncement" />
+          <EntitySet Name="EducationCountry" EntityType="Model1.EducationCountry" />
+          <EntitySet Name="EdicationalInstitution" EntityType="Model1.EdicationalInstitution" />
+          <EntitySet Name="EducationalInstitutionImage" EntityType="Model1.EducationalInstitutionImage" />
+          <AssociationSet Name="EducationCountryEdicationalInstitution" Association="Model1.EducationCountryEdicationalInstitution">
+            <End Role="EducationCountry" EntitySet="EducationCountry" />
+            <End Role="EdicationalInstitution" EntitySet="EdicationalInstitution" />
+          </AssociationSet>
+          <AssociationSet Name="EdicationalInstitutionEducationalInstitutionImage" Association="Model1.EdicationalInstitutionEducationalInstitutionImage">
+            <End Role="EdicationalInstitution" EntitySet="EdicationalInstitution" />
+            <End Role="EducationalInstitutionImage" EntitySet="EducationalInstitutionImage" />
+          </AssociationSet>
+          <EntitySet Name="EducationCategory" EntityType="Model1.EducationCategory" />
+          <AssociationSet Name="EducationCountryEducationCategory" Association="Model1.EducationCountryEducationCategory">
+            <End Role="EducationCountry" EntitySet="EducationCountry" />
+            <End Role="EducationCategory" EntitySet="EducationCategory" />
+          </AssociationSet>
+          <EntitySet Name="AgeGroup" EntityType="Model1.AgeGroup" />
+          <AssociationSet Name="EducationCategoryAgeGroup" Association="Model1.EducationCategoryAgeGroup">
+            <End Role="EducationCategory" EntitySet="EducationCategory" />
+            <End Role="AgeGroup" EntitySet="AgeGroup" />
+          </AssociationSet>
+          <EntitySet Name="BlogItem" EntityType="Model1.BlogItem" />
+          <EntitySet Name="MapLocation" EntityType="Model1.MapLocation" />
+          <EntitySet Name="Article" EntityType="Model1.Article" />
+          <EntitySet Name="ArticleImage" EntityType="Model1.ArticleImage" />
+          <AssociationSet Name="ArticleArticleImage" Association="Model1.ArticleArticleImage">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="ArticleImage" EntitySet="ArticleImage" />
+          </AssociationSet>
+          <EntitySet Name="ServiceContent" EntityType="Model1.ServiceContent" />
+          <EntitySet Name="Content" EntityType="Model1.Content" />
+        </EntityContainer>
+        <EntityType Name="MainBanner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ImageSrc" MaxLength="200" />
+          <Property Type="String" Name="Title" MaxLength="200" />
+          <Property Type="String" Name="TileEn" MaxLength="200" />
+          <Property Type="String" Name="Description" MaxLength="500" />
+          <Property Type="String" Name="DescriptionEn" MaxLength="500" />
+          <Property Type="String" Name="Sign" MaxLength="100" />
+          <Property Type="String" Name="SignEn" MaxLength="100" />
+          <Property Type="String" Name="SignImageSrc" MaxLength="200" />
+          <Property Type="Int32" Name="SortOrder" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ParallaxImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ImageSrc" MaxLength="200" Nullable="false" />
+          <Property Type="Int32" Name="SortOrder" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContentAnnouncement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" MaxLength="200" />
+          <Property Type="String" Name="TitleEn" MaxLength="200" />
+          <Property Type="String" Name="Text" />
+          <Property Type="String" Name="TextEn" />
+          <Property Type="String" Name="ImageSrc" MaxLength="200" />
+          <Property Type="String" Name="Url" MaxLength="200" />
+          <Property Type="Int32" Name="SortOrder" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EducationCountry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" MaxLength="200" />
+          <Property Type="String" Name="TitleEn" MaxLength="200" />
+          <Property Type="String" Name="Name" MaxLength="200" />
+          <Property Type="Int32" Name="SortOrder" Nullable="false" />
+          <NavigationProperty Name="EdicationalInstitutions" Relationship="Model1.EducationCountryEdicationalInstitution" FromRole="EducationCountry" ToRole="EdicationalInstitution" />
+          <NavigationProperty Name="EducationCategories" Relationship="Model1.EducationCountryEducationCategory" FromRole="EducationCountry" ToRole="EducationCategory" />
+        </EntityType>
+        <EntityType Name="EdicationalInstitution">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Title" MaxLength="200" />
+          <Property Type="String" Name="TitleEn" MaxLength="200" />
+          <Property Type="String" Name="LocationName" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="LocationTitle" MaxLength="200" />
+          <Property Type="String" Name="LocationTitleEn" MaxLength="200" />
+          <Property Type="String" Name="Gender" MaxLength="10" />
+          <Property Type="String" Name="Type" MaxLength="50" />
+          <Property Type="String" Name="PreviewImageSrc" MaxLength="200" />
+          <Property Type="String" Name="Address" MaxLength="200" />
+          <Property Type="String" Name="AddressEn" MaxLength="200" />
+          <Property Type="String" Name="MapLocation" MaxLength="200" />
+          <Property Type="String" Name="MinAge" MaxLength="200" />
+          <Property Type="String" Name="YearOfFoundation" MaxLength="200" />
+          <Property Type="String" Name="NumberOfStudents" MaxLength="200" />
+          <Property Type="String" Name="RectorName" MaxLength="200" />
+          <Property Type="String" Name="RectorNameEn" MaxLength="200" />
+          <Property Type="String" Name="Contacts" MaxLength="200" />
+          <Property Type="String" Name="ContactsEn" MaxLength="200" />
+          <Property Type="String" Name="Email" MaxLength="200" />
+          <Property Type="String" Name="WebSiteUrl" MaxLength="200" />
+          <Property Type="String" Name="Description" />
+          <Property Type="String" Name="DescriptionEn" />
+          <Property Type="String" Name="LogoImageSrc" MaxLength="200" />
+          <Property Type="Int32" Name="SortOrder" Nullable="false" />
+          <NavigationProperty Name="EducationCountry" Relationship="Model1.EducationCountryEdicationalInstitution" FromRole="EdicationalInstitution" ToRole="EducationCountry" />
+          <Property Type="Boolean" Name="IsSpecial" Nullable="false" />
+          <Property Type="Int32" Name="EducationCountryId" Nullable="false" />
+          <NavigationProperty Name="EducationalInstitutionImages" Relationship="Model1.EdicationalInstitutionEducationalInstitutionImage" FromRole="EdicationalInstitution" ToRole="EducationalInstitutionImage" />
+        </EntityType>
+        <EntityType Name="EducationalInstitutionImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ImageSrc" MaxLength="200" Nullable="false" />
+          <NavigationProperty Name="EdicationalInstitution" Relationship="Model1.EdicationalInstitutionEducationalInstitutionImage" FromRole="EducationalInstitutionImage" ToRole="EdicationalInstitution" />
+          <Property Type="Int32" Name="EdicationalInstitutionId" Nullable="false" />
+        </EntityType>
+        <Association Name="EducationCountryEdicationalInstitution">
+          <End Type="Model1.EducationCountry" Role="EducationCountry" Multiplicity="1" />
+          <End Type="Model1.EdicationalInstitution" Role="EdicationalInstitution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EducationCountry">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EdicationalInstitution">
+              <PropertyRef Name="EducationCountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EdicationalInstitutionEducationalInstitutionImage">
+          <End Type="Model1.EdicationalInstitution" Role="EdicationalInstitution" Multiplicity="1" />
+          <End Type="Model1.EducationalInstitutionImage" Role="EducationalInstitutionImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdicationalInstitution">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EducationalInstitutionImage">
+              <PropertyRef Name="EdicationalInstitutionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EducationCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Title" MaxLength="200" />
+          <Property Type="String" Name="TitleEn" MaxLength="200" />
+          <Property Type="String" Name="Age" MaxLength="100" />
+          <Property Type="String" Name="AgeEn" MaxLength="100" />
+          <Property Type="Int32" Name="SortOrder" Nullable="false" />
+          <NavigationProperty Name="EducationCountry" Relationship="Model1.EducationCountryEducationCategory" FromRole="EducationCategory" ToRole="EducationCountry" />
+          <Property Type="Int32" Name="EducationCountryId" Nullable="false" />
+          <NavigationProperty Name="AgeGroups" Relationship="Model1.EducationCategoryAgeGroup" FromRole="EducationCategory" ToRole="AgeGroup" />
+        </EntityType>
+        <Association Name="EducationCountryEducationCategory">
+          <End Type="Model1.EducationCountry" Role="EducationCountry" Multiplicity="1" />
+          <End Type="Model1.EducationCategory" Role="EducationCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EducationCountry">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EducationCategory">
+              <PropertyRef Name="EducationCountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AgeGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Age" MaxLength="100" />
+          <Property Type="String" Name="AgeEn" MaxLength="100" />
+          <Property Type="String" Name="Text" />
+          <Property Type="String" Name="TextEn" />
+          <Property Type="String" Name="ImageSrc" MaxLength="200" />
+          <NavigationProperty Name="EducationCategory" Relationship="Model1.EducationCategoryAgeGroup" FromRole="AgeGroup" ToRole="EducationCategory" />
+          <Property Type="Int32" Name="SortOrder" Nullable="false" />
+          <Property Type="Int32" Name="EducationCategoryId" Nullable="false" />
+        </EntityType>
+        <Association Name="EducationCategoryAgeGroup">
+          <End Type="Model1.EducationCategory" Role="EducationCategory" Multiplicity="1" />
+          <End Type="Model1.AgeGroup" Role="AgeGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EducationCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AgeGroup">
+              <PropertyRef Name="EducationCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BlogItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="String" Name="Title" MaxLength="200" />
+          <Property Type="String" Name="TitleEn" MaxLength="200" />
+          <Property Type="String" Name="ShortDescription" MaxLength="200" />
+          <Property Type="String" Name="ShortDescriptionEn" MaxLength="200" />
+          <Property Type="String" Name="Text" />
+          <Property Type="String" Name="TextEn" />
+          <Property Type="String" Name="PreviewImageSrc" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="MapLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" MaxLength="200" />
+          <Property Type="String" Name="TitleEn" MaxLength="200" />
+          <Property Type="Decimal" Name="LicationLat" Nullable="false" />
+          <Property Type="Decimal" Name="LocationLng" Nullable="false" />
+          <Property Type="String" Name="LocationContent" />
+          <Property Type="String" Name="LocationContentEn" />
+          <Property Type="String" Name="LocationTitle" MaxLength="200" />
+          <Property Type="String" Name="LocationTitleEn" MaxLength="200" />
+          <Property Type="Int32" Name="SortOrder" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="String" Name="Title" MaxLength="200" />
+          <Property Type="String" Name="TitleEn" MaxLength="200" />
+          <Property Type="String" Name="ShortDescription" MaxLength="200" />
+          <Property Type="String" Name="ShortDescriptionEn" MaxLength="200" />
+          <Property Type="String" Name="Text" />
+          <Property Type="String" Name="TextEn" />
+          <Property Type="String" Name="PreviewImageSrc" MaxLength="200" />
+          <NavigationProperty Name="ArticleImages" Relationship="Model1.ArticleArticleImage" FromRole="Article" ToRole="ArticleImage" />
+        </EntityType>
+        <EntityType Name="ArticleImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ImageSrc" Nullable="false" MaxLength="200" />
+          <NavigationProperty Name="Article" Relationship="Model1.ArticleArticleImage" FromRole="ArticleImage" ToRole="Article" />
+          <Property Type="Int32" Name="ArticleId" Nullable="false" />
+        </EntityType>
+        <Association Name="ArticleArticleImage">
+          <End Type="Model1.Article" Role="Article" Multiplicity="1" />
+          <End Type="Model1.ArticleImage" Role="ArticleImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArticleImage">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ServiceContent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Title" MaxLength="200" />
+          <Property Type="String" Name="TitleEn" MaxLength="200" />
+          <Property Type="String" Name="ServiceType" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="IsSpecial" Nullable="false" />
+          <Property Type="Int32" Name="SortOrder" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Title" MaxLength="200" />
+          <Property Type="String" Name="TitleEn" MaxLength="200" />
+          <Property Type="String" Name="Text" />
+          <Property Type="String" Name="TextEn" />
+          <Property Type="Int32" Name="SortOrder" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="MainBanner">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.MainBanner)">
+        <MappingFragment StoreEntitySet="MainBanner">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="TileEn" ColumnName="TileEn" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DescriptionEn" ColumnName="DescriptionEn" />
+          <ScalarProperty Name="Sign" ColumnName="Sign" />
+          <ScalarProperty Name="SignEn" ColumnName="SignEn" />
+          <ScalarProperty Name="SignImageSrc" ColumnName="SignImageSrc" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ParallaxImage">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.ParallaxImage)">
+        <MappingFragment StoreEntitySet="ParallaxImage">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContentAnnouncement">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.ContentAnnouncement)">
+        <MappingFragment StoreEntitySet="ContentAnnouncement">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="TitleEn" ColumnName="TitleEn" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="TextEn" ColumnName="TextEn" />
+          <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EducationCountry">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.EducationCountry)">
+        <MappingFragment StoreEntitySet="EducationCountry">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="TitleEn" ColumnName="TitleEn" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EdicationalInstitution">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.EdicationalInstitution)">
+        <MappingFragment StoreEntitySet="EdicationalInstitution">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="TitleEn" ColumnName="TitleEn" />
+          <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+          <ScalarProperty Name="LocationTitle" ColumnName="LocationTitle" />
+          <ScalarProperty Name="LocationTitleEn" ColumnName="LocationTitleEn" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="PreviewImageSrc" ColumnName="PreviewImageSrc" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="AddressEn" ColumnName="AddressEn" />
+          <ScalarProperty Name="MapLocation" ColumnName="MapLocation" />
+          <ScalarProperty Name="MinAge" ColumnName="MinAge" />
+          <ScalarProperty Name="YearOfFoundation" ColumnName="YearOfFoundation" />
+          <ScalarProperty Name="NumberOfStudents" ColumnName="NumberOfStudents" />
+          <ScalarProperty Name="RectorName" ColumnName="RectorName" />
+          <ScalarProperty Name="RectorNameEn" ColumnName="RectorNameEn" />
+          <ScalarProperty Name="Contacts" ColumnName="Contacts" />
+          <ScalarProperty Name="ContactsEn" ColumnName="ContactsEn" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="WebSiteUrl" ColumnName="WebSiteUrl" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DescriptionEn" ColumnName="DescriptionEn" />
+          <ScalarProperty Name="LogoImageSrc" ColumnName="LogoImageSrc" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+          <ScalarProperty Name="IsSpecial" ColumnName="IsSpecial" />
+          <ScalarProperty Name="EducationCountryId" ColumnName="EducationCountryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EducationalInstitutionImage">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.EducationalInstitutionImage)">
+        <MappingFragment StoreEntitySet="EducationalInstitutionImage">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
+          <ScalarProperty Name="EdicationalInstitutionId" ColumnName="EdicationalInstitutionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EducationCategory">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.EducationCategory)">
+        <MappingFragment StoreEntitySet="EducationCategory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="TitleEn" ColumnName="TitleEn" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="AgeEn" ColumnName="AgeEn" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+          <ScalarProperty Name="EducationCountryId" ColumnName="EducationCountryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AgeGroup">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.AgeGroup)">
+        <MappingFragment StoreEntitySet="AgeGroup">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="AgeEn" ColumnName="AgeEn" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="TextEn" ColumnName="TextEn" />
+          <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+          <ScalarProperty Name="EducationCategoryId" ColumnName="EducationCategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BlogItem">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.BlogItem)">
+        <MappingFragment StoreEntitySet="BlogItem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="TitleEn" ColumnName="TitleEn" />
+          <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+          <ScalarProperty Name="ShortDescriptionEn" ColumnName="ShortDescriptionEn" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="TextEn" ColumnName="TextEn" />
+          <ScalarProperty Name="PreviewImageSrc" ColumnName="PreviewImageSrc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MapLocation">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.MapLocation)">
+        <MappingFragment StoreEntitySet="MapLocation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="TitleEn" ColumnName="TitleEn" />
+          <ScalarProperty Name="LicationLat" ColumnName="LicationLat" />
+          <ScalarProperty Name="LocationLng" ColumnName="LocationLng" />
+          <ScalarProperty Name="LocationContent" ColumnName="LocationContent" />
+          <ScalarProperty Name="LocationContentEn" ColumnName="LocationContentEn" />
+          <ScalarProperty Name="LocationTitle" ColumnName="LocationTitle" />
+          <ScalarProperty Name="LocationTitleEn" ColumnName="LocationTitleEn" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Article">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Article)">
+        <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="TitleEn" ColumnName="TitleEn" />
+          <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+          <ScalarProperty Name="ShortDescriptionEn" ColumnName="ShortDescriptionEn" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="TextEn" ColumnName="TextEn" />
+          <ScalarProperty Name="PreviewImageSrc" ColumnName="PreviewImageSrc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ArticleImage">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.ArticleImage)">
+        <MappingFragment StoreEntitySet="ArticleImage">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
+          <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceContent">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.ServiceContent)">
+        <MappingFragment StoreEntitySet="ServiceContent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="TitleEn" ColumnName="TitleEn" />
+          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+          <ScalarProperty Name="IsSpecial" ColumnName="IsSpecial" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Content">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Content)">
+        <MappingFragment StoreEntitySet="Content">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="TitleEn" ColumnName="TitleEn" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="TextEn" ColumnName="TextEn" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="DDLGenerationTemplate" Value="$(VSEFTools)\DBGen\SSDLToMySQL.tt" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
