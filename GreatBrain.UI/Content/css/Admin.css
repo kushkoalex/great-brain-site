@@ -1,0 +1,105 @@
+﻿body {
+    padding: 5px 10px; 
+}
+.adminTextContainer div {
+    max-height: 20px; 
+    overflow: hidden;
+    max-width: 400px;
+}
+.admin-container {
+    width: 800px;
+    margin: 0 auto;
+    
+}
+.subcategory {
+    padding-left: 40px !important;
+}
+.logout-button-container {
+    padding-top: 5px;
+    padding-bottom: 10px;
+    float: left;
+    padding-right: 50px;
+}
+
+.menu {
+    margin-bottom: 15px;
+}
+
+.btn a:hover {
+    text-decoration: none !important;
+}
+
+.btn a, .btn a:hover {
+    color: #fff;
+}
+
+.btn.btn-default a, .btn.btn-default a:hover {
+    color: #000;
+}
+
+.inputImages .thumb
+{
+    height: 75px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+}
+
+.adminProductImage {
+    float: left;
+    margin: 10px;
+}
+
+.adminProductImage.defaultImage {
+    border: 2px solid #008b8b;
+}
+
+.nav.nav-tabs a {
+    text-decoration: underline !important;
+}
+
+.nav.nav-tabs .active a {
+    text-decoration: none !important;
+}
+
+
+
+#adminPager {
+    margin: 10px 0;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+}
+
+    #adminPager div {
+        display: inline-block;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        margin-right: 7px;
+        border: 1px solid #ccc;
+    }
+
+        #adminPager div.current {
+            padding:5px 8px;
+            color: #ccc;
+        }
+
+    #adminPager a {
+        display: block;
+        width: inherit;
+        height: inherit;
+        padding:5px 8px;
+    }
+
+
+.navbar-form .form-control.search {
+    width: 300px !important;
+}
+
+#productsId {
+    padding: 6px;
+}
+
+.adminLink {
+    color: #f00;
+}

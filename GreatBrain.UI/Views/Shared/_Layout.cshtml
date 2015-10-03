@@ -1,0 +1,140 @@
+﻿@using GreatBrain.UI
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oranienbaum&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:700italic,400italic' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="/scripts/main.min.js?v=@GreatBrainApp.Version"></script>
+    <script type="text/javascript" src="/scripts/vendor/jquery-1.11.2.min.js?v=@GreatBrainApp.Version"></script>
+    <script src="https://www.google.com/jsapi?.js"></script>
+    <link rel="stylesheet" type="text/css" href="/styles/main.min.css?v=@GreatBrainApp.Version" media="screen"/>
+    
+    <script type="text/javascript">
+        (function(gb){
+            var settings;
+            if (gb.settings === null){
+                gb.settings = settings = {};
+            } else{
+                settings = gb.settings;
+            }
+
+            if (!('controlsDescriptors' in settings)){
+                settings.controlsDescriptors = {};
+            }
+
+            if (!('dataModels' in settings)){
+                settings.dataModels = {};
+            }
+
+        }(GB));
+    </script>
+    
+    <script type="text/javascript">
+        (function (gb, a9) {
+            var settings = gb.settings,
+                l10n = a9.l10n;
+
+            if (!('languages' in settings)) {
+                settings.languages = [
+                    {
+                        code: 'ru',
+                        label: 'ru'
+                    },
+                    {
+                        code: 'ua',
+                        label: 'ukr'
+                    },
+                    {
+                        code: 'en',
+                        label: 'eng'
+                    }
+                ];
+            }
+
+            if (!('locale' in settings)) {
+                settings.currentLanguage = '@ViewBag.Locale';
+                settings.locale = settings.currentLanguage;
+            }
+
+            if (!('dictionary' in settings)) {
+                settings.dictionary = {
+                    ru: {
+                        
+                    },
+                    ua: {
+                       
+                    },
+                    en: {
+                       
+                    }
+                    
+                }
+            }
+
+            l10n.locale = settings.locale;
+            l10n.dictionary = settings.dictionary[settings.locale];
+
+        }(GB, A9));
+    </script>
+    
+    <script type="text/javascript">
+        (function(gb, a9) {
+            var settings = gb.settings,
+                l10n = a9.l10n,
+                controlsDescriptors = settings.controlsDescriptors;
+                controlsDescriptors.site = {
+                urlEM: 'http://eugene-miller.com',
+                contentImagesPath: '/content/images/',
+                contentImagesPathAuthors: '/content/images/author/',
+                contentImagesPathAuthorsThumb: '/content/images/author/thumb/',
+                contentImagesPathAuthorsAvatar: '/content/images/author/avatar/',
+                contentImagesPathProducts: '/content/images/product/',
+                contentImagesPathProductsThumb: '/content/images/product/thumb/',
+                contentImagesPathAuthorsOrig: '/content/images/product/orig/',
+                mainPageSlideTimeout: 10000,
+                authorSlideTimeout: 2000,
+                mainPageUrl: '/' + settings.locale + '/',
+                newsPageUrl: '/' + settings.locale + '/news',
+                newsDetailsPageUrl: '/' + settings.locale + '/news-details/{id}',
+                eventsPageUrl: '/' + settings.locale + '/events',
+                eventDetailsPageUrl: '/' + settings.locale + '/event-details/{id}',
+                mediaPageUrl: '/' + settings.locale + '/media',
+                partnershipPageUrl: '/' + settings.locale + '/partnership',
+                contactsPageUrl: '/' + settings.locale + '/contacts',
+                authorsPageUrl: '/' + settings.locale + '/artists',
+                productsPageUrl: '/' + settings.locale + '/arts',
+                joinUsUrl: '#',
+                antiSpamAnswer: '321',
+                authorProductItemsInRowCount: 4,
+                authorAboutPageUrl: '/' + settings.locale + '/about/{artist}',
+                authorEventsPageUrl: '/' + settings.locale + '/artist-events/{artist}',
+                authorProductsPageUrl: '/' + settings.locale + '/arts/{artist}',
+                authorProductsDetailsPageUrl: '/' + settings.locale + '/arts/{artist}/details/{startSlide}',
+                searchFilterUrlArtists: '/' + settings.locale + '/artists/tags/{tagsId}',
+                searchFilterUrlProducts: '/' + settings.locale + '/arts/tags/{tagsId}',
+                searchFilterUrlArtistProducts: '/' + settings.locale + '/arts/{id}/{tagsId}'
+            }, 
+            controlsDescriptors.site.startSlide = @(ViewBag.StartSlide ?? 0);
+
+
+        }(GB, A9));
+    </script>
+    
+    <script type="text/javascript">
+        (function (gb, a9) {
+            var settings = gb.settings,
+                dataModels = settings.dataModels;
+            @Html.Raw(ViewBag.MainMenu);
+        }(GB, A9));
+    </script>
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>

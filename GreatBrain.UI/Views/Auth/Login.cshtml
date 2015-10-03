@@ -1,0 +1,72 @@
+﻿@using GreatBrain.UI
+@model GreatBrain.UI.Controllers.LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Вход в админку</title>
+    <link rel="stylesheet" type="text/css" href="/Content/css/Admin.css?v=@GreatBrainApp.Version" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/Content/css/bootstrap.min.css?v=@GreatBrainApp.Version" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/Content/css/bootstrap-select.min.css?v=@GreatBrainApp.Version" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/Content/css/jquery-ui.min.css?v=@GreatBrainApp.Version" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/Content/css/jquery-ui.structure.min.css?v=@GreatBrainApp.Version" media="screen"/>
+    <style>
+        body {
+            padding: 10px;
+            background-color: #ffffff;
+        }
+    </style>
+
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="container" style="width: 400px; margin-top: 200px">
+
+
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <div style="text-align: center">
+                    <h4><span class="label label-danger">@Model.ErrorMessage</span></h4>
+                </div>
+            }
+
+            <h3>Вход в админку</h3>
+            <form role="form">
+                <div class="form-group">
+                    <label for="Name">Логин</label>
+                    <input type="text" class="form-control" id="Name" name="Name" placeholder="Введите логин">
+                </div>
+                <div class="form-group">
+                    <label for="Password">Пароль</label>
+                    <input type="password" class="form-control" id="Password" name="Password" placeholder="Введите пароль">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(model => model.Keep) Запомнить меня
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-default">Вход</button>
+            </form>
+        </div> 
+    }
+
+    <script type="text/javascript">
+        $(function () {
+            $("#Name").focus();
+        })
+    </script>
+</body>
+</html>
+

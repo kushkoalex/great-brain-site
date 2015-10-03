@@ -137,9 +137,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\IocInitializer.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ExceptionHelper.cs" />
+    <Compile Include="Helpers\FormCollectionExtender.cs" />
+    <Compile Include="Helpers\GraphicsHelper.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\IOHelper.cs" />
+    <Compile Include="Helpers\MailHelper.cs" />
+    <Compile Include="Helpers\PictureSize.cs" />
+    <Compile Include="Helpers\SiteContentHelper.cs" />
+    <Compile Include="Helpers\ThumbnailPicture.cs" />
     <Compile Include="Models\AgeGroup.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\ArticleImage.cs" />
@@ -170,12 +184,88 @@
     <Compile Include="Models\ParallaxImage.cs" />
     <Compile Include="Models\ServiceContent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiteSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\css\Admin.css" />
+    <Content Include="Content\css\bootstrap-select.min.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\jquery-ui.min.css" />
+    <Content Include="Content\css\jquery-ui.structure.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\banners\banner1.png" />
+    <Content Include="Images\banners\banner2.png" />
+    <Content Include="Images\banners\banner3.png" />
+    <Content Include="Images\blog\thumb\Michael.png" />
+    <Content Include="Images\close-btn.png" />
+    <Content Include="Images\compass.png" />
+    <Content Include="Images\education-kinds\girl-with-books.png" />
+    <Content Include="Images\education-kinds\girl.png" />
+    <Content Include="Images\educational-institutions-catalogue-filter-gender.png" />
+    <Content Include="Images\educational-institutions-catalogue-filter-location.png" />
+    <Content Include="Images\educational-institutions-catalogue-filter-type.png" />
+    <Content Include="Images\educational-institutions-catalogue\educationalInstitutionDetailsImage.png" />
+    <Content Include="Images\educational-institutions-catalogue\educationalInstitutionsCataloguePreviewImage1.png" />
+    <Content Include="Images\educational-institutions-catalogue\educationalInstitutionsCataloguePreviewImage2.png" />
+    <Content Include="Images\educational-institutions-catalogue\educationalInstitutionsCataloguePreviewImage3.png" />
+    <Content Include="Images\educational-institutions-catalogue\logo\abbotsholme-school-logo.png" />
+    <Content Include="Images\feedback-link-arrow.png" />
+    <Content Include="Images\feedback-panel-bottom-pattern.png" />
+    <Content Include="Images\image-slider-arrow-left.png" />
+    <Content Include="Images\image-slider-arrow-right.png" />
+    <Content Include="Images\intro-final-layout.png" />
+    <Content Include="Images\logo-big-black-pattern.png" />
+    <Content Include="Images\logo-big-black-sign.png" />
+    <Content Include="Images\logo-big-black.png" />
+    <Content Include="Images\logo-big-white-pattern.png" />
+    <Content Include="Images\logo-big-white-sign.png" />
+    <Content Include="Images\logo-big-white.png" />
+    <Content Include="Images\logo-map.png" />
+    <Content Include="Images\logo-mini-grey.png" />
+    <Content Include="Images\logo-mini-orange.png" />
+    <Content Include="Images\logo-mini.png" />
+    <Content Include="Images\main-banner-show-more.png" />
+    <Content Include="Images\main-menu-arrow.png" />
+    <Content Include="Images\mainPage\cf93572f62a1d942788687f87af8fcf6.jpg" />
+    <Content Include="Images\mainPage\data-sign.png" />
+    <Content Include="Images\mainPage\DSCF0083.jpg" />
+    <Content Include="Images\mainPage\main-banner-image.png" />
+    <Content Include="Images\mainPage\main-page-image1.png" />
+    <Content Include="Images\mainPage\main-page-image2.png" />
+    <Content Include="Images\mainPage\main-page-image3.png" />
+    <Content Include="Images\maze.png" />
+    <Content Include="Images\mbs-logo.svg" />
+    <Content Include="Images\menu-layer1.png" />
+    <Content Include="Images\news-social-fb.png" />
+    <Content Include="Images\news-social-gb.png" />
+    <Content Include="Images\news-social-vk.png" />
+    <Content Include="Images\news-social-youtube.png" />
+    <Content Include="Images\news\news.png" />
+    <Content Include="Images\news\news1.png" />
+    <Content Include="Images\news\news2.png" />
+    <Content Include="Images\news\news3.png" />
+    <Content Include="Images\news\news4.png" />
+    <Content Include="Images\news\news5.png" />
+    <Content Include="Images\news\news6.png" />
+    <Content Include="Images\news\news7.png" />
+    <Content Include="Images\news\thumb\news.png" />
+    <Content Include="Images\news\thumb\news1.png" />
+    <Content Include="Images\news\thumb\news2.png" />
+    <Content Include="Images\news\thumb\news3.png" />
+    <Content Include="Images\scroll-top.png" />
+    <Content Include="Images\search-zoom.png" />
+    <Content Include="Images\select-country-form-logo.png" />
+    <Content Include="Images\show-more.png" />
+    <Content Include="Images\social-fb.png" />
+    <Content Include="Images\social-google.png" />
+    <Content Include="Images\social-instagram.png" />
+    <Content Include="Scripts\main.min.js" />
+    <Content Include="Scripts\Vendor\jquery-1.11.2.min.js" />
+    <Content Include="Scripts\Vendor\parallax.min.js" />
+    <Content Include="Styles\main.min.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -187,10 +277,34 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
+    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Auth\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Admin\Default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\LogOut.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\Menu.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

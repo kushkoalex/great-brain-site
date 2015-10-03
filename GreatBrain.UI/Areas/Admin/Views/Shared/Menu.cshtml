@@ -1,0 +1,16 @@
+﻿@model string
+<div class="menu">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="@(Model == "MainBanner" ? "active" : "")">@Html.ActionLink("Основное изображение главной страницы", "Index", "MainBanner", new { area = "Admin" }, null)</li>
+        <li class="@(Model == "EventAnnouncement" ? "active" : "")">@Html.ActionLink("Анонсы на главной странице", "Index", "EventAnnouncement", new { area = "Admin" }, null)</li>
+        <li class="@(Model == "Event" ? "active" : "")">@Html.ActionLink("Расписание проектов", "Index", "Event", new { area = "Admin" }, null)</li>
+        <li class="@(Model == "Article" ? "active" : "")">@Html.ActionLink("Новости", "Index", "Article", new { area = "Admin" }, null)</li>
+        <li class="@(Model == "Media" ? "active" : "")">@Html.ActionLink("Медиа", "Index", "Media", new { area = "Admin" }, null)</li>
+        <li class="@(Model == "Content" ? "active" : "")">@Html.ActionLink("Остальные страницы контента", "Index", "Content", new { area = "Admin" }, null)</li>
+        <li class="@(Model == "Authors" ? "active" : "")">@Html.ActionLink("Мастера", "Index", "Author", new { area = "Admin" }, null)</li>
+        <li class="@(Model == "Products" ? "active" : "")">@Html.ActionLink("Работы", "Index", "Product", new { area = "Admin" }, null)</li>
+        <li class="@(Model == "Tags" ? "active" : "")">@Html.ActionLink("Тэги", "Index", "Tag", new { area = "Admin" }, null)</li>
+        <li class="@(Model == "AuthorCategories" ? "active" : "")">@Html.ActionLink("Тип артиста", "Index", "AuthorCategory", new { area = "Admin" }, null)</li>
+        <li class="@(Model == "Categories" ? "active" : "")">@Html.ActionLink("Категории артиста", "Index", "Category", new { area = "Admin" }, null)</li>
+    </ul>
+</div>

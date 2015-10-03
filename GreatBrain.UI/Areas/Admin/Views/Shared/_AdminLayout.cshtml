@@ -1,0 +1,51 @@
+﻿@using GreatBrain.UI
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>New Vision Productions &mdash; Система администрирования &mdash; @ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="/Content/css/Admin.css?v=@GreatBrainApp.Version" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/Content/css/bootstrap.min.css?v=@GreatBrainApp.Version" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/Content/css/bootstrap-select.min.css?v=@GreatBrainApp.Version" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/Content/css/jquery-ui.min.css?v=@GreatBrainApp.Version" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/Content/css/jquery-ui.structure.min.css?v=@GreatBrainApp.Version" media="screen"/>
+    <script type="text/javascript" src="/scripts/vendor/jquery-1.11.2.min.js?v=@GreatBrainApp.Version"></script>
+    <style>
+        div.clip {
+            white-space: nowrap; /* Запрещаем перенос строк */
+            overflow: hidden; /* Обрезаем все, что не помещается в область */
+            text-overflow: ellipsis; /* Добавляем многоточие */
+            max-width: 100px;
+        }
+    </style>
+</head>
+<body>
+    @Html.Partial("LogOut")
+
+    @RenderSection("AdminNavigation", false)
+
+
+    @if (TempData["errorMessage"] != null)
+    {
+        <div style="text-align: center">
+            <h4><span class="label label-danger">@TempData["errorMessage"]</span>    </h4>
+        </div>
+    }
+
+    @RenderBody()
+
+    @*@Scripts.Render("~/bundles/jquery")*@
+
+    @*@Scripts.Render("~/Scripts/bootstrap.min.js", "~/Scripts/bootstrap-select.js")*@
+
+
+    @RenderSection("scripts", required: false)
+
+    @*<script type="text/javascript">
+        $(function () {
+            $('.selectpicker').selectpicker();
+        })
+    </script>*@
+
+</body>
+</html>
