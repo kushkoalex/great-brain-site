@@ -17,7 +17,7 @@ namespace GreatBrain.UI.Models.Mapping
             this.Property(t => t.Title)
                 .HasMaxLength(200);
 
-            this.Property(t => t.TileEn)
+            this.Property(t => t.TitleEn)
                 .HasMaxLength(200);
 
             this.Property(t => t.Description)
@@ -40,7 +40,7 @@ namespace GreatBrain.UI.Models.Mapping
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.ImageSrc).HasColumnName("ImageSrc");
             this.Property(t => t.Title).HasColumnName("Title");
-            this.Property(t => t.TileEn).HasColumnName("TileEn");
+            this.Property(t => t.TitleEn).HasColumnName("TitleEn");
             this.Property(t => t.Description).HasColumnName("Description");
             this.Property(t => t.DescriptionEn).HasColumnName("DescriptionEn");
             this.Property(t => t.Sign).HasColumnName("Sign");

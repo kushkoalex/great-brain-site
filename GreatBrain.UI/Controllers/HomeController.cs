@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GreatBrain.UI.Models;
 
 namespace GreatBrain.UI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : DefaultController
     {
-        //
-        // GET: /Home/
+        private readonly SiteContext _context;
+        public HomeController(SiteContext context)
+        {
+            _context = context;
+        }
 
         public ActionResult Index()
         {
