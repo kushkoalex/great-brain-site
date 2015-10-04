@@ -1,0 +1,88 @@
+﻿@model GreatBrain.UI.Models.MainBanner
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section AdminNavigation
+{
+    @Html.Partial("Menu", "MainBanner")
+}
+<div class="container">
+    <h3>Редактирование контента</h3>
+    @using (Html.BeginForm("Edit", "MainBanner", FormMethod.Post, new { role = "form", @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model=>model.Id)
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Title" id="Title" placeholder="Введите заголовок" value="@Model.Title">
+            </div>
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TitleEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="TitleEn" id="TitleEn" placeholder="Введите заголовок" value="@Model.TitleEn">
+            </div>
+            @Html.ValidationMessageFor(model => model.TitleEn)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="3" name="Description">@Model.Description</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DescriptionEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="3" name="DescriptionEn">@Model.DescriptionEn</textarea>
+            </div>
+        </div>
+         <div class="form-group">
+            @Html.LabelFor(model => model.Sign, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Sign" id="Sign" placeholder="Введите подпись" value="@Model.Sign">
+            </div>
+            @Html.ValidationMessageFor(model => model.Sign)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SignEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="SignEn" id="SignEn" placeholder="Введите подпись" value="@Model.SignEn">
+            </div>
+            @Html.ValidationMessageFor(model => model.SignEn)
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageSrc, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="file" name="ImageSrc"/>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SortOrder, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="SortOrder"  placeholder="Введите порядок отображения" value="@Model.SortOrder">
+            </div>
+            @Html.ValidationMessageFor(model => model.SortOrder)
+        </div>
+        @*<div class="form-group">
+            <label class="col-sm-2 control-label">Изображения</label>
+            <div class="col-sm-10">
+                @Html.Partial("InputImages")
+            </div>
+        </div>*@
+        <div class="form-group">
+            @Html.ActionLink("Назад", "Index", "MainBanner", null, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-success">Сохранить</button>
+            </div>
+        </div>
+    }
+</div>
+

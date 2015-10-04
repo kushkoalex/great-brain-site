@@ -362,6 +362,12 @@ namespace GreatBrain.UI.Helpers
         /// <param name="limitLength"></param>
         public static void SaveOriginalImage(string filePath, string fileName, HttpPostedFileBase file, int limitLength = 1000)
         {
+            if (limitLength == 0)
+            {
+                file.SaveAs(filePath);
+                return;
+            }
+
             string tmpFilePath = HttpContext.Current.Server.MapPath("~/Content/tmpImages");
             tmpFilePath = Path.Combine(tmpFilePath, fileName);
             file.SaveAs(tmpFilePath);

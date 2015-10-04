@@ -1,0 +1,83 @@
+﻿@using System.Collections
+@using GreatBrain.UI.Helpers
+@using GreatBrain.UI.Models
+@model GreatBrain.UI.Models.EducationCategory
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section AdminNavigation
+{
+    @Html.Partial("Menu", "EducationCategory")
+}
+<div class="container">
+    <h3>Редактирование контента</h3>
+    @using (Html.BeginForm("Edit", "EducationCategory", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Name" id="Name" placeholder="Введите идентификатор страницы" value="@Model.Name">
+            </div>
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.EducationCountry, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <select class="form-control" name="EducationCountry">
+                    @foreach (EducationCountry ec in (IEnumerable<EducationCountry>)ViewBag.EducationCountries)
+                    {
+                        <option value="@ec.Id" @(Model.EducationCountryId == ec.Id ? "selected" : "")>@ec.Title</option>
+                    }
+                </select>
+            </div>
+            @Html.ValidationMessageFor(model => model.EducationCountry)
+        </div>
+         <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Title" id="Title" placeholder="Введите заголовок" value="@Model.Title">
+            </div>
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TitleEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="TitleEn" id="TitleEn" placeholder="Введите заголовок" value="@Model.TitleEn">
+            </div>
+            @Html.ValidationMessageFor(model => model.TitleEn)
+        </div>
+          <div class="form-group">
+            @Html.LabelFor(model => model.Age, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Age" id="Age" placeholder="Введите возраст" value="@Model.Age">
+            </div>
+            @Html.ValidationMessageFor(model => model.Age)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AgeEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="AgeEn" id="AgeEn" placeholder="Введите возраст" value="@Model.AgeEn">
+            </div>
+            @Html.ValidationMessageFor(model => model.AgeEn)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SortOrder, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="SortOrder"  placeholder="Введите порядок отображения" value="@Model.SortOrder">
+            </div>
+            @Html.ValidationMessageFor(model => model.SortOrder)
+        </div>
+        <div class="form-group">
+            @Html.ActionLink("Назад", "Index", "EducationCategory", null, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-success">Сохранить</button>
+            </div>
+        </div>
+    }
+</div>

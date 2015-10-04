@@ -1,0 +1,75 @@
+﻿@using GreatBrain.UI
+@using GreatBrain.UI.Helpers
+@model IEnumerable<GreatBrain.UI.Models.ContentAnnouncement>
+
+@{
+    ViewBag.Title = "Контент главной страницы";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section AdminNavigation
+{
+    @Html.Partial("Menu","ContentAnnouncement")
+}
+
+<p>
+        @Html.ActionLink("Добавить", "Create")
+</p>
+
+<table class="table table-striped">
+    <tr>
+         <th>
+            @Html.DisplayNameFor(model => model.SortOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TitleEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Text)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TextEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Url)
+        </th>
+        <th>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SortOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TitleEn)
+            </td>
+            <td>
+                @Html.Raw(item.Text)
+            </td>
+            <td>
+                @Html.Raw(item.TextEn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+            <td>
+                @Html.Raw(Html.CachedImage(SiteSettings.ContentAnouncementImagePath, item.ImageSrc, SiteSettings.GetThumbnail("contentAnnouncementPreview")))
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new { onclick = "return confirm('Удалить запись?')" })
+            </td>
+        </tr>
+    }
+
+</table>

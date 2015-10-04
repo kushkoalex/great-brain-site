@@ -139,7 +139,17 @@
     <Compile Include="App_Start\IocInitializer.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AgeGroupController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContentAnnouncementController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EdicationalInstitutionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EducationCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EducationCountryController.cs" />
     <Compile Include="Areas\Admin\Controllers\MainBannerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MapLocationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ServiceContentController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -154,6 +164,7 @@
     <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\PictureSize.cs" />
     <Compile Include="Helpers\SiteContentHelper.cs" />
+    <Compile Include="Helpers\SiteHelper.cs" />
     <Compile Include="Helpers\ThumbnailPicture.cs" />
     <Compile Include="Models\AgeGroup.cs" />
     <Compile Include="Models\Article.cs" />
@@ -185,6 +196,7 @@
     <Compile Include="Models\ParallaxImage.cs" />
     <Compile Include="Models\ServiceContent.cs" />
     <Compile Include="Models\SiteLanguage.cs" />
+    <Compile Include="Models\Validation\EducationCountryValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SiteSettings.cs" />
   </ItemGroup>
@@ -307,6 +319,69 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Shared\Menu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\MainBanner\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\MainBanner\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\MainBanner\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\ContentAnnouncement\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\ContentAnnouncement\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\ContentAnnouncement\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Content\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Content\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Content\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\EducationCountry\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\EducationCountry\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\EducationCountry\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\ServiceContent\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\ServiceContent\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\ServiceContent\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\EducationCategory\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\EducationCategory\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\EducationCategory\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\AgeGroup\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\AgeGroup\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\AgeGroup\Edit.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

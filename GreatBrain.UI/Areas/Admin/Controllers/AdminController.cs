@@ -6,11 +6,9 @@ using System.Web.Mvc;
 
 namespace GreatBrain.UI.Areas.Admin.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
-        //
-        // GET: /Admin/Admin/
-
         public ActionResult Default()
         {
             return View();

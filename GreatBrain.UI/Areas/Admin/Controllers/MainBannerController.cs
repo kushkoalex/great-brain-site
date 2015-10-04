@@ -1,16 +1,16 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using GreatBrain.UI;
 using GreatBrain.UI.Areas.Admin.Controllers;
 using GreatBrain.UI.Helpers;
 using GreatBrain.UI.Models;
 using GreatBrain.UI.Models;
 
-namespace NewVision.UI.Areas.Admin.Controllers
+namespace GreatBrain.UI.Areas.Admin.Controllers
 {
     public class MainBannerController : AdminController
     {
-
         private readonly SiteContext _context;
 
         public MainBannerController(SiteContext context)
@@ -32,7 +32,7 @@ namespace NewVision.UI.Areas.Admin.Controllers
         public ActionResult Create()
         {
 
-            return View(new MainBanner());
+            return View(new MainBanner {SortOrder = (_context.MainBanners.Max(c => (int?) c.SortOrder) ?? 0) + 1});
         }
 
         //
@@ -45,20 +45,23 @@ namespace NewVision.UI.Areas.Admin.Controllers
             {
                 var mainBanner = new MainBanner
                 {
-                    Title = model.Title ?? "", 
-                    TitleEn = model.TitleEn ?? "", 
+                    Title = model.Title ?? "",
+                    TitleEn = model.TitleEn ?? "",
                     Description = model.Description ?? "",
                     DescriptionEn = model.DescriptionEn ?? "",
+                    Sign = model.Sign ?? "",
+                    SignEn = model.SignEn ?? "",
+                    SortOrder = model.SortOrder
                 };
 
                 var file = Request.Files[0];
                 if (file != null && !string.IsNullOrEmpty(file.FileName))
                 {
-                    string fileName = IOHelper.GetUniqueFileName("~/Content/Images", file.FileName);
-                    string filePath = Server.MapPath("~/Content/Images");
+                    string fileName = IOHelper.GetUniqueFileName(SiteSettings.MainBannnerImagePath, file.FileName);
+                    string filePath = Server.MapPath(SiteSettings.MainBannnerImagePath);
 
                     filePath = Path.Combine(filePath, fileName);
-                    GraphicsHelper.SaveOriginalImage(filePath, fileName, file, 1500);
+                    GraphicsHelper.SaveOriginalImage(filePath, fileName, file, 0);
                     mainBanner.ImageSrc = fileName;
                 }
                 else
@@ -99,20 +102,23 @@ namespace NewVision.UI.Areas.Admin.Controllers
                 mainBanner.TitleEn = model.TitleEn ?? "";
                 mainBanner.Description = model.Description ?? "";
                 mainBanner.DescriptionEn = model.DescriptionEn ?? "";
+                mainBanner.Sign = model.Sign ?? "";
+                mainBanner.SignEn = model.SignEn ?? "";
+                mainBanner.SortOrder = model.SortOrder;
 
                 var file = Request.Files[0];
                 if (file != null && !string.IsNullOrEmpty(file.FileName))
                 {
                     if (!string.IsNullOrEmpty(mainBanner.ImageSrc))
                     {
-                        ImageHelper.DeleteImage(mainBanner.ImageSrc);
+                        ImageHelper.DeleteImage(mainBanner.ImageSrc,SiteSettings.MainBannnerImagePath);
                     }
 
-                    string fileName = IOHelper.GetUniqueFileName("~/Content/Images", file.FileName);
-                    string filePath = Server.MapPath("~/Content/Images");
+                    string fileName = IOHelper.GetUniqueFileName(SiteSettings.MainBannnerImagePath, file.FileName);
+                    string filePath = Server.MapPath(SiteSettings.MainBannnerImagePath);
 
                     filePath = Path.Combine(filePath, fileName);
-                    GraphicsHelper.SaveOriginalImage(filePath, fileName, file, 1500);
+                    GraphicsHelper.SaveOriginalImage(filePath, fileName, file, 0);
                     mainBanner.ImageSrc = fileName;
                 }
                 else
@@ -129,13 +135,10 @@ namespace NewVision.UI.Areas.Admin.Controllers
             }
         }
 
-        //
-        // GET: /Admin/MainBanner/Delete/5
-
         public ActionResult Delete(int id)
         {
             var mainBanner = _context.MainBanners.First(b => b.Id == id);
-            ImageHelper.DeleteImage(mainBanner.ImageSrc);
+            ImageHelper.DeleteImage(mainBanner.ImageSrc, SiteSettings.MainBannnerImagePath);
             _context.MainBanners.Remove(mainBanner);
             _context.SaveChanges();
             return RedirectToAction("Index");

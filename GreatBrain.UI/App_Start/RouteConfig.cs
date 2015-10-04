@@ -24,7 +24,7 @@ namespace GreatBrain.UI
             routes.MapRoute(
                "Logout",
                "logout",
-               new { controller = "Auth", action = "Logout" },
+               new { controller = "Auth", action = "Logout"},
                new[] { "GreatBrain.UI.Controllers" }
             );
 

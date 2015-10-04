@@ -1,0 +1,71 @@
+﻿@model GreatBrain.UI.Models.Content
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section AdminNavigation
+{
+    @Html.Partial("Menu", "Content")
+}
+
+<div class="container">
+    <h3>Добавление контента</h3>
+    @using (Html.BeginForm("Create", "Content", FormMethod.Post, new { role = "form", @class = "form-horizontal"}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Name" id="Name" placeholder="Введите идентификатор страницы" value="@Model.Name">
+            </div>
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+         <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Title" id="Title" placeholder="Введите заголовок" value="@Model.Title">
+            </div>
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TitleEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="TitleEn" id="TitleEn" placeholder="Введите заголовок" value="@Model.TitleEn">
+            </div>
+            @Html.ValidationMessageFor(model => model.TitleEn)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Text, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <textarea class="form-control ckeditor" rows="10" name="Text">@Model.Text</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TextEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <textarea class="form-control ckeditor" rows="10" name="TextEn">@Model.TextEn</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SortOrder, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="SortOrder"  placeholder="Введите порядок отображения" value="@Model.SortOrder">
+            </div>
+            @Html.ValidationMessageFor(model => model.SortOrder)
+        </div>
+        <div class="form-group">
+            @Html.ActionLink("Назад", "Index", "Content", null, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-success">Сохранить</button>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src="/Controls/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/Controls/ckeditor/adapters/jquery.js"></script>
+}

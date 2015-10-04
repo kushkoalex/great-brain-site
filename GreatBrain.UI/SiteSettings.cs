@@ -16,16 +16,15 @@ namespace GreatBrain.UI
             Thumbnails = new Dictionary<string, ThumbnailPicture>
                               {
                                     {"mainBannerPreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =200 ,Width = 400 }, CacheFolder = "mainBannerPreview", ScaleMode = ScaleMode.Crop}},
-                                    {"articlePreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =145 ,Width = 170 }, CacheFolder = "articlePreview", ScaleMode = ScaleMode.Crop}},
-                                    {"eventAnnouncementPreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =100 ,Width = 100 }, CacheFolder = "eventAnnouncementPreview", ScaleMode = ScaleMode.Crop}},
-                                    {"eventImagePreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =50 ,Width = 50 }, CacheFolder = "eventImagePreview", ScaleMode = ScaleMode.Crop}},
-                                    
-                                    
-                                    
-                                    {"author",new ThumbnailPicture{ PictureSize =new PictureSize {Height =670 ,Width = 670 }, CacheFolder = "author", ScaleMode = ScaleMode.Crop}},
-                                    {"authorThumb",new ThumbnailPicture{ PictureSize =new PictureSize {Height =324 ,Width = 324 }, CacheFolder = "authorThumb", ScaleMode = ScaleMode.Crop}},
-                                    {"authorAvatar",new ThumbnailPicture{ PictureSize =new PictureSize {Height =150 ,Width = 150 }, CacheFolder = "authorAvatar", ScaleMode = ScaleMode.Crop}},
-                                    {"productThumb",new ThumbnailPicture{ PictureSize =new PictureSize {Height =324 ,Width = 324 }, CacheFolder = "productThumb", ScaleMode = ScaleMode.Crop}},
+                                    {"contentAnnouncementPreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =200 ,Width = 200 }, CacheFolder = "contentAnnouncementPreview", ScaleMode = ScaleMode.Crop}},
+
+
+                                    //{"articlePreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =145 ,Width = 170 }, CacheFolder = "articlePreview", ScaleMode = ScaleMode.Crop}},
+                                    //{"eventImagePreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =50 ,Width = 50 }, CacheFolder = "eventImagePreview", ScaleMode = ScaleMode.Crop}},
+                                    //{"author",new ThumbnailPicture{ PictureSize =new PictureSize {Height =670 ,Width = 670 }, CacheFolder = "author", ScaleMode = ScaleMode.Crop}},
+                                    //{"authorThumb",new ThumbnailPicture{ PictureSize =new PictureSize {Height =324 ,Width = 324 }, CacheFolder = "authorThumb", ScaleMode = ScaleMode.Crop}},
+                                    //{"authorAvatar",new ThumbnailPicture{ PictureSize =new PictureSize {Height =150 ,Width = 150 }, CacheFolder = "authorAvatar", ScaleMode = ScaleMode.Crop}},
+                                    //{"productThumb",new ThumbnailPicture{ PictureSize =new PictureSize {Height =324 ,Width = 324 }, CacheFolder = "productThumb", ScaleMode = ScaleMode.Crop}},
                                     //{"siteProductPreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =215 ,Width = 268 }, CacheFolder = "siteProductPreview", ScaleMode = ScaleMode.Insert}},
                                     //{"siteProductDetailsMainImage",new ThumbnailPicture{ PictureSize =new PictureSize {Height =344 ,Width = 597 }, CacheFolder = "siteProductDetailsMainImage", ScaleMode = ScaleMode.Insert}},
                                     //{"siteProductDetailsThumbnail",new ThumbnailPicture{ PictureSize =new PictureSize {Height =90 ,Width = 90 }, CacheFolder = "siteProductDetailsThumbnail", ScaleMode = ScaleMode.Insert}},
@@ -60,10 +59,9 @@ namespace GreatBrain.UI
             throw new Exception("Can't find thumbnail " + cacheFolder);
         }
 
-        public static string Version
-        {
-            get { return "0.1.53"; }
-        }
+        public static int MainBannnerImageMaxDimention { get { return 2000; } }
+        public static string MainBannnerImagePath { get { return "~/Content/Images/mainBanner"; } }
+        public static string ContentAnouncementImagePath { get { return "~/Content/Images/countentAnouncement"; } }
 
         public static string MailTo
         {

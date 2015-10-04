@@ -5,8 +5,8 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 10/03/2015 23:22:53
--- Generated from EDMX file: C:\vsp\GreatBrain\GreatBrain.DataModel\Model1.edmx
+-- Date Created: 10/04/2015 22:46:59
+-- Generated from EDMX file: C:\github\great-brain-site\GreatBrain.DataModel\Model1.edmx
 -- Target version: 3.0.0.0
 -- --------------------------------------------------
 
@@ -53,7 +53,7 @@ CREATE TABLE `MainBanner`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`ImageSrc` varchar (200), 
 	`Title` varchar (200), 
-	`TileEn` varchar (200), 
+	`TitleEn` varchar (200), 
 	`Description` varchar (500), 
 	`DescriptionEn` varchar (500), 
 	`Sign` varchar (100), 
@@ -247,7 +247,9 @@ CREATE TABLE `ServiceContent`(
 	`TitleEn` varchar (200), 
 	`ServiceType` varchar (50) NOT NULL, 
 	`IsSpecial` bool NOT NULL, 
-	`SortOrder` int NOT NULL);
+	`SortOrder` int NOT NULL, 
+	`Text` longtext, 
+	`TextEn` longtext);
 
 ALTER TABLE `ServiceContent` ADD PRIMARY KEY (Id);
 

@@ -48,7 +48,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ImageSrc" Type="varchar" Nullable="true" MaxLength="200" />
     <Property Name="Title" Type="varchar" Nullable="true" MaxLength="200" />
-    <Property Name="TileEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="TitleEn" Type="varchar" Nullable="true" MaxLength="200" />
     <Property Name="Description" Type="varchar" Nullable="true" MaxLength="500" />
     <Property Name="DescriptionEn" Type="varchar" Nullable="true" MaxLength="500" />
     <Property Name="Sign" Type="varchar" Nullable="true" MaxLength="100" />
@@ -219,6 +219,8 @@
     <Property Name="ServiceType" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="IsSpecial" Type="bool" Nullable="false" />
     <Property Name="SortOrder" Type="int" Nullable="false" />
+    <Property Name="Text" Type="longtext" Nullable="true" />
+    <Property Name="TextEn" Type="longtext" Nullable="true" />
   </EntityType>
   <EntityType Name="Content">
     <Key>
@@ -580,6 +582,8 @@
           <Property Type="String" Name="ServiceType" Nullable="false" MaxLength="50" />
           <Property Type="Boolean" Name="IsSpecial" Nullable="false" />
           <Property Type="Int32" Name="SortOrder" Nullable="false" />
+          <Property Type="String" Name="Text" />
+          <Property Type="String" Name="TextEn" />
         </EntityType>
         <EntityType Name="Content">
           <Key>
@@ -605,7 +609,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
           <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="TitleEn" ColumnName="TileEn" />
+          <ScalarProperty Name="TitleEn" ColumnName="TitleEn" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="DescriptionEn" ColumnName="DescriptionEn" />
           <ScalarProperty Name="Sign" ColumnName="Sign" />
@@ -788,6 +792,8 @@
           <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
           <ScalarProperty Name="IsSpecial" ColumnName="IsSpecial" />
           <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="TextEn" ColumnName="TextEn" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

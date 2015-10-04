@@ -1,0 +1,70 @@
+﻿@using GreatBrain.UI
+@using GreatBrain.UI.Helpers
+@model IEnumerable<GreatBrain.UI.Models.Content>
+
+@{
+    ViewBag.Title = "Контент";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section AdminNavigation
+{
+    @Html.Partial("Menu","Content")
+}
+
+<p>
+        @Html.ActionLink("Добавить", "Create")
+</p>
+
+<table class="table table-striped">
+    <tr>
+         <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TitleEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Text)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TextEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SortOrder)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+             <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TitleEn)
+            </td>
+            <td>
+                @Html.Raw(item.Text)
+            </td>
+            <td>
+                @Html.Raw(item.TextEn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SortOrder)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new { onclick = "return confirm('Удалить запись?')" })
+            </td>
+        </tr>
+    }
+
+</table>

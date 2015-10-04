@@ -1,0 +1,85 @@
+﻿@model IEnumerable<GreatBrain.UI.Models.AgeGroup>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section AdminNavigation
+{
+    @Html.Partial("Menu", "AgeGroup")
+}
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EducationCategory.EducationCountry.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EducationCategory.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AgeEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Text)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TextEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageSrc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SortOrder)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EducationCategory.EducationCountry.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EducationCategory.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AgeEn)
+        </td>
+        <td>
+            @Html.Raw(item.Text)
+        </td>
+        <td>
+            @Html.Raw(item.TextEn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageSrc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SortOrder)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new { onclick = "return confirm('Удалить запись?')" })
+        </td>
+    </tr>
+}
+
+</table>

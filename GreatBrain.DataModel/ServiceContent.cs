@@ -21,5 +21,7 @@ namespace GreatBrain.DataModel
         public string ServiceType { get; set; }
         public bool IsSpecial { get; set; }
         public int SortOrder { get; set; }
+        public string Text { get; set; }
+        public string TextEn { get; set; }
     }
 }

@@ -1,0 +1,85 @@
+﻿@using GreatBrain.UI
+@using GreatBrain.UI.Helpers
+@model System.Collections.Generic.IEnumerable<GreatBrain.UI.Models.MainBanner>
+
+@{
+    ViewBag.Title = "Контент главной страницы";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section AdminNavigation
+{
+    @Html.Partial("Menu","MainBanner")
+}
+
+<p>
+    @*<button type="button" class="btn btn-success btn-sm">*@
+        @Html.ActionLink("Добавить", "Create")
+    @*</button>*@
+</p>
+
+<table class="table table-striped">
+    <tr>
+         <th>
+            @Html.DisplayNameFor(model => model.SortOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TitleEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescriptionEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sign)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SignEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageSrc)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+             <td>
+                @Html.DisplayFor(modelItem => item.SortOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TitleEn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescriptionEn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sign)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SignEn)
+            </td>
+            <td>
+                @Html.Raw(Html.CachedImage(SiteSettings.MainBannnerImagePath, item.ImageSrc, SiteSettings.GetThumbnail("mainBannerPreview")))
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new { onclick = "return confirm('Удалить запись?')" })
+            </td>
+        </tr>
+    }
+
+</table>
+
