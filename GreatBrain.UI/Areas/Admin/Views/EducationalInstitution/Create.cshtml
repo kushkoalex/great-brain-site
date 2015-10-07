@@ -1,0 +1,234 @@
+﻿@using GreatBrain.UI.Models
+@model GreatBrain.UI.Models.EducationalInstitution
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section AdminNavigation
+{
+    @Html.Partial("Menu", "EducationalInstitution")
+}
+
+
+<div class="container">
+    <h3>Добавление контента</h3>
+    @using (Html.BeginForm("Create", "EducationalInstitution", FormMethod.Post, new { role = "form", @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Name" id="Name" placeholder="Введите идентификатор страницы" value="@Model.Name">
+            </div>
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.EducationCountry, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <select class="form-control" name="EducationCountry">
+                    @foreach (EducationCountry ec in (IEnumerable<EducationCountry>)ViewBag.EducationCountries)
+                    {
+                        <option value="@ec.Id">@ec.Title</option>
+                    }
+                </select>
+            </div>
+            @Html.ValidationMessageFor(model => model.EducationCountry)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Title" id="Title" placeholder="Введите заголовок" value="@Model.Title">
+            </div>
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TitleEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="TitleEn" id="TitleEn" placeholder="Введите заголовок" value="@Model.TitleEn">
+            </div>
+            @Html.ValidationMessageFor(model => model.TitleEn)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LocationName, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="LocationName" id="LocationName" placeholder="Введите идентификатор локации (для фильтра)" value="@Model.LocationName">
+            </div>
+            @Html.ValidationMessageFor(model => model.LocationName)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LocationTitle, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="LocationTitle" id="LocationTitle" placeholder="Введите заголовок локации" value="@Model.LocationTitle">
+            </div>
+            @Html.ValidationMessageFor(model => model.LocationTitle)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LocationTitleEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="LocationTitleEn" id="LocationTitleEn" placeholder="Введите заголовок локации" value="@Model.LocationTitleEn">
+            </div>
+            @Html.ValidationMessageFor(model => model.LocationTitleEn)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Gender, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <select class="form-control" name="Gender">
+                    <option value="male">Только для мальчиков</option>
+                    <option value="both">Совместное обучение</option>
+                </select>
+            </div>
+            @Html.ValidationMessageFor(model => model.Gender)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Type, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <select class="form-control" name="Type">
+                    <option value="school">Школа</option>
+                    <option value="highSchool">Высшая школа</option>
+                </select>
+            </div>
+            @Html.ValidationMessageFor(model => model.Type)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PreviewImageSrc, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="file" name="PreviewImageSrc"/>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LogoImageSrc, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="file" name="LogoImageSrc"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Address" id="Address" placeholder="Введите адрес" value="@Model.Address">
+            </div>
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+         <div class="form-group">
+            @Html.LabelFor(model => model.AddressEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="AddressEn" id="AddressEn" placeholder="Введите адрес" value="@Model.AddressEn">
+            </div>
+            @Html.ValidationMessageFor(model => model.AddressEn)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MapLocation, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="MapLocation" id="MapLocation" placeholder="Введите адрес положения на карте" value="@Model.AddressEn">
+            </div>
+            @Html.ValidationMessageFor(model => model.MapLocation)
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.MinAge, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="MinAge" id="MinAge" placeholder="Введите минимальный возраст" value="@Model.MinAge">
+            </div>
+            @Html.ValidationMessageFor(model => model.MinAge)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.YearOfFoundation, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="YearOfFoundation" id="YearOfFoundation" placeholder="Введите год основания" value="@Model.YearOfFoundation">
+            </div>
+            @Html.ValidationMessageFor(model => model.YearOfFoundation)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.NumberOfStudents, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="NumberOfStudents" id="NumberOfStudents" placeholder="Введите количество студентов" value="@Model.NumberOfStudents">
+            </div>
+            @Html.ValidationMessageFor(model => model.NumberOfStudents)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.RectorName, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="RectorName" id="RectorName" placeholder="Введите имя ректора" value="@Model.RectorName">
+            </div>
+            @Html.ValidationMessageFor(model => model.RectorName)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.RectorNameEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="RectorNameEn" id="RectorNameEn" placeholder="Введите имя ректора" value="@Model.RectorNameEn">
+            </div>
+            @Html.ValidationMessageFor(model => model.RectorNameEn)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contacts, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Contacts" id="Contacts" placeholder="Введите контактную информацию" value="@Model.Contacts">
+            </div>
+            @Html.ValidationMessageFor(model => model.Contacts)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContactsEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="ContactsEn" id="ContactsEn" placeholder="Введите контактную информацию" value="@Model.ContactsEn">
+            </div>
+            @Html.ValidationMessageFor(model => model.ContactsEn)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Email" id="Email" placeholder="Введите Email" value="@Model.Email">
+            </div>
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+       <div class="form-group">
+            @Html.LabelFor(model => model.WebSiteUrl, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="WebSiteUrl" id="WebSiteUrl" placeholder="Введите адрес сайта" value="@Model.WebSiteUrl">
+            </div>
+            @Html.ValidationMessageFor(model => model.WebSiteUrl)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <textarea class="form-control ckeditor" rows="10" name="Description">@Model.Description</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DescriptionEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <textarea class="form-control ckeditor" rows="10" name="DescriptionEn">@Model.DescriptionEn</textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SortOrder, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="SortOrder"  placeholder="Введите порядок отображения" value="@Model.SortOrder">
+            </div>
+            @Html.ValidationMessageFor(model => model.SortOrder)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsSpecial, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.CheckBoxFor(model=>model.IsSpecial)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.ActionLink("Назад", "Index", "EducationalInstitution", null, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-success">Сохранить</button>
+            </div>
+        </div>
+        
+    }
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src="/Controls/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/Controls/ckeditor/adapters/jquery.js"></script>
+}

@@ -8,6 +8,6 @@ namespace GreatBrain.UI.Models
         public int Id { get; set; }
         public string ImageSrc { get; set; }
         public int EdicationalInstitutionId { get; set; }
-        public virtual EdicationalInstitution EdicationalInstitution { get; set; }
+        public virtual EducationalInstitution EducationalInstitution { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace GreatBrain.UI.Models
     {
         public EducationCountry()
         {
-            this.EdicationalInstitutions = new List<EdicationalInstitution>();
+            this.EdicationalInstitutions = new List<EducationalInstitution>();
             this.EducationCategories = new List<EducationCategory>();
         }
 
@@ -16,7 +16,7 @@ namespace GreatBrain.UI.Models
         public string TitleEn { get; set; }
         public string Name { get; set; }
         public int SortOrder { get; set; }
-        public virtual ICollection<EdicationalInstitution> EdicationalInstitutions { get; set; }
+        public virtual ICollection<EducationalInstitution> EdicationalInstitutions { get; set; }
         public virtual ICollection<EducationCategory> EducationCategories { get; set; }
     }
 }

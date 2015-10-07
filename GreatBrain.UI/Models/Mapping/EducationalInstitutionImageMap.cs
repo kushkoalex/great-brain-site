@@ -22,7 +22,7 @@ namespace GreatBrain.UI.Models.Mapping
             this.Property(t => t.EdicationalInstitutionId).HasColumnName("EdicationalInstitutionId");
 
             // Relationships
-            this.HasRequired(t => t.EdicationalInstitution)
+            this.HasRequired(t => t.EducationalInstitution)
                 .WithMany(t => t.EducationalInstitutionImages)
                 .HasForeignKey(d => d.EdicationalInstitutionId);
 

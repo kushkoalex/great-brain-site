@@ -17,11 +17,17 @@ namespace GreatBrain.UI.Models.Mapping
             this.Property(t => t.TitleEn)
                 .HasMaxLength(200);
 
-            this.Property(t => t.LocationContent)
-                .HasMaxLength(1073741823);
+            this.Property(t => t.LocationContentAddress)
+                .HasMaxLength(200);
 
-            this.Property(t => t.LocationContentEn)
-                .HasMaxLength(1073741823);
+            this.Property(t => t.LocationContentAddressEn)
+                .HasMaxLength(200);
+
+            this.Property(t => t.LocationContentPhone)
+                .HasMaxLength(200);
+
+            this.Property(t => t.LocationContentEmail)
+                .HasMaxLength(200);
 
             this.Property(t => t.LocationTitle)
                 .HasMaxLength(200);
@@ -36,8 +42,10 @@ namespace GreatBrain.UI.Models.Mapping
             this.Property(t => t.TitleEn).HasColumnName("TitleEn");
             this.Property(t => t.LicationLat).HasColumnName("LicationLat");
             this.Property(t => t.LocationLng).HasColumnName("LocationLng");
-            this.Property(t => t.LocationContent).HasColumnName("LocationContent");
-            this.Property(t => t.LocationContentEn).HasColumnName("LocationContentEn");
+            this.Property(t => t.LocationContentAddress).HasColumnName("LocationContentAddress");
+            this.Property(t => t.LocationContentAddressEn).HasColumnName("LocationContentAddressEn");
+            this.Property(t => t.LocationContentPhone).HasColumnName("LocationContentPhone");
+            this.Property(t => t.LocationContentEmail).HasColumnName("LocationContentEmail");
             this.Property(t => t.LocationTitle).HasColumnName("LocationTitle");
             this.Property(t => t.LocationTitleEn).HasColumnName("LocationTitleEn");
             this.Property(t => t.SortOrder).HasColumnName("SortOrder");

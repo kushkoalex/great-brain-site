@@ -144,7 +144,7 @@
     <Compile Include="Areas\Admin\Controllers\BlogController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentAnnouncementController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
-    <Compile Include="Areas\Admin\Controllers\EdicationalInstitutionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EducationalInstitutionController.cs" />
     <Compile Include="Areas\Admin\Controllers\EducationCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\EducationCountryController.cs" />
     <Compile Include="Areas\Admin\Controllers\MainBannerController.cs" />
@@ -172,7 +172,7 @@
     <Compile Include="Models\BlogItem.cs" />
     <Compile Include="Models\Content.cs" />
     <Compile Include="Models\ContentAnnouncement.cs" />
-    <Compile Include="Models\EdicationalInstitution.cs" />
+    <Compile Include="Models\EducationalInstitution.cs" />
     <Compile Include="Models\EducationalInstitutionImage.cs" />
     <Compile Include="Models\EducationCategory.cs" />
     <Compile Include="Models\EducationCountry.cs" />
@@ -185,7 +185,7 @@
     <Compile Include="Models\Mapping\BlogItemMap.cs" />
     <Compile Include="Models\Mapping\ContentAnnouncementMap.cs" />
     <Compile Include="Models\Mapping\ContentMap.cs" />
-    <Compile Include="Models\Mapping\EdicationalInstitutionMap.cs" />
+    <Compile Include="Models\Mapping\EducationalInstitutionMap.cs" />
     <Compile Include="Models\Mapping\EducationalInstitutionImageMap.cs" />
     <Compile Include="Models\Mapping\EducationCategoryMap.cs" />
     <Compile Include="Models\Mapping\EducationCountryMap.cs" />
@@ -382,6 +382,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\AgeGroup\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\EducationalInstitution\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\EducationalInstitution\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\EducationalInstitution\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\EducationalInstitution\AddImages.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\InputImages.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

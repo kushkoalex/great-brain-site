@@ -3,9 +3,9 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace GreatBrain.UI.Models.Mapping
 {
-    public class EdicationalInstitutionMap : EntityTypeConfiguration<EdicationalInstitution>
+    public class EducationalInstitutionMap : EntityTypeConfiguration<EducationalInstitution>
     {
-        public EdicationalInstitutionMap()
+        public EducationalInstitutionMap()
         {
             // Primary Key
             this.HasKey(t => t.Id);
@@ -86,7 +86,7 @@ namespace GreatBrain.UI.Models.Mapping
                 .HasMaxLength(200);
 
             // Table & Column Mappings
-            this.ToTable("EdicationalInstitution", "gbua_greatbrain");
+            this.ToTable("EducationalInstitution", "gbua_greatbrain");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Name).HasColumnName("Name");
             this.Property(t => t.Title).HasColumnName("Title");

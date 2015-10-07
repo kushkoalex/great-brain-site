@@ -22,7 +22,7 @@ namespace GreatBrain.UI.Models
         public DbSet<BlogItem> BlogItems { get; set; }
         public DbSet<Content> Contents { get; set; }
         public DbSet<ContentAnnouncement> ContentAnnouncements { get; set; }
-        public DbSet<EdicationalInstitution> EdicationalInstitutions { get; set; }
+        public DbSet<EducationalInstitution> EducationalInstitutions { get; set; }
         public DbSet<EducationalInstitutionImage> EducationalInstitutionImages { get; set; }
         public DbSet<EducationCategory> EducationCategories { get; set; }
         public DbSet<EducationCountry> EducationCountries { get; set; }
@@ -39,7 +39,7 @@ namespace GreatBrain.UI.Models
             modelBuilder.Configurations.Add(new BlogItemMap());
             modelBuilder.Configurations.Add(new ContentMap());
             modelBuilder.Configurations.Add(new ContentAnnouncementMap());
-            modelBuilder.Configurations.Add(new EdicationalInstitutionMap());
+            modelBuilder.Configurations.Add(new EducationalInstitutionMap());
             modelBuilder.Configurations.Add(new EducationalInstitutionImageMap());
             modelBuilder.Configurations.Add(new EducationCategoryMap());
             modelBuilder.Configurations.Add(new EducationCountryMap());

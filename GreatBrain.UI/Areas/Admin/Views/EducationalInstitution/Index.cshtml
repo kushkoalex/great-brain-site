@@ -1,0 +1,210 @@
+﻿@using GreatBrain.UI
+@using GreatBrain.UI.Helpers
+@model IEnumerable<GreatBrain.UI.Models.EducationalInstitution>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section AdminNavigation
+{
+    @Html.Partial("Menu", "EducationalInstitution")
+}
+
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TitleEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationTitleEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PreviewImageSrc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddressEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MapLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinAge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearOfFoundation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfStudents)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RectorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RectorNameEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contacts)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactsEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WebSiteUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescriptionEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LogoImageSrc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SortOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsSpecial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EducationCountry.Title)
+        </th>
+         <th>
+            @Html.DisplayNameFor(model => model.EducationalInstitutionImages)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TitleEn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationTitleEn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.Raw(Html.CachedImage(SiteSettings.EducationalInstitutionPreviewImagePath, item.PreviewImageSrc, SiteSettings.GetThumbnail("educationalInstitutionPreview")))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddressEn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MapLocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinAge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearOfFoundation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfStudents)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RectorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RectorNameEn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contacts)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactsEn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WebSiteUrl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescriptionEn)
+        </td>
+        <td>
+            @Html.Raw(Html.OriginalImage(@"\Content\Images\educationalInstitutionLogo",item.LogoImageSrc))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SortOrder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsSpecial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EducationCountry.Title)
+        </td>   
+        <td>
+            @foreach (var image in item.EducationalInstitutionImages)
+            {
+                <div style="display: inline-block; width: 100px;">
+                    <div style="position: absolute">
+                    @Html.ActionLink("Удалить", "DeleteImage", new { id = image.Id }, new { onclick = "return confirm('Удалить изображение?')", style="color:red;" })
+                        </div>
+                    @Html.Raw(Html.CachedImage(SiteSettings.EducationalInstitutionImagesPath, image.ImageSrc, SiteSettings.GetThumbnail("educationalInstitutionImagesAdminPreview")))
+                </div>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Добавить изображения", "AddImages", new { id=item.Id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new { onclick = "return confirm('Удалить запись?')" })
+        </td>
+    </tr>
+}
+
+</table>

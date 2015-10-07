@@ -29,7 +29,7 @@ namespace GreatBrain.DataModel
         public DbSet<ParallaxImage> ParallaxImage { get; set; }
         public DbSet<ContentAnnouncement> ContentAnnouncement { get; set; }
         public DbSet<EducationCountry> EducationCountry { get; set; }
-        public DbSet<EdicationalInstitution> EdicationalInstitution { get; set; }
+        public DbSet<EducationalInstitution> EdicationalInstitution { get; set; }
         public DbSet<EducationalInstitutionImage> EducationalInstitutionImage { get; set; }
         public DbSet<EducationCategory> EducationCategory { get; set; }
         public DbSet<AgeGroup> AgeGroup { get; set; }

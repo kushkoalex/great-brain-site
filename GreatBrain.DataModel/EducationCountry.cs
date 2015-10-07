@@ -16,7 +16,7 @@ namespace GreatBrain.DataModel
     {
         public EducationCountry()
         {
-            this.EdicationalInstitutions = new HashSet<EdicationalInstitution>();
+            this.EdicationalInstitutions = new HashSet<EducationalInstitution>();
             this.EducationCategories = new HashSet<EducationCategory>();
         }
     
@@ -26,7 +26,7 @@ namespace GreatBrain.DataModel
         public string Name { get; set; }
         public int SortOrder { get; set; }
     
-        public virtual ICollection<EdicationalInstitution> EdicationalInstitutions { get; set; }
+        public virtual ICollection<EducationalInstitution> EdicationalInstitutions { get; set; }
         public virtual ICollection<EducationCategory> EducationCategories { get; set; }
     }
 }

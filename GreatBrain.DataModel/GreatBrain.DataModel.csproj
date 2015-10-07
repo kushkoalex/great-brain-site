@@ -65,7 +65,7 @@
     <Compile Include="ContentAnnouncement.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="EdicationalInstitution.cs">
+    <Compile Include="EducationalInstitution.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EducationalInstitutionImage.cs">

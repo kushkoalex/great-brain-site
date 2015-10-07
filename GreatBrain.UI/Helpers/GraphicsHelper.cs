@@ -462,9 +462,10 @@ namespace GreatBrain.UI.Helpers
         /// <returns></returns>
         public static string OriginalImage(this HtmlHelper helper, string originalPath, string fileName)
         {
-            StringBuilder sb = new StringBuilder();
-            string formatString = "<img src=\"{0}\" alt=\"{1}\" />";
-
+            if (string.IsNullOrEmpty(fileName))
+                return string.Empty;
+            var sb = new StringBuilder();
+            const string formatString = "<img src=\"{0}\" alt=\"{1}\" />";
             sb.AppendFormat(formatString, Path.Combine(originalPath, fileName), fileName);
             return sb.ToString();
         }
