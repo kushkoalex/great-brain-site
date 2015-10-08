@@ -1,0 +1,96 @@
+﻿@using GreatBrain.UI.Models
+@model GreatBrain.UI.Models.Article
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section AdminNavigation
+{
+    @Html.Partial("Menu", "Article")
+}
+
+
+<div class="container">
+    <h3>Редактирование контента</h3>
+    @using (Html.BeginForm("Edit", "Article", FormMethod.Post, new { role = "form", @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model=>model.Id)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Name" id="Name" placeholder="Введите идентификатор страницы" value="@Model.Name">
+            </div>
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Title" id="Title" placeholder="Введите заголовок" value="@Model.Title">
+            </div>
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TitleEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="TitleEn" id="TitleEn" placeholder="Введите заголовок" value="@Model.TitleEn">
+            </div>
+            @Html.ValidationMessageFor(model => model.TitleEn)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Date, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Date" id="Date" placeholder="Введите дату" value="@Model.Date">
+            </div>
+            @Html.ValidationMessageFor(model => model.Date)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PreviewImageSrc, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="file" name="PreviewImageSrc"/>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ShortDescription, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="10" name="ShortDescription">@Model.ShortDescription</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ShortDescriptionEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="10" name="ShortDescriptionEn">@Model.ShortDescriptionEn</textarea>
+            </div>
+        </div>
+          <div class="form-group">
+            @Html.LabelFor(model => model.Text, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <textarea class="form-control ckeditor" rows="10" name="Text">@Model.Text</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TextEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <textarea class="form-control ckeditor" rows="10" name="TextEn">@Model.TextEn</textarea>
+            </div>
+        </div>
+
+        
+        <div class="form-group">
+            @Html.ActionLink("Назад", "Index", "Article", null, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-success">Сохранить</button>
+            </div>
+        </div>
+        
+    }
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src="/Controls/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/Controls/ckeditor/adapters/jquery.js"></script>
+}

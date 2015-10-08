@@ -2,6 +2,7 @@
 <div class="menu">
     <ul class="nav nav-tabs" role="tablist">
         <li class="@(Model == "MainBanner" ? "active" : "")">@Html.ActionLink("Основное изображение главной страницы", "Index", "MainBanner", new { area = "Admin" }, null)</li>
+        <li class="@(Model == "Parallax" ? "active" : "")">@Html.ActionLink("Параллакс на главной странице", "Index", "Parallax", new { area = "Admin" }, null)</li>
         <li class="@(Model == "ContentAnnouncement" ? "active" : "")">@Html.ActionLink("Контент главной страницы", "Index", "ContentAnnouncement", new { area = "Admin" }, null)</li>
         <li class="@(Model == "Content" ? "active" : "")">@Html.ActionLink("Страницы контента", "Index", "Content", new { area = "Admin" }, null)</li>
         <li class="@(Model == "EducationCountry" ? "active" : "")">@Html.ActionLink("Страны обучения", "Index", "EducationCountry", new { area = "Admin" }, null)</li>
@@ -9,5 +10,8 @@
         <li class="@(Model == "EducationCategory" ? "active" : "")">@Html.ActionLink("Категории обучения", "Index", "EducationCategory", new { area = "Admin" }, null)</li>
         <li class="@(Model == "AgeGroup" ? "active" : "")">@Html.ActionLink("Возрастные группы", "Index", "AgeGroup", new { area = "Admin" }, null)</li>
         <li class="@(Model == "EducationalInstitution" ? "active" : "")">@Html.ActionLink("Каталог учебных заведений", "Index", "EducationalInstitution", new { area = "Admin" }, null)</li>
+        <li class="@(Model == "Article" ? "active" : "")">@Html.ActionLink("Новости", "Index", "Article", new { area = "Admin" }, null)</li>
+        <li class="@(Model == "Blog" ? "active" : "")">@Html.ActionLink("Блог", "Index", "Blog", new { area = "Admin" }, null)</li>
+        <li class="@(Model == "MapLocation" ? "active" : "")">@Html.ActionLink("Локации на карте", "Index", "MapLocation", new { area = "Admin" }, null)</li>
     </ul>
 </div>

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<GreatBrain.UI.Models.MapLocation>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section AdminNavigation
+{
+    @Html.Partial("Menu","MapLocation")
+}
+
+<p>
+        @Html.ActionLink("Добавить", "Create")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TitleEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationLat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationLng)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationContentAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationContentAddressEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationContentPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationContentEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationTitleEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SortOrder)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TitleEn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationLat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationLng)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationContentAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationContentAddressEn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationContentPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationContentEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationTitleEn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SortOrder)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new { onclick = "return confirm('Удалить запись?')" })
+        </td>
+    </tr>
+}
+
+</table>

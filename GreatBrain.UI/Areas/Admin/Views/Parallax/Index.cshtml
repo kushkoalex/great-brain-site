@@ -1,0 +1,40 @@
+﻿@using GreatBrain.UI
+@using GreatBrain.UI.Helpers
+@model IEnumerable<GreatBrain.UI.Models.ParallaxImage>
+
+@{
+    ViewBag.Title = "Контент";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@section AdminNavigation
+{
+    @Html.Partial("Menu","Parallax")
+}
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageSrc)
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.Raw(Html.CachedImage(SiteSettings.Parallax, item.ImageSrc, SiteSettings.GetThumbnail("parallax")))
+        </td>
+        <td>
+            @Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new { onclick = "return confirm('Удалить запись?')" })
+        </td>
+    </tr>
+}
+
+</table>

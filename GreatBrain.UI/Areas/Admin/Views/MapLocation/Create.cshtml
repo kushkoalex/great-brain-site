@@ -1,0 +1,111 @@
+﻿@model GreatBrain.UI.Models.MapLocation
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section AdminNavigation
+{
+    @Html.Partial("Menu", "MapLocation")
+}
+
+
+<div class="container">
+    <h3>Добавление контента</h3>
+    @using (Html.BeginForm("Create", "MapLocation", FormMethod.Post, new { role = "form", @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Title" id="Title" placeholder="Введите заголовок" value="@Model.Title">
+            </div>
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TitleEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="TitleEn" id="TitleEn" placeholder="Введите заголовок" value="@Model.TitleEn">
+            </div>
+            @Html.ValidationMessageFor(model => model.TitleEn)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LocationLat, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="LocationLat" id="LocationLat" placeholder="Введите lat" value="@Model.LocationLat">
+            </div>
+            @Html.ValidationMessageFor(model => model.LocationLat)
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.LocationLng, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="LocationLng" id="LocationLng" placeholder="Введите lng" value="@Model.LocationLng">
+            </div>
+            @Html.ValidationMessageFor(model => model.LocationLng)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LocationContentAddress, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <textarea class="form-control ckeditor" rows="10" name="LocationContentAddress">@Model.LocationContentAddress</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LocationContentAddressEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <textarea class="form-control ckeditor" rows="10" name="LocationContentAddressEn">@Model.LocationContentAddressEn</textarea>
+            </div>
+        </div>
+         <div class="form-group">
+            @Html.LabelFor(model => model.LocationContentEmail, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="LocationContentEmail" id="LocationContentEmail" placeholder="Введите LocationContentEmail" value="@Model.LocationContentEmail">
+            </div>
+            @Html.ValidationMessageFor(model => model.LocationContentEmail)
+        </div>
+         <div class="form-group">
+            @Html.LabelFor(model => model.LocationContentPhone, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="LocationContentPhone" id="LocationContentPhone" placeholder="Введите LocationContentPhone" value="@Model.LocationContentPhone">
+            </div>
+            @Html.ValidationMessageFor(model => model.LocationContentPhone)
+        </div>
+        
+         <div class="form-group">
+            @Html.LabelFor(model => model.LocationTitle, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="LocationTitle" id="LocationTitle" placeholder="Введите LocationTitle" value="@Model.LocationTitle">
+            </div>
+            @Html.ValidationMessageFor(model => model.LocationTitle)
+        </div>
+        
+         <div class="form-group">
+            @Html.LabelFor(model => model.LocationTitleEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="LocationTitleEn" id="LocationTitleEn" placeholder="Введите LocationTitleEn" value="@Model.LocationTitleEn">
+            </div>
+            @Html.ValidationMessageFor(model => model.LocationTitleEn)
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.SortOrder, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="SortOrder" id="SortOrder" placeholder="Введите SortOrder" value="@Model.SortOrder">
+            </div>
+            @Html.ValidationMessageFor(model => model.SortOrder)
+        </div>
+
+        <div class="form-group">
+            @Html.ActionLink("Назад", "Index", "MapLocation", null, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-success">Сохранить</button>
+            </div>
+        </div>
+    
+ }
+</div>

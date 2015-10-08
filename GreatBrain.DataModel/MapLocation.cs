@@ -17,8 +17,8 @@ namespace GreatBrain.DataModel
         public int Id { get; set; }
         public string Title { get; set; }
         public string TitleEn { get; set; }
-        public decimal LicationLat { get; set; }
-        public decimal LocationLng { get; set; }
+        public string LocationLat { get; set; }
+        public string LocationLng { get; set; }
         public string LocationTitle { get; set; }
         public string LocationTitleEn { get; set; }
         public string LocationContentAddress { get; set; }

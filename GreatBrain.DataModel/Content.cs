@@ -21,5 +21,7 @@ namespace GreatBrain.DataModel
         public string Text { get; set; }
         public string TextEn { get; set; }
         public int SortOrder { get; set; }
+        public string MenuTitle { get; set; }
+        public string MenuTitleEn { get; set; }
     }
 }

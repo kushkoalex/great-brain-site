@@ -9,6 +9,8 @@ namespace GreatBrain.UI.Models
         public string Name { get; set; }
         public string Title { get; set; }
         public string TitleEn { get; set; }
+        public string MenuTitle { get; set; }
+        public string MenuTitleEn { get; set; }
         public string Text { get; set; }
         public string TextEn { get; set; }
         public int SortOrder { get; set; }

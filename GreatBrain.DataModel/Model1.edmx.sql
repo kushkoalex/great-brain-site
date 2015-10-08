@@ -5,7 +5,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 10/07/2015 22:22:59
+-- Date Created: 10/08/2015 23:21:11
 -- Generated from EDMX file: C:\github\great-brain-site\GreatBrain.DataModel\Model1.edmx
 -- Target version: 3.0.0.0
 -- --------------------------------------------------
@@ -200,14 +200,14 @@ CREATE TABLE `MapLocation`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`Title` varchar (200), 
 	`TitleEn` varchar (200), 
-	`LicationLat` decimal( 10, 2 )  NOT NULL, 
-	`LocationLng` decimal( 10, 2 )  NOT NULL, 
+	`LocationLat` varchar (100), 
+	`LocationLng` varchar (100), 
 	`LocationTitle` varchar (200), 
 	`LocationTitleEn` varchar (200), 
-	`LocationContentAddress` varchar (200) NOT NULL, 
-	`LocationContentAddressEn` varchar (200) NOT NULL, 
-	`LocationContentPhone` varchar (200) NOT NULL, 
-	`LocationContentEmail` varchar (200) NOT NULL, 
+	`LocationContentAddress` varchar (200), 
+	`LocationContentAddressEn` varchar (200), 
+	`LocationContentPhone` varchar (200), 
+	`LocationContentEmail` varchar (200), 
 	`SortOrder` int NOT NULL);
 
 ALTER TABLE `MapLocation` ADD PRIMARY KEY (Id);
@@ -265,7 +265,9 @@ CREATE TABLE `Content`(
 	`TitleEn` varchar (200), 
 	`Text` longtext, 
 	`TextEn` longtext, 
-	`SortOrder` int NOT NULL);
+	`SortOrder` int NOT NULL, 
+	`MenuTitle` varchar (200), 
+	`MenuTitleEn` varchar (200));
 
 ALTER TABLE `Content` ADD PRIMARY KEY (Id);
 

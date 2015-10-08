@@ -19,6 +19,9 @@ namespace GreatBrain.UI
                                     {"contentAnnouncementPreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =200 ,Width = 200 }, CacheFolder = "contentAnnouncementPreview", ScaleMode = ScaleMode.Crop}},
                                     {"educationalInstitutionPreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =200 ,Width = 200 }, CacheFolder = "educationalInstitutionPreview", ScaleMode = ScaleMode.Crop}},
                                     {"educationalInstitutionImagesAdminPreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =100 ,Width = 100 }, CacheFolder = "educationalInstitutionImagesAdminPreview", ScaleMode = ScaleMode.Crop}},
+                                    {"articlePreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =200 ,Width = 200 }, CacheFolder = "articlePreview", ScaleMode = ScaleMode.Crop}},
+                                    {"articleImagesPreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =100 ,Width = 100 }, CacheFolder = "articleImagesPreview", ScaleMode = ScaleMode.Crop}},
+                                    {"parallax",new ThumbnailPicture{ PictureSize =new PictureSize {Height =200 ,Width = 400 }, CacheFolder = "parallax", ScaleMode = ScaleMode.Crop}},
                               };
 
         }
@@ -36,6 +39,11 @@ namespace GreatBrain.UI
         public static string EducationalInstitutionLogoImagePath { get { return "~/Content/Images/educationalInstitutionLogo"; } }
         public static string EducationalInstitutionPreviewImagePath { get { return "~/Content/Images/educationalInstitutionPreview"; } }
         public static string EducationalInstitutionImagesPath { get { return "~/Content/Images/educationalInstitutionImages"; } }
+        public static string ArticlePreviewPath { get { return "~/Content/Images/articlePreview"; } }
+        
+        public static string ArticleImagesPath { get { return "~/Content/Images/articleImages"; } }
+        public static string BlogPreviewPath { get { return "~/Content/Images/blogPreview"; } }
+        public static string Parallax { get { return "~/Content/Images/parallax"; } }
 
         public static string MailTo
         {

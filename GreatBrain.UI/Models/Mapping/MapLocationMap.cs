@@ -17,6 +17,12 @@ namespace GreatBrain.UI.Models.Mapping
             this.Property(t => t.TitleEn)
                 .HasMaxLength(200);
 
+            this.Property(t => t.LocationLat)
+                .HasMaxLength(100);
+
+            this.Property(t => t.LocationLng)
+                .HasMaxLength(100);
+
             this.Property(t => t.LocationContentAddress)
                 .HasMaxLength(200);
 
@@ -40,7 +46,7 @@ namespace GreatBrain.UI.Models.Mapping
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Title).HasColumnName("Title");
             this.Property(t => t.TitleEn).HasColumnName("TitleEn");
-            this.Property(t => t.LicationLat).HasColumnName("LicationLat");
+            this.Property(t => t.LocationLat).HasColumnName("LocationLat");
             this.Property(t => t.LocationLng).HasColumnName("LocationLng");
             this.Property(t => t.LocationContentAddress).HasColumnName("LocationContentAddress");
             this.Property(t => t.LocationContentAddressEn).HasColumnName("LocationContentAddressEn");

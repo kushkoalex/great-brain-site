@@ -136,6 +136,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_LocalResources\GlobalRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_LocalResources\GlobalRes.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalRes.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\IocInitializer.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
@@ -149,6 +159,7 @@
     <Compile Include="Areas\Admin\Controllers\EducationCountryController.cs" />
     <Compile Include="Areas\Admin\Controllers\MainBannerController.cs" />
     <Compile Include="Areas\Admin\Controllers\MapLocationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ParallaxController.cs" />
     <Compile Include="Areas\Admin\Controllers\ServiceContentController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
@@ -276,6 +287,7 @@
     <Content Include="Images\social-fb.png" />
     <Content Include="Images\social-google.png" />
     <Content Include="Images\social-instagram.png" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\main.min.js" />
     <Content Include="Scripts\Vendor\jquery-1.11.2.min.js" />
     <Content Include="Scripts\Vendor\parallax.min.js" />
@@ -397,6 +409,54 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Shared\InputImages.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Article\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Article\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Article\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Article\AddImages.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Blog\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Blog\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Blog\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\MapLocation\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\MapLocation\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\MapLocation\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App_LocalResources\GlobalRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App_LocalResources\GlobalRes.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalRes.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Parallax\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Parallax\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

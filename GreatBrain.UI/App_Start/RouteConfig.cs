@@ -28,6 +28,21 @@ namespace GreatBrain.UI
                new[] { "GreatBrain.UI.Controllers" }
             );
 
+            routes.MapRoute(
+               "contacts",
+               "{lang}/contacts",
+               new { controller = "Home", action = "Contacts" },
+               new { lang = @"ru|en" },
+               new[] { "GreatBrain.UI.Controllers" }
+           );
+
+            routes.MapRoute(
+         "content",
+         "{lang}/{id}",
+         new { controller = "Home", action = "SiteContent", lang = "ru" },
+         new { lang = @"ru|en" },
+         new[] { "NewVision.UI.Controllers" }
+         );
 
             routes.MapRoute(
                "Default1",

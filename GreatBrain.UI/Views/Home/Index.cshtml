@@ -5,11 +5,13 @@
 @section scripts
 {
     <script type="text/javascript">
-        (function (nv, a9) {
-            var settings = nv.settings,
+        (function (gb, a9) {
+            var settings = gb.settings,
                     dataModels = settings.dataModels;
             @Html.Raw(ViewBag.MainPage);
-        }(NV, A9));
+            @Html.Raw(ViewBag.MapLocations);
+
+        }(GB, A9));
     </script>
 }
 <div class="page main-page">

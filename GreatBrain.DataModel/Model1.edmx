@@ -177,14 +177,14 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="varchar" Nullable="true" MaxLength="200" />
     <Property Name="TitleEn" Type="varchar" Nullable="true" MaxLength="200" />
-    <Property Name="LicationLat" Type="decimal" Nullable="false" />
-    <Property Name="LocationLng" Type="decimal" Nullable="false" />
+    <Property Name="LocationLat" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="LocationLng" Type="varchar" Nullable="true" MaxLength="100" />
     <Property Name="LocationTitle" Type="varchar" Nullable="true" MaxLength="200" />
     <Property Name="LocationTitleEn" Type="varchar" Nullable="true" MaxLength="200" />
-    <Property Name="LocationContentAddress" Type="varchar" Nullable="false" MaxLength="200" />
-    <Property Name="LocationContentAddressEn" Type="varchar" Nullable="false" MaxLength="200" />
-    <Property Name="LocationContentPhone" Type="varchar" Nullable="false" MaxLength="200" />
-    <Property Name="LocationContentEmail" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="LocationContentAddress" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="LocationContentAddressEn" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="LocationContentPhone" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="LocationContentEmail" Type="varchar" Nullable="true" MaxLength="200" />
     <Property Name="SortOrder" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Article">
@@ -235,6 +235,8 @@
     <Property Name="Text" Type="longtext" Nullable="true" />
     <Property Name="TextEn" Type="longtext" Nullable="true" />
     <Property Name="SortOrder" Type="int" Nullable="false" />
+    <Property Name="MenuTitle" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="MenuTitleEn" Type="varchar" Nullable="true" MaxLength="200" />
   </EntityType>
   <Association Name="EducationCountryEdicationalInstitution">
     <End Role="EducationCountry" Type="Model1.Store.EducationCountry" Multiplicity="1" />
@@ -528,14 +530,14 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Title" MaxLength="200" />
           <Property Type="String" Name="TitleEn" MaxLength="200" />
-          <Property Type="Decimal" Name="LicationLat" Nullable="false" />
-          <Property Type="Decimal" Name="LocationLng" Nullable="false" />
+          <Property Type="String" Name="LocationLat" MaxLength="100" />
+          <Property Type="String" Name="LocationLng" MaxLength="100" />
           <Property Type="String" Name="LocationTitle" MaxLength="200" />
           <Property Type="String" Name="LocationTitleEn" MaxLength="200" />
-          <Property Type="String" Name="LocationContentAddress" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="LocationContentAddressEn" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="LocationContentPhone" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="LocationContentEmail" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="LocationContentAddress" MaxLength="200" />
+          <Property Type="String" Name="LocationContentAddressEn" MaxLength="200" />
+          <Property Type="String" Name="LocationContentPhone" MaxLength="200" />
+          <Property Type="String" Name="LocationContentEmail" MaxLength="200" />
           <Property Type="Int32" Name="SortOrder" Nullable="false" />
         </EntityType>
         <EntityType Name="Article">
@@ -600,6 +602,8 @@
           <Property Type="String" Name="Text" />
           <Property Type="String" Name="TextEn" />
           <Property Type="Int32" Name="SortOrder" Nullable="false" />
+          <Property Type="String" Name="MenuTitle" MaxLength="200" />
+          <Property Type="String" Name="MenuTitleEn" MaxLength="200" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -751,7 +755,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="TitleEn" ColumnName="TitleEn" />
-          <ScalarProperty Name="LicationLat" ColumnName="LicationLat" />
+          <ScalarProperty Name="LocationLat" ColumnName="LocationLat" />
           <ScalarProperty Name="LocationLng" ColumnName="LocationLng" />
           <ScalarProperty Name="LocationTitle" ColumnName="LocationTitle" />
           <ScalarProperty Name="LocationTitleEn" ColumnName="LocationTitleEn" />
@@ -813,6 +817,8 @@
           <ScalarProperty Name="Text" ColumnName="Text" />
           <ScalarProperty Name="TextEn" ColumnName="TextEn" />
           <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+          <ScalarProperty Name="MenuTitle" ColumnName="MenuTitle" />
+          <ScalarProperty Name="MenuTitleEn" ColumnName="MenuTitleEn" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

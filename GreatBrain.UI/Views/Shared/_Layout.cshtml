@@ -9,11 +9,13 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Oranienbaum&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Lato:700italic,400italic' rel='stylesheet' type='text/css'>
-    <script type="text/javascript" src="/scripts/main.min.js?v=@GreatBrainApp.Version"></script>
+    @*<script type="text/javascript" src="/scripts/main.min.js?v=@GreatBrainApp.Version"></script>*@
+    <script type="text/javascript" src="/scripts/main.js?v=@GreatBrainApp.Version"></script>
     <script type="text/javascript" src="/scripts/vendor/jquery-1.11.2.min.js?v=@GreatBrainApp.Version"></script>
+    <script type="text/javascript" src="/scripts/vendor/parallax.min.js?v=@GreatBrainApp.Version"></script>
     <script src="https://www.google.com/jsapi?.js"></script>
     <link rel="stylesheet" type="text/css" href="/styles/main.min.css?v=@GreatBrainApp.Version" media="screen"/>
-    
+
     <script type="text/javascript">
         (function(gb){
             var settings;
@@ -33,7 +35,7 @@
 
         }(GB));
     </script>
-    
+
     <script type="text/javascript">
         (function (gb, a9) {
             var settings = gb.settings,
@@ -64,10 +66,56 @@
             if (!('dictionary' in settings)) {
                 settings.dictionary = {
                     ru: {
-                        
-                    },
-                    ua: {
-                       
+                        copyright: '&copy; {year} Great Brain &mdash; Education Service',
+                        emMadeIn: 'Сайт создан в',
+                        emStudio: 'Студии Евгения Миллера',
+                        brainBlogLink:'brain-блог',
+                        roadMapLink:'уникальная &laquo;дорожная карта&raquo;',
+                        feedbackLinkText:'связаться быстро',
+                        feedbackFormEnterNumberText:'для быстрой связи введите свой номер телефона и нажмите &laquo;отправить&raquo;:',
+                        feedbackFormCallText:'или наберите наш номер быстрой связи:',
+                        feedbackFormSendBtn:'отправить',
+                        searchInputText:'поиск по сайту',
+                        showMoreText:'узнайте<br> о преимуществах',
+                        announcementLinkText:'узнать больше',
+                        selectEducationCountry:'выберите страну обучения',
+                        educationalInstitutionsCatalogueTitle:'Каталог учебных заведений',
+                        educationalInstitutionsCatalogueEducationGenderBoth:'Совместное обучение',
+                        educationalInstitutionsCatalogueEducationGenderMale:'Только для мальчиков',
+                        specialOfferTitle:'специальное предложение!',
+
+
+                        siteMenuNewsTitle:'новости и события',
+
+                        bannerBlogCaption:'brain-блог',
+                        bannerSpecialOfferCaption:'специальное предложение!',
+                        bannerNewsCaption:'новости',
+
+
+                        educationalInstitutionDetailsAddress:'адрес:',
+                        educationalInstitutionDetailsShowOnMap:'смотреть на карте',
+                        educationalInstitutionDetailsEducation:'обучение:',
+                        educationalInstitutionDetailsEducationGenderBothShort:'Совместное, ',
+                        educationalInstitutionDetailsEducationMinAge:'возраст &mdash; от {age} лет',
+                        educationalInstitutionDetailsYearOfFoundation:'год основания:',
+                        educationalInstitutionDetailsRector:'ректор:',
+                        educationalInstitutionDetailsContacts:'контактная информация:',
+
+
+                        selectCountry:'страна обучения:',
+                        selectAgeGroup:'выберите возрастную группу:',
+
+
+                        intro_asUsual:'Обычно,<br>процесс образования за границей<br>выглядит примерно так:',
+                        intro_skipIntro:'пропустить заставку',
+                        intro_yourChild:'Ваш ребенок',
+                        intro_highEducation:'Высшее образование',
+                        intro_mazeLayoutText:'Благодаря нашей уникальной<br><span>&laquo;Дорожной карте&raquo;</span> ваш ребенок<br>получает комфортный путь<br>к получению высшего образования!',
+                        intro_findOutAboutRoadMap:'Узнать о <span>&laquo;дорожной карте&raquo;</span>',
+                        intro_enterSite:'перейти на сайт',
+
+                        servicesMenu_edu:'образовательные:',
+                        servicesMenu_org:'организационные:'
                     },
                     en: {
                        
@@ -81,55 +129,93 @@
 
         }(GB, A9));
     </script>
-    
+
     <script type="text/javascript">
         (function(gb, a9) {
             var settings = gb.settings,
                 l10n = a9.l10n,
                 controlsDescriptors = settings.controlsDescriptors;
-                controlsDescriptors.site = {
+            controlsDescriptors.site = {
+                
                 urlEM: 'http://eugene-miller.com',
-                contentImagesPath: '/content/images/',
-                contentImagesPathAuthors: '/content/images/author/',
-                contentImagesPathAuthorsThumb: '/content/images/author/thumb/',
-                contentImagesPathAuthorsAvatar: '/content/images/author/avatar/',
-                contentImagesPathProducts: '/content/images/product/',
-                contentImagesPathProductsThumb: '/content/images/product/thumb/',
-                contentImagesPathAuthorsOrig: '/content/images/product/orig/',
-                mainPageSlideTimeout: 10000,
-                authorSlideTimeout: 2000,
+                mainBannerImages: '/content/images/mainBanner/',
+                contentAnnouncementImages: '/content/images/contentAnouncement/',
+                parallaxImages: '/content/images/parallax/',
+                mainPageImages: '/content/images/mainPageImages/',
+                googleLink: 'https://www.google.com.ua',
+                fbLink: 'https://www.facebook.com/',
+                instagramLink: 'https://instagram.com/',
                 mainPageUrl: '/' + settings.locale + '/',
-                newsPageUrl: '/' + settings.locale + '/news',
-                newsDetailsPageUrl: '/' + settings.locale + '/news-details/{id}',
-                eventsPageUrl: '/' + settings.locale + '/events',
-                eventDetailsPageUrl: '/' + settings.locale + '/event-details/{id}',
-                mediaPageUrl: '/' + settings.locale + '/media',
-                partnershipPageUrl: '/' + settings.locale + '/partnership',
-                contactsPageUrl: '/' + settings.locale + '/contacts',
-                authorsPageUrl: '/' + settings.locale + '/artists',
-                productsPageUrl: '/' + settings.locale + '/arts',
-                joinUsUrl: '#',
-                antiSpamAnswer: '321',
-                authorProductItemsInRowCount: 4,
-                authorAboutPageUrl: '/' + settings.locale + '/about/{artist}',
-                authorEventsPageUrl: '/' + settings.locale + '/artist-events/{artist}',
-                authorProductsPageUrl: '/' + settings.locale + '/arts/{artist}',
-                authorProductsDetailsPageUrl: '/' + settings.locale + '/arts/{artist}/details/{startSlide}',
-                searchFilterUrlArtists: '/' + settings.locale + '/artists/tags/{tagsId}',
-                searchFilterUrlProducts: '/' + settings.locale + '/arts/tags/{tagsId}',
-                searchFilterUrlArtistProducts: '/' + settings.locale + '/arts/{id}/{tagsId}'
+
+
+                mainPageSlideTimeout: 5000,
+
+                educationalTypesUrl: '#',
+                servicesUrl: '#',
+                educationalInstitutionsCatalogueUrl: 'educational-institutions.html',
+                educationalInstitutionDetailsUrl: 'educational-institution-details.html',
+                newsUrl: 'news.html',
+                newsDetailsUrl: 'newsDetails.html',
+                partnersUrl: 'partners.html',
+                contactsUrl: 'contacts.html',
+                blogUrl:'blog.html',
+                blogDetailsUrl: 'blogDetails.html',
+                roadMapUrl:'road-map.html',
+
+                educationalInstitutionCataloguePreviewImages: '../images/educational-institutions-catalogue/',
+                educationalInstitutionDetailsCarouselImages: '../images/news/',
+                educationalInstitutionDetailsLogo: '../images/educational-institutions-catalogue/logo/',
+                educationKindsImages: '../images/education-kinds/',
+                newsImages: '../images/news/',
+                newsThumbnails: '../images/news/thumb/',
+                blogImages: '../images/blog/',
+                blogThumbnails: '../images/blog/thumb/',
+                bannerImages: '../images/banners/'
+                    
+                //urlEM: 'http://eugene-miller.com',
+                //contentImagesPath: '/content/images/',
+                //contentImagesPathAuthors: '/content/images/author/',
+                //contentImagesPathAuthorsThumb: '/content/images/author/thumb/',
+                //contentImagesPathAuthorsAvatar: '/content/images/author/avatar/',
+                //contentImagesPathProducts: '/content/images/product/',
+                //contentImagesPathProductsThumb: '/content/images/product/thumb/',
+                //contentImagesPathAuthorsOrig: '/content/images/product/orig/',
+                //mainPageSlideTimeout: 10000,
+                //authorSlideTimeout: 2000,
+                //mainPageUrl: '/' + settings.locale + '/',
+                //newsPageUrl: '/' + settings.locale + '/news',
+                //newsDetailsPageUrl: '/' + settings.locale + '/news-details/{id}',
+                //eventsPageUrl: '/' + settings.locale + '/events',
+                //eventDetailsPageUrl: '/' + settings.locale + '/event-details/{id}',
+                //mediaPageUrl: '/' + settings.locale + '/media',
+                //partnershipPageUrl: '/' + settings.locale + '/partnership',
+                //contactsPageUrl: '/' + settings.locale + '/contacts',
+                //authorsPageUrl: '/' + settings.locale + '/artists',
+                //productsPageUrl: '/' + settings.locale + '/arts',
+                //joinUsUrl: '#',
+                //antiSpamAnswer: '321',
+                //authorProductItemsInRowCount: 4,
+                //authorAboutPageUrl: '/' + settings.locale + '/about/{artist}',
+                //authorEventsPageUrl: '/' + settings.locale + '/artist-events/{artist}',
+                //authorProductsPageUrl: '/' + settings.locale + '/arts/{artist}',
+                //authorProductsDetailsPageUrl: '/' + settings.locale + '/arts/{artist}/details/{startSlide}',
+                //searchFilterUrlArtists: '/' + settings.locale + '/artists/tags/{tagsId}',
+                //searchFilterUrlProducts: '/' + settings.locale + '/arts/tags/{tagsId}',
+                //searchFilterUrlArtistProducts: '/' + settings.locale + '/arts/{id}/{tagsId}'
             }, 
-            controlsDescriptors.site.startSlide = @(ViewBag.StartSlide ?? 0);
+        controlsDescriptors.site.startSlide = @(ViewBag.StartSlide ?? 0);
 
 
         }(GB, A9));
     </script>
-    
+
     <script type="text/javascript">
         (function (gb, a9) {
             var settings = gb.settings,
                 dataModels = settings.dataModels;
             @Html.Raw(ViewBag.MainMenu);
+            @Html.Raw(ViewBag.ServiceMenu);
+            @Html.Raw(ViewBag.Countries);
         }(GB, A9));
     </script>
     @RenderSection("scripts", required: false)
