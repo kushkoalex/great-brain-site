@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        (function (gb, a9) {
+            var settings = gb.settings,
+                    dataModels = settings.dataModels;
+            @Html.Raw(ViewBag.EducationKinds);
+
+        }(GB, A9));
+    </script>
+}
+<div class="page">
+    <div id="educationKinds"></div>
+</div>

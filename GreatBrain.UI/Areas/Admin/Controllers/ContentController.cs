@@ -39,6 +39,8 @@ namespace GreatBrain.UI.Areas.Admin.Controllers
                     Name = model.Name.UpdatePageWebName(),
                     Title = model.Title ?? "",
                     TitleEn = model.TitleEn ?? "",
+                    MenuTitle = model.Title ?? "",
+                    MenuTitleEn = model.TitleEn ?? "",
                     Text = model.Text == null ? "" : HttpUtility.HtmlDecode(model.Text),
                     TextEn = model.TextEn == null ? "" : HttpUtility.HtmlDecode(model.TextEn),
                     SortOrder = model.SortOrder
@@ -69,6 +71,8 @@ namespace GreatBrain.UI.Areas.Admin.Controllers
                 var content = _context.Contents.First(ea => ea.Id == id);
                 content.Title = model.Title ?? "";
                 content.TitleEn = model.TitleEn ?? "";
+                content.MenuTitle = model.MenuTitle ?? "";
+                content.MenuTitleEn = model.MenuTitleEn ?? "";
                 content.Text = model.Text == null ? "" : HttpUtility.HtmlDecode(model.Text);
                 content.TextEn = model.TextEn == null ? "" : HttpUtility.HtmlDecode(model.TextEn);
                 content.SortOrder = model.SortOrder;

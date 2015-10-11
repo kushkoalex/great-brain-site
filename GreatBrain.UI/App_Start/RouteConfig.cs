@@ -28,6 +28,15 @@ namespace GreatBrain.UI
                new[] { "GreatBrain.UI.Controllers" }
             );
 
+
+            routes.MapRoute(
+              "fastcontact",
+              "fastcontact",
+              new { controller = "Home", action = "FastContact" },
+              new { lang = @"ru|en" },
+              new[] { "GreatBrain.UI.Controllers" }
+          );
+
             routes.MapRoute(
                "contacts",
                "{lang}/contacts",
@@ -35,6 +44,53 @@ namespace GreatBrain.UI
                new { lang = @"ru|en" },
                new[] { "GreatBrain.UI.Controllers" }
            );
+
+            routes.MapRoute(
+               "services",
+               "{lang}/services/{id}",
+               new { controller = "Home", action = "Services" },
+               new { lang = @"ru|en" },
+               new[] { "GreatBrain.UI.Controllers" }
+           );
+
+            routes.MapRoute(
+               "roadmap",
+               "{lang}/roadmap",
+               new { controller = "Home", action = "RoadMap", id="roadmap" },
+               new { lang = @"ru|en" },
+               new[] { "GreatBrain.UI.Controllers" }
+           );
+
+            routes.MapRoute(
+               "catalogue",
+               "{lang}/catalogue",
+               new { controller = "Home", action = "Catalogue" },
+               new { lang = @"ru|en" },
+               new[] { "GreatBrain.UI.Controllers" }
+           );
+
+          //  routes.MapRoute(
+          //    "EducationKinds",
+          //    "{lang}/{country}/{age}",
+          //    new { controller = "Home", action = "EducationKinds",age = UrlParameter.Optional},
+          //    new { lang = @"ru|en" ,country=@"gb|swe" },
+          //    new[] { "GreatBrain.UI.Controllers" }
+          //);
+
+            routes.MapRoute(
+              "EducationKinds",
+              "{lang}/{country}/{category}/{age}",
+              new { controller = "Home", action = "EducationKinds", age = UrlParameter.Optional, category = UrlParameter.Optional },
+              new { lang = @"ru|en", country = @"gb|swe" },
+              new[] { "GreatBrain.UI.Controllers" }
+          );
+
+
+            
+
+
+
+
 
             routes.MapRoute(
          "content",

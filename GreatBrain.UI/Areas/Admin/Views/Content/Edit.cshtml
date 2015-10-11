@@ -38,6 +38,20 @@
             </div>
             @Html.ValidationMessageFor(model => model.TitleEn)
         </div>
+         <div class="form-group">
+            @Html.LabelFor(model => model.MenuTitle, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="MenuTitle" id="MenuTitle" placeholder="Введите заголовок меню" value="@Model.MenuTitle">
+            </div>
+            @Html.ValidationMessageFor(model => model.MenuTitle)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MenuTitleEn, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="MenuTitleEn" id="MenuTitleEn" placeholder="Введите заголовок меню" value="@Model.MenuTitleEn">
+            </div>
+            @Html.ValidationMessageFor(model => model.MenuTitleEn)
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Text, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">

@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        (function (gb, a9) {
+            var settings = gb.settings,
+                    dataModels = settings.dataModels;
+            @Html.Raw(ViewBag.MapLocations);
+            @Html.Raw(ViewBag.Contacts);
+
+        }(GB, A9));
+    </script>
+}
+<div class="page">
+    <div id="contacts"></div>
+</div>

@@ -44,23 +44,21 @@
             if (!('languages' in settings)) {
                 settings.languages = [
                     {
-                        code: 'ru',
-                        label: 'ru'
-                    },
-                    {
-                        code: 'ua',
-                        label: 'ukr'
-                    },
-                    {
                         code: 'en',
                         label: 'eng'
+                    },
+                    {
+                        code: 'ru',
+                        label: 'ru'
                     }
+                    
                 ];
             }
 
             if (!('locale' in settings)) {
                 settings.currentLanguage = '@ViewBag.Locale';
                 settings.locale = settings.currentLanguage;
+                settings.selectedCountry = '@ViewBag.SelectedCountry';
             }
 
             if (!('dictionary' in settings)) {
@@ -160,12 +158,12 @@
                 contactsUrl: 'contacts.html',
                 blogUrl:'blog.html',
                 blogDetailsUrl: 'blogDetails.html',
-                roadMapUrl:'road-map.html',
+                roadMapUrl:'/' + settings.locale + '/roadmap',
 
                 educationalInstitutionCataloguePreviewImages: '../images/educational-institutions-catalogue/',
                 educationalInstitutionDetailsCarouselImages: '../images/news/',
                 educationalInstitutionDetailsLogo: '../images/educational-institutions-catalogue/logo/',
-                educationKindsImages: '../images/education-kinds/',
+                educationKindsImages: '/images/education-kinds/',
                 newsImages: '../images/news/',
                 newsThumbnails: '../images/news/thumb/',
                 blogImages: '../images/blog/',

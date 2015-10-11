@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GreatBrain.UI.App_LocalResources;
 using GreatBrain.UI.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Schema;
 
 namespace GreatBrain.UI.Controllers
 {
@@ -13,115 +15,16 @@ namespace GreatBrain.UI.Controllers
     {
         private readonly SiteContext _context;
         public HomeController(SiteContext context)
+            : base(context)
         {
             _context = context;
         }
 
-        private string GetMenuItemState(int id, int activeMenuItemId, bool clickable)
-        {
-            if (activeMenuItemId == id && clickable)
-            {
-                return "activeClickable";
-            }
-            return activeMenuItemId == id ? "active" : "plain";
-        }
 
-
-        private string GenerateServiceMenu()
-        {
-            var result = new List<object>();
-            var serviceContents = _context.ServiceContents.ToList();
-            foreach (var item in serviceContents)
-            {
-                result.Add(new
-                {
-                    title = CurrentLang == SiteLanguage.en ? item.TitleEn : item.Title,
-                    type=item.ServiceType,
-                    special=item.IsSpecial,
-                    url = "/" + CurrentLangCode + "/services/"+item.Name
-                });
-            }
-
-            return "dataModels.servicesMenu = " + JsonConvert.SerializeObject(result);
-        }
-
-        private string GetCountries()
-        {
-            var result = new List<object>();
-            var countries = _context.EducationCountries.ToList();
-            foreach (var item in countries)
-            {
-                result.Add(new
-                {
-                    title = CurrentLang == SiteLanguage.en ? item.TitleEn : item.Title,
-                    code = item.Name,
-                    url = "/" + CurrentLangCode + "/" + item.Name + "/"
-                });
-            }
-
-            return "dataModels.educationalCountries = " + JsonConvert.SerializeObject(result);
-        }
-
-        private string GenerateMainMenu(int activeMenuItemId, bool clickable = false)
-        {
-
-            var contents = _context.Contents.ToList();
-
-            var result = new List<object>();
-
-            result.Add(new
-            {
-                title = GlobalRes.EducationKinds, 
-                state = GetMenuItemState(1,activeMenuItemId,clickable),
-                popup = true
-            });
-            result.Add(new
-            {
-                title = GlobalRes.Services, 
-                state = GetMenuItemState(2,activeMenuItemId,clickable), 
-                popup = true,
-                isServiceMenuItem=true
-            });
-            result.Add(new
-            {
-                title = GlobalRes.EducationalInstitutions, 
-                state = GetMenuItemState(3,activeMenuItemId,clickable), 
-                hasArrow = false,
-                url = "/" + CurrentLangCode + "/catalogue"
-            });
-            result.Add(new
-            {
-                title = GlobalRes.News,
-                state = GetMenuItemState(4, activeMenuItemId, clickable), 
-                url = "/" + CurrentLangCode + "/news"
-            });
-
-            foreach (var content in contents.OrderBy(c => c.SortOrder))
-            {
-                result.Add(new
-                {
-                    title = CurrentLang == SiteLanguage.en ? content.MenuTitleEn : content.MenuTitle,
-                    state = GetMenuItemState(content.Id, activeMenuItemId, clickable),
-                    url = "/" + CurrentLangCode + "/" + content.Name
-                });
-            }
-
-            result.Add(new
-            {
-                title = GlobalRes.Contacts,
-                state = GetMenuItemState(5, activeMenuItemId, clickable), 
-                url = "/" + CurrentLangCode + "/contacts"
-            });
-
-            return "dataModels.mainMenu = " + JsonConvert.SerializeObject(result);
-
-        }
 
         public ActionResult Index()
         {
-            ViewBag.MainMenu = GenerateMainMenu(1);
-            ViewBag.ServiceMenu = GenerateServiceMenu();
-            ViewBag.Countries = GetCountries();
+            ViewBag.MainMenu = GenerateMainMenu(0);
 
             var mb = _context.MainBanners.ToList();
             var ca = _context.ContentAnnouncements.ToList();
@@ -149,7 +52,7 @@ namespace GreatBrain.UI.Controllers
                     title = CurrentLang == SiteLanguage.en ? item.TitleEn : item.Title,
                     text = CurrentLang == SiteLanguage.en ? item.TextEn : item.Text,
                     imageSrc = item.ImageSrc,
-                    url=item.Url
+                    url = item.Url
                 });
             }
 
@@ -177,7 +80,7 @@ namespace GreatBrain.UI.Controllers
                 mapLocations.Add(new
                 {
                     title = item.Title,
-                    location=location
+                    location = location
                 });
             }
 
@@ -186,6 +89,169 @@ namespace GreatBrain.UI.Controllers
             return View();
         }
 
-       
+        public ActionResult EducationKinds(string country, string category, string age)
+        {
+            ViewBag.MainMenu = GenerateMainMenu(1);
+            ViewBag.SelectedCountry = country;
+            var ecList = _context.EducationCategories.Where(c => c.EducationCountry.Name == country).ToList();
+            var ec = ecList.FirstOrDefault(c => c.Name == category || category == null);
+            if (ec == null)
+                throw new Exception("You have to add Education category item");
+            var ag = ec.AgeGroups.FirstOrDefault(c => c.Name == age || age == null);
+
+            if (ag == null)
+                throw new Exception("You have to add Age group item");
+
+
+            var educationCaregories = new List<object>();
+
+            foreach (var item in ecList)
+            {
+                bool active = item.Name == ec.Name;
+                var ageGroups = new List<object>();
+
+                if (active)
+                {
+                    foreach (var a in ec.AgeGroups)
+                    {
+                        ageGroups.Add(new
+                        {
+                            id = a.Id,
+                            name = a.Name,
+                            age = CurrentLang == SiteLanguage.en ? a.AgeEn : a.Age,
+                            text = CurrentLang == SiteLanguage.en ? a.Text : a.TextEn,
+                            active = a.Name == ag.Name,
+                            imageSrc = "",
+                            parallaxImageSrc = ""
+                        });
+                    }
+                }
+
+                educationCaregories.Add(new
+                {
+                    id = item.Id,
+                    title = CurrentLang == SiteLanguage.en ? item.TitleEn : item.Title,
+                    active = active,
+                    age = CurrentLang == SiteLanguage.en ? item.AgeEn : item.Age,
+                    ageGroups = ageGroups,
+                    url = "/" + CurrentLang + "/" + country + "/" + item.Name,
+                    name = item.Name
+                });
+            }
+
+            ViewBag.EducationKinds = "dataModels.educationKinds = " + JsonConvert.SerializeObject(new { educationCategories = educationCaregories });
+
+            return View();
+        }
+
+        public ActionResult Contacts()
+        {
+            var mapLocations = new List<object>();
+            var ml = _context.MapLocations.ToList();
+            foreach (var item in ml)
+            {
+                var location = new
+                {
+                    lat = item.LocationLat,
+                    lng = item.LocationLng,
+                    contentAddress =
+                        CurrentLang == SiteLanguage.en ? item.LocationContentAddressEn : item.LocationContentAddress,
+                    contentPhone = item.LocationContentPhone,
+                    contentEmail = item.LocationContentEmail,
+                    title = CurrentLang == SiteLanguage.en ? item.LocationTitleEn : item.LocationTitle
+                };
+
+                mapLocations.Add(new
+                {
+                    title = item.Title,
+                    location = location
+                });
+            }
+
+            ViewBag.MapLocations = "dataModels.mapLocations = " + JsonConvert.SerializeObject(mapLocations);
+
+            ViewBag.Contacts = "dataModels.contacts = " +
+                               JsonConvert.SerializeObject(
+                                   new {title = CurrentLang == SiteLanguage.en ? "Contacts" : "Контактные сведения"});
+
+            ViewBag.MainMenu = GenerateMainMenu(5);
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult FastContact(string phoneNumber)
+        {
+            
+            return Json("");
+        }
+
+
+        public ActionResult SiteContent(string id)
+        {
+            var content = _context.Contents.First(c => c.Name == id);
+
+            ViewBag.MainMenu = GenerateMainMenu(content.Id);
+
+            ViewBag.SiteContent = "dataModels.siteContent = " +
+                               JsonConvert.SerializeObject(
+                                   new
+                                   {
+                                       title = CurrentLang == SiteLanguage.en ? content.TitleEn : content.Title,
+                                       text = CurrentLang == SiteLanguage.en ? content.TextEn : content.Text
+                                   });
+            return View();
+        }
+
+        public ActionResult RoadMap(string id)
+        {
+            var content = _context.Contents.First(c => c.Name == id);
+
+            ViewBag.MainMenu = GenerateMainMenu(0);
+
+            ViewBag.RoadMap = "dataModels.roadMap = " +
+                               JsonConvert.SerializeObject(
+                                   new
+                                   {
+                                       title = CurrentLang == SiteLanguage.en ? content.TitleEn : content.Title,
+                                       text = CurrentLang == SiteLanguage.en ? content.TextEn : content.Text
+                                   });
+            return View();
+        }
+
+        public ActionResult Services(string id)
+        {
+            ViewBag.MainMenu = GenerateMainMenu(2);
+            var service = _context.ServiceContents.First(s => s.Name == id);
+            ViewBag.Services = "dataModels.services = " + JsonConvert.SerializeObject(new
+            {
+                title = CurrentLang == SiteLanguage.en ? service.TitleEn : service.Title,
+                text = CurrentLang == SiteLanguage.en ? service.TextEn : service.Text,
+            });
+            return View();
+        }
+
+        public ActionResult Catalogue(string country)
+        {
+            ViewBag.MainMenu = GenerateMainMenu(3);
+
+            var educationalInstitutions = new List<object>();
+
+            var ei = _context.EducationalInstitutions.ToList();
+
+            foreach (var item in ei)
+            {
+               educationalInstitutions.Add(new
+               {
+                   title = 
+               }); 
+            }
+
+            ViewBag.EducationalInstitutions = "dataModels.educationalInstitutions = " + JsonConvert.SerializeObject(educationalInstitutions);
+            
+            return View();
+        }
+
+
     }
 }

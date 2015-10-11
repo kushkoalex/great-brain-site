@@ -6949,12 +6949,13 @@ A9.pureCSS = function(){
         tmpls: {}
     }
 }(this));
-(function (gb) {
+(function (gb,a9) {
     gb.tmpls.dropdown = function (data) {
         var dropDownListItems = [],
             i,
             options = data.options,
             listItems = data.listItems,
+            submitUrl = options.submitUrl,
             itemClassName,
             selectedText = '',
             dropDownListHeadContent = [],
@@ -6990,9 +6991,11 @@ A9.pureCSS = function(){
 
         return [
             {
+                e:'form', n:'selectForm', a:{method:'post', action:''}, C:{
                 c: 'drop-down-list-head',
                 n: 'dropDownListHead',
                 C: dropDownListHeadContent
+            }
             },
             {
                 c: 'drop-down-list-items hidden', n: 'items', C: dropDownListItems
@@ -7001,7 +7004,7 @@ A9.pureCSS = function(){
         ];
     };
 
-}(GB));
+}(GB,A9));
 
 
 (function (a9, gb) {
@@ -7015,10 +7018,15 @@ A9.pureCSS = function(){
             eventOnPointerEnd = a9.deviceInfo.eventOnPointerEnd,
             eventOnPointerUp = a9.deviceInfo.eventOnPointerUp;
 
+
         build = tp('dropdown', {options: options, listItems: listItems}, $parent);
         $head = build.dropDownListHead;
         $items = build.items;
         $selectedText = build.selectedText;
+
+        var $form = build.selectForm;
+
+        console.log($form);
 
         a9.addEvent($head, eventOnPointerEnd, showItems);
         a9.addEvent($body, eventOnPointerEnd, hideItems);
@@ -7036,6 +7044,9 @@ A9.pureCSS = function(){
 
         function selectItem(e) {
             $selectedText.innerHTML = e.target.innerHTML;
+            $form.setAttribute('action',a9.supplant(options.submitUrl,{value:e.target.getAttribute('value')}));
+            $form.submit();
+            //console.log($form.getAttribute('action'));
         }
 
         function preventHideItems(e) {
@@ -7751,7 +7762,7 @@ GB.contacts = function($parent){
     };
 
 }(GB));
-GB.educationKinds = function($parent){
+GB.educationKinds = function ($parent) {
     var gb = this,
         global = gb.global,
         a9 = global.A9,
@@ -7764,9 +7775,9 @@ GB.educationKinds = function($parent){
         $dropdownCountries,
         $dropdownAgeGroups,
         countryList = gb.settings.dataModels.educationalCountries,
-        dropdownSelectCountryListItems=[],
-        ageGroupList = gb.settings.dataModels.educationKinds[0].educationCategories[0].ageGroups,
-        dropdownAgeGroupListItems=[],
+        dropdownSelectCountryListItems = [],
+        ageGroupList = [],
+        dropdownAgeGroupListItems = [],
         pageData = settings.dataModels.educationKinds,
         build,
         buildItem,
@@ -7778,13 +7789,38 @@ GB.educationKinds = function($parent){
     $dropdownAgeGroups = build.dropDownAgeGroups;
 
 
+    var getSelectedAgeGroup = function () {
+        for (var i = 0; i < pageData.educationCategories.length; i++) {
+            if (pageData.educationCategories[i].active === true) {
+                for (var j = 0; j < pageData.educationCategories[i].ageGroups.length; j++) {
+                    if (pageData.educationCategories[i].ageGroups[j].active === true) {
+                        return pageData.educationCategories[i].ageGroups[j].name;
+                    }
+                }
+            }
+        }
+    };
+
+    var getCurrentEducationCategoryName = function(){
+        for (var i = 0; i < pageData.educationCategories.length; i++) {
+            if (pageData.educationCategories[i].active === true) {
+                return pageData.educationCategories[i].name;
+            }
+        }
+    };
+
+
     var dropDownCountriesOptions = {
-        selectedValue: 'gb'
+        selectedValue: gb.settings.selectedCountry,
+        submitUrl:'/'+settings.currentLanguage+'/{value}'
     };
 
     var dropDownAgeGroupsOptions = {
-        selectedIndex: 1,
-        hasSplitter:true
+        //selectedIndex: 1,
+        //selectedValue: gb.settings.selectedAgeGroup,
+        selectedValue: getSelectedAgeGroup(),
+        hasSplitter: true,
+        submitUrl:'/'+settings.currentLanguage+'/'+ settings.selectedCountry +'/'+ getCurrentEducationCategoryName() +'/{value}'
     };
 
 
@@ -7792,17 +7828,25 @@ GB.educationKinds = function($parent){
         dropdownSelectCountryListItems.push({text: item.title, value: item.code});
     });
 
+
+    for (var i = 0; i < pageData.educationCategories.length; i++) {
+        if (pageData.educationCategories[i].active === true) {
+            ageGroupList = pageData.educationCategories[i].ageGroups
+        }
+    }
+
+
     a9.each(ageGroupList, function (item) {
-        dropdownAgeGroupListItems.push({text: item.age, value: item.id});
+        dropdownAgeGroupListItems.push({text: item.age, value: item.name});
     });
 
 
-    a9.dropdown($dropdownCountries,dropdownSelectCountryListItems,dropDownCountriesOptions);
-    a9.dropdown($dropdownAgeGroups,dropdownAgeGroupListItems,dropDownAgeGroupsOptions);
+    a9.dropdown($dropdownCountries, dropdownSelectCountryListItems, dropDownCountriesOptions);
+    a9.dropdown($dropdownAgeGroups, dropdownAgeGroupListItems, dropDownAgeGroupsOptions);
 
     gb.popupForm($parent);
 
-    $serviceMenuWrapper= build.servicesMenuWrapper;
+    $serviceMenuWrapper = build.servicesMenuWrapper;
     gb.servicesMenu($serviceMenuWrapper);
 
     $feedbackFormWrapper = build.feedbackFormWrapper;
@@ -7830,17 +7874,23 @@ GB.educationKinds = function($parent){
         return {
             c: 'education-kinds-content', C: [
                 tmpls.countrySelector(),
-                tmpls.educationCategoriesMenu(1),
+                tmpls.educationCategoriesMenu(),
                 tmpls.categoryContent(dataModel)
             ]
         }
     };
 
     tmpls.categoryContent = function (dataModel) {
-        var educationKindList = gb.settings.dataModels.educationKinds;
+        var title;
+        for(var i=0;i<dataModel.educationCategories.length; i++){
+            if(dataModel.educationCategories[i].active===true) {
+                title = dataModel.educationCategories[i].title;
+            }
+        }
+
         return [
             {
-                c: 'category-content-title', t: educationKindList[0].educationCategories[0].title
+                c: 'category-content-title', t: title
             },
             {
                 c: 'select-group', t: l10n('selectAgeGroup')
@@ -7858,6 +7908,23 @@ GB.educationKinds = function($parent){
 
 
     tmpls.categoryContentInnerWrapper = function (dataModel) {
+
+        var ageGroups,
+            ageGroup,
+            i;
+        for(i=0;i<dataModel.educationCategories.length; i++){
+            if(dataModel.educationCategories[i].active===true) {
+                ageGroups = dataModel.educationCategories[i].ageGroups;
+            }
+        }
+
+        for(i=0;i<ageGroups.length; i++){
+             if(ageGroups[i].active===true){
+                 ageGroup = ageGroups[i];
+             }
+        }
+
+
         return {
             c: 'category-content-inner-wrapper', C: [
                 {
@@ -7867,7 +7934,7 @@ GB.educationKinds = function($parent){
                         a: {src: gb.settings.controlsDescriptors.site.educationKindsImages + 'girl-with-books.png'}
                     }]
                 },
-                {c: 'text-container', C: {H: dataModel[0].educationCategories[0].ageGroups[0].text}},
+                {c: 'text-container', C: {H: ageGroup.text}},
                 {c: 'clear'}
             ]
         }
@@ -7896,9 +7963,8 @@ GB.educationKinds = function($parent){
     };
 
 
-    tmpls.educationCategoriesMenu = function (activeMenuItemId) {
-        var educationKindList = gb.settings.dataModels.educationKinds,
-            educationKinds = [],
+    tmpls.educationCategoriesMenu = function () {
+        var educationKinds = [],
             menuItem,
             i,
             menuItemClassName,
@@ -7906,9 +7972,9 @@ GB.educationKinds = function($parent){
             menuItemState;
 
 
-        a9.each(educationKindList[0].educationCategories, function (category) {
+        a9.each(gb.settings.dataModels.educationKinds.educationCategories, function (category) {
 
-            if (activeMenuItemId == category.id) {
+            if (category.active===true) {
                 menuItem = {e: 'li', c: 'active', C: [{c: 'title', t: category.title}, {c: 'age', t: category.age}]};
             } else {
                 menuItem = {
@@ -7916,12 +7982,10 @@ GB.educationKinds = function($parent){
                     C: {
                         e: 'a',
                         h: '#',
-                        C: [{c: 'title', e: 'a', h: '#', t: category.title}, {c: 'age', t: category.age}]
+                        C: [{c: 'title', e: 'a', h: category.url, t: category.title}, {c: 'age', t: category.age}]
                     }
                 };
             }
-
-
             educationKinds.push(menuItem);
         });
 
@@ -9361,6 +9425,28 @@ GB.roadMap = function ($parent) {
     $feedbackFormWrapper = build.feedbackFormWrapper;
     gb.feedbackForm($feedbackFormWrapper);
 };
+GB.services = function($parent){
+    var gb = this,
+        global = gb.global,
+        tp = global.cnCt.tp,
+        settings = gb.settings,
+        $feedbackFormWrapper,
+        $serviceMenuWrapper,
+        contentData = settings.dataModels.services,
+        build;
+
+
+
+    build = tp('simpleSiteContent', contentData, $parent);
+    gb.popupForm($parent);
+    $serviceMenuWrapper= build.servicesMenuWrapper;
+    gb.servicesMenu($serviceMenuWrapper);
+
+
+    $feedbackFormWrapper = build.feedbackFormWrapper;
+    gb.feedbackForm($feedbackFormWrapper);
+};
+
 GB.servicesMenu = function ($parent) {
     var gb = this,
         global = gb.global,
@@ -9417,7 +9503,7 @@ GB.servicesMenu = function ($parent) {
 
 };
 
-(function (gb) {
+(function (gb,a9) {
     var tmpls = gb.tmpls,
         a9 = gb.global.A9,
         l10n = a9.l10n,
@@ -9476,7 +9562,7 @@ GB.servicesMenu = function ($parent) {
         return {c:itemsBlockClassName,C:[{c: 'title', t: title}, {c:'content', C: data}]}
     };
 
-}(GB));
+}(GB,A9));
 GB.simpleSiteContent = function ($parent) {
     var gb = this,
         global = gb.global,
@@ -9540,6 +9626,27 @@ GB.simpleSiteContent = function ($parent) {
     };
 
 }(GB));
+GB.siteContent = function($parent){
+    var gb = this,
+        global = gb.global,
+        tp = global.cnCt.tp,
+        settings = gb.settings,
+        $feedbackFormWrapper,
+        $serviceMenuWrapper,
+        contentData = settings.dataModels.siteContent,
+        build;
+
+
+
+    build = tp('simpleSiteContent', contentData, $parent);
+    gb.popupForm($parent);
+    $serviceMenuWrapper= build.servicesMenuWrapper;
+    gb.servicesMenu($serviceMenuWrapper);
+
+
+    $feedbackFormWrapper = build.feedbackFormWrapper;
+    gb.feedbackForm($feedbackFormWrapper);
+};
 A9.ready(function (a9, global) {
     var gb = global.GB,
     //settings = gb.settings,
@@ -9556,6 +9663,8 @@ A9.ready(function (a9, global) {
         $roadMap = $('roadMap'),
         $blogDetails = $('blogDetails'),
         $partners = $('partners'),
+        $services = $('services'),
+        $siteContent = $('siteContent'),
         $contacts = $('contacts'),
         $intro = $('intro'),
         $scrollToTop,
@@ -9607,6 +9716,14 @@ A9.ready(function (a9, global) {
 
     if ($partners !== null) {
         gb.partners($partners);
+    }
+
+    if ( $services!== null) {
+        gb.services($services);
+    }
+
+    if ($siteContent!== null) {
+        gb.siteContent($siteContent);
     }
 
     if ($contacts !== null) {
