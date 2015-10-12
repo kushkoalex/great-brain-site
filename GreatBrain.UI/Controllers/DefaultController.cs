@@ -43,6 +43,7 @@ namespace GreatBrain.UI.Controllers
 
         public DefaultController(SiteContext context)
         {
+            ViewBag.Title = "Great Brain";
             _context = context;
         }
 
