@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAIxlouAZXA0OpMDGvouNNxgAAAAACAAAAAAADZgAAwAAAABAAAABRy7FIIW2yFMCoxfmTy1u9AAAAAASAAACgAAAAEAAAAApO6mIlljaUgsTbWFT+YjQgAAAA/oj4oCEKUHf2MYVumSAmT64ZG4Xw8LftUgIQNsWIrX4UAAAAM+bLe/vc8TaCy08cjz5uguLbauo=</EncryptedPassword>
+    <_PublishTargetUrl>ftp://ftp.greatbrain.1gb.ua/http/</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Areas/Admin/Views/Admin/Default.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/AgeGroup/Create.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/AgeGroup/Edit.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/AgeGroup/Index.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Article/AddImages.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Article/Create.cshtml">
+      <publishTime>10/12/2015 18:03:53</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Article/Edit.cshtml">
+      <publishTime>10/12/2015 18:04:06</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Article/Index.cshtml">
+      <publishTime>10/12/2015 18:05:06</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Blog/Create.cshtml">
+      <publishTime>10/12/2015 18:20:35</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Blog/Edit.cshtml">
+      <publishTime>10/12/2015 18:21:05</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Blog/Index.cshtml">
+      <publishTime>10/12/2015 18:21:05</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Content/Create.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Content/Edit.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Content/Index.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ContentAnnouncement/Create.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ContentAnnouncement/Edit.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ContentAnnouncement/Index.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/EducationalInstitution/AddImages.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/EducationalInstitution/Create.cshtml">
+      <publishTime>10/12/2015 12:34:36</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/EducationalInstitution/Edit.cshtml">
+      <publishTime>10/12/2015 11:59:36</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/EducationalInstitution/Index.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/EducationCategory/Create.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/EducationCategory/Edit.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/EducationCategory/Index.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/EducationCountry/Create.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/EducationCountry/Edit.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/EducationCountry/Index.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/MainBanner/Create.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/MainBanner/Edit.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/MainBanner/Index.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/MapLocation/Create.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/MapLocation/Edit.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/MapLocation/Index.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Parallax/Create.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Parallax/Index.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ServiceContent/Create.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ServiceContent/Edit.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ServiceContent/Index.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Shared/InputImages.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Shared/LogOut.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Shared/Menu.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Shared/_AdminLayout.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Web.config">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="bin/Autofac.dll">
+      <publishTime>10/12/2015 11:15:42</publishTime>
+    </File>
+    <File Include="bin/Autofac.Integration.Mvc.dll">
+      <publishTime>10/12/2015 11:15:43</publishTime>
+    </File>
+    <File Include="bin/en/GreatBrain.UI.resources.dll">
+      <publishTime>10/12/2015 18:31:56</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>10/12/2015 11:15:44</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>10/12/2015 11:15:44</publishTime>
+    </File>
+    <File Include="bin/GreatBrain.UI.dll">
+      <publishTime>10/12/2015 18:31:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>10/12/2015 11:15:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Mvc.FixedDisplayModes.dll">
+      <publishTime>10/12/2015 11:15:45</publishTime>
+    </File>
+    <File Include="bin/MySql.Data.dll">
+      <publishTime>10/12/2015 11:15:49</publishTime>
+    </File>
+    <File Include="bin/MySql.Data.Entity.EF6.dll">
+      <publishTime>10/12/2015 11:15:51</publishTime>
+    </File>
+    <File Include="bin/MySql.Web.dll">
+      <publishTime>10/12/2015 11:15:53</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>10/12/2015 11:15:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>10/12/2015 11:15:47</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>10/12/2015 11:15:44</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>10/12/2015 11:15:45</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>10/12/2015 11:15:47</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>10/12/2015 11:15:47</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>10/12/2015 11:15:47</publishTime>
+    </File>
+    <File Include="Content/css/Admin.css">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Content/css/bootstrap-select.min.css">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Content/css/bootstrap.min.css">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Content/css/jquery-ui.min.css">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Content/css/jquery-ui.structure.min.css">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/banners/banner1.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/banners/banner2.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/banners/banner3.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/blog/thumb/Michael.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/close-btn.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/compass.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/education-kinds/girl-with-books.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/education-kinds/girl.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/educational-institutions-catalogue-filter-gender.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/educational-institutions-catalogue-filter-location.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/educational-institutions-catalogue-filter-type.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/educational-institutions-catalogue/educationalInstitutionDetailsImage.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/educational-institutions-catalogue/educationalInstitutionsCataloguePreviewImage1.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/educational-institutions-catalogue/educationalInstitutionsCataloguePreviewImage2.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/educational-institutions-catalogue/educationalInstitutionsCataloguePreviewImage3.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/educational-institutions-catalogue/logo/abbotsholme-school-logo.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/feedback-link-arrow.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/feedback-panel-bottom-pattern.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/image-slider-arrow-left.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/image-slider-arrow-right.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/intro-final-layout.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/logo-big-black-pattern.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/logo-big-black-sign.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/logo-big-black.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/logo-big-white-pattern.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/logo-big-white-sign.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/logo-big-white.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/logo-map.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/logo-mini-grey.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/logo-mini-orange.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/logo-mini.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/main-banner-show-more.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/main-menu-arrow.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/mainPage/cf93572f62a1d942788687f87af8fcf6.jpg">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/mainPage/data-sign.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/mainPage/DSCF0083.jpg">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/mainPage/main-banner-image.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/mainPage/main-page-image1.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/mainPage/main-page-image2.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/mainPage/main-page-image3.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/maze.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/mbs-logo.svg">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/menu-layer1.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/news-social-fb.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/news-social-gb.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/news-social-vk.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/news-social-youtube.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/news/news.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/news/news1.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/news/news2.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/news/news3.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/news/news4.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/news/news5.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/news/news6.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/news/news7.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/news/thumb/news.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/news/thumb/news1.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/news/thumb/news2.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/news/thumb/news3.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/scroll-top.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/search-zoom.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/select-country-form-logo.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/show-more.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/social-fb.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/social-google.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Images/social-instagram.png">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>10/12/2015 11:04:17</publishTime>
+    </File>
+    <File Include="Scripts/main.js">
+      <publishTime>10/12/2015 18:19:18</publishTime>
+    </File>
+    <File Include="Scripts/main.min.js">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Scripts/Vendor/jquery-1.11.2.min.js">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Scripts/Vendor/parallax.min.js">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Styles/main.min.css">
+      <publishTime>10/12/2015 13:44:57</publishTime>
+    </File>
+    <File Include="Views/Auth/Login.cshtml">
+      <publishTime>10/12/2015 11:04:16</publishTime>
+    </File>
+    <File Include="Views/Home/Blog.cshtml">
+      <publishTime>10/12/2015 18:09:52</publishTime>
+    </File>
+    <File Include="Views/Home/BlogDetails.cshtml">
+      <publishTime>10/12/2015 18:25:51</publishTime>
+    </File>
+    <File Include="Views/Home/Catalogue.cshtml">
+      <publishTime>10/12/2015 12:36:38</publishTime>
+    </File>
+    <File Include="Views/Home/CatalogueItemDetails.cshtml">
+      <publishTime>10/12/2015 13:32:03</publishTime>
+    </File>
+    <File Include="Views/Home/Contacts.cshtml">
+      <publishTime>10/12/2015 11:04:17</publishTime>
+    </File>
+    <File Include="Views/Home/EducationKinds.cshtml">
+      <publishTime>10/12/2015 11:04:17</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>10/12/2015 11:04:17</publishTime>
+    </File>
+    <File Include="Views/Home/News.cshtml">
+      <publishTime>10/12/2015 17:38:54</publishTime>
+    </File>
+    <File Include="Views/Home/NewsDetails.cshtml">
+      <publishTime>10/12/2015 17:50:53</publishTime>
+    </File>
+    <File Include="Views/Home/Partners.cshtml">
+      <publishTime>10/12/2015 11:04:17</publishTime>
+    </File>
+    <File Include="Views/Home/RoadMap.cshtml">
+      <publishTime>10/12/2015 11:04:17</publishTime>
+    </File>
+    <File Include="Views/Home/Services.cshtml">
+      <publishTime>10/12/2015 11:04:17</publishTime>
+    </File>
+    <File Include="Views/Home/SiteContent.cshtml">
+      <publishTime>10/12/2015 11:04:17</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>10/12/2015 18:19:14</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>10/12/2015 11:04:17</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>10/12/2015 18:31:57</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

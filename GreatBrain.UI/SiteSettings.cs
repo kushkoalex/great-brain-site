@@ -20,6 +20,7 @@ namespace GreatBrain.UI
                                     {"educationalInstitutionPreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =200 ,Width = 200 }, CacheFolder = "educationalInstitutionPreview", ScaleMode = ScaleMode.Crop}},
                                     {"educationalInstitutionImagesAdminPreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =100 ,Width = 100 }, CacheFolder = "educationalInstitutionImagesAdminPreview", ScaleMode = ScaleMode.Crop}},
                                     {"articlePreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =200 ,Width = 200 }, CacheFolder = "articlePreview", ScaleMode = ScaleMode.Crop}},
+                                    {"blogPreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =200 ,Width = 200 }, CacheFolder = "blogPreview", ScaleMode = ScaleMode.Crop}},
                                     {"articleImagesPreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =100 ,Width = 100 }, CacheFolder = "articleImagesPreview", ScaleMode = ScaleMode.Crop}},
                                     {"parallax",new ThumbnailPicture{ PictureSize =new PictureSize {Height =200 ,Width = 400 }, CacheFolder = "parallax", ScaleMode = ScaleMode.Crop}},
                               };

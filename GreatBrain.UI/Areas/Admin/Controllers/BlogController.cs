@@ -25,7 +25,7 @@ namespace GreatBrain.UI.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
-            return View(new BlogItem());
+            return View(new BlogItem() { Date=DateTime.Now.Date});
         }
 
         [HttpPost]

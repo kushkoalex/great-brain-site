@@ -75,7 +75,7 @@ namespace GreatBrain.UI.Controllers
 
         
 
-        protected string GenerateMainMenu(int activeMenuItemId, bool clickable = false)
+        protected string GenerateMainMenu(int activeMenuItemId=0, bool clickable = false)
         {
 
             var contents = _context.Contents.ToList();

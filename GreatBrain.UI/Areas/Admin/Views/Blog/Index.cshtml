@@ -54,7 +54,7 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Date)
+            @Html.Display(item.Date.ToShortDateString())
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)

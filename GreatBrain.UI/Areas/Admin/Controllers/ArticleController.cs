@@ -26,7 +26,7 @@ namespace GreatBrain.UI.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
-            return View(new Article());
+            return View(new Article() { Date=DateTime.Now.Date});
         }
 
         [HttpPost]

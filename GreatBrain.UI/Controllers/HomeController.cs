@@ -25,7 +25,7 @@ namespace GreatBrain.UI.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.MainMenu = GenerateMainMenu(0);
+            ViewBag.MainMenu = GenerateMainMenu();
 
             var mb = _context.MainBanners.ToList();
             var ca = _context.ContentAnnouncements.ToList();
@@ -173,7 +173,7 @@ namespace GreatBrain.UI.Controllers
 
             ViewBag.Contacts = "dataModels.contacts = " +
                                JsonConvert.SerializeObject(
-                                   new {title = CurrentLang == SiteLanguage.en ? "Contacts" : "Контактные сведения"});
+                                   new { title = CurrentLang == SiteLanguage.en ? "Contacts" : "Контактные сведения" });
 
             ViewBag.MainMenu = GenerateMainMenu(5);
 
@@ -183,7 +183,7 @@ namespace GreatBrain.UI.Controllers
         [HttpPost]
         public ActionResult FastContact(string phoneNumber)
         {
-            
+
             return Json("");
         }
 
@@ -208,7 +208,7 @@ namespace GreatBrain.UI.Controllers
         {
             var content = _context.Contents.First(c => c.Name == id);
 
-            ViewBag.MainMenu = GenerateMainMenu(0);
+            ViewBag.MainMenu = GenerateMainMenu();
 
             ViewBag.RoadMap = "dataModels.roadMap = " +
                                JsonConvert.SerializeObject(
@@ -236,7 +236,8 @@ namespace GreatBrain.UI.Controllers
         {
             ViewBag.MainMenu = GenerateMainMenu(3);
 
-            if (gender == null) {
+            if (gender == null)
+            {
                 gender = SiteContentHelper.Gender.First().Key;
             }
 
@@ -245,11 +246,12 @@ namespace GreatBrain.UI.Controllers
                 type = SiteContentHelper.Type.First().Key;
             }
 
-            if (location == null) {
+            if (location == null)
+            {
                 location = "none";
             }
-            
-            
+
+
 
             var educationalInstitutions = new List<object>();
 
@@ -257,38 +259,39 @@ namespace GreatBrain.UI.Controllers
 
             foreach (var item in ei)
             {
-               educationalInstitutions.Add(new
-               {
-                   title = CurrentLang == SiteLanguage.en ? item.TitleEn : item.Title,
-                   titleEng = item.TitleEn,
-                   location = CurrentLang == SiteLanguage.en ?item.LocationTitleEn:item.LocationTitle,
-                   gender = item.Gender,
-                   type = item.Type,
-                   logoSrc = item.LogoImageSrc,
-                   previewImageSrc = item.PreviewImageSrc,
-                   address = CurrentLang == SiteLanguage.en ? item.AddressEn : item.Address,
-                   mapLocation = item.MapLocation,
-                   minAge = item.MinAge,
-                   yearOfFoundation = item.YearOfFoundation,
-                   numberOfStudents = item.NumberOfStudents,
-                   rector = CurrentLang == SiteLanguage.en ? item.RectorNameEn : item.RectorName,
-                   contacts = CurrentLang == SiteLanguage.en ? item.ContactsEn : item.Contacts,
-                   description = CurrentLang == SiteLanguage.en ? item.DescriptionEn : item.Description,
-                   name = item.Name
-               }); 
+                educationalInstitutions.Add(new
+                {
+                    title = CurrentLang == SiteLanguage.en ? item.TitleEn : item.Title,
+                    titleEng = item.TitleEn,
+                    location = CurrentLang == SiteLanguage.en ? item.LocationTitleEn : item.LocationTitle,
+                    gender = item.Gender,
+                    type = item.Type,
+                    logoSrc = item.LogoImageSrc,
+                    previewImageSrc = item.PreviewImageSrc,
+                    address = CurrentLang == SiteLanguage.en ? item.AddressEn : item.Address,
+                    mapLocation = item.MapLocation,
+                    minAge = item.MinAge,
+                    yearOfFoundation = item.YearOfFoundation,
+                    numberOfStudents = item.NumberOfStudents,
+                    rector = CurrentLang == SiteLanguage.en ? item.RectorNameEn : item.RectorName,
+                    contacts = CurrentLang == SiteLanguage.en ? item.ContactsEn : item.Contacts,
+                    description = CurrentLang == SiteLanguage.en ? item.DescriptionEn : item.Description,
+                    name = item.Name
+                });
             }
 
             ViewBag.EducationalInstitutions = "dataModels.educationalInstitutions = " + JsonConvert.SerializeObject(educationalInstitutions);
 
             var educationalInstitutionFilterGender = new List<object>();
-            foreach (var item in SiteContentHelper.Gender) {
+            foreach (var item in SiteContentHelper.Gender)
+            {
                 educationalInstitutionFilterGender.Add(new { title = item.Value, value = item.Key, selected = item.Key == gender });
             }
             ViewBag.EducationalInstitutionFilterGender = "dataModels.educationalInstitutionFilterGender = " + JsonConvert.SerializeObject(educationalInstitutionFilterGender);
 
 
             var locations = new List<object>();
-            locations.Add(new { title = "not selected", value = "none", selected = location==null });
+            locations.Add(new { title = "not selected", value = "none", selected = location == null });
 
             var otherLocations = ei.Select(c => c.LocationName).Distinct().ToList();
 
@@ -321,7 +324,7 @@ namespace GreatBrain.UI.Controllers
             var item = _context.EducationalInstitutions.First(i => i.Name == id);
 
 
-            var iamges = item.EducationalInstitutionImages.Select(c=>c.ImageSrc).ToArray();
+            var iamges = item.EducationalInstitutionImages.Select(c => c.ImageSrc).ToArray();
 
             var educationalInstitutionDetails = new
             {
@@ -340,7 +343,7 @@ namespace GreatBrain.UI.Controllers
                 rector = CurrentLang == SiteLanguage.en ? item.RectorNameEn : item.RectorName,
                 contacts = CurrentLang == SiteLanguage.en ? item.ContactsEn : item.Contacts,
                 description = CurrentLang == SiteLanguage.en ? item.DescriptionEn : item.Description,
-                email=item.Email,
+                email = item.Email,
                 website = item.WebSiteUrl,
                 images = iamges
             };
@@ -351,22 +354,89 @@ namespace GreatBrain.UI.Controllers
         }
 
 
-        public ActionResult News() {
+        public ActionResult News()
+        {
+            ViewBag.MainMenu = GenerateMainMenu(4);
+            var news = _context.Articles.ToList();
+            var result = new List<object>();
+            foreach (var item in news)
+            {
+                result.Add(new
+                {
+                    date = item.Date.ToShortDateString(),
+                    title = CurrentLang == SiteLanguage.en ? item.TitleEn : item.Title,
+                    shortDescription = CurrentLang == SiteLanguage.en ? item.ShortDescriptionEn : item.ShortDescription,
+                    text = CurrentLang == SiteLanguage.en ? item.TextEn : item.Text,
+                    thumb = item.PreviewImageSrc,
+                    name= item.Name
+                });
+            }
+
+
+
+            ViewBag.News = "dataModels.news = " + JsonConvert.SerializeObject(result);
             return View();
         }
 
         public ActionResult NewsDetails(string id)
         {
+            ViewBag.MainMenu = GenerateMainMenu(4, true);
+
+            var item = _context.Articles.First(n => n.Name == id);
+            var images = item.ArticleImages.Select(i => i.ImageSrc).ToArray();
+
+            ViewBag.NewsDetails = "dataModels.newsDetails = " + JsonConvert.SerializeObject(new
+                {
+                    date = item.Date.ToShortDateString(),
+                    title = CurrentLang == SiteLanguage.en ? item.TitleEn : item.Title,
+                    shortDescription = CurrentLang == SiteLanguage.en ? item.ShortDescriptionEn : item.ShortDescription,
+                    text = CurrentLang == SiteLanguage.en ? item.TextEn : item.Text,
+                    thumb = item.PreviewImageSrc,
+                    images = images
+                });
+           
             return View();
         }
 
         public ActionResult Blog()
         {
+            ViewBag.MainMenu = GenerateMainMenu();
+            var blogItems = _context.BlogItems.ToList();
+            var result = new List<object>();
+            foreach (var item in blogItems)
+            {
+                result.Add(new
+                {
+                    date = item.Date.ToShortDateString(),
+                    title = CurrentLang == SiteLanguage.en ? item.TitleEn : item.Title,
+                    shortDescription = CurrentLang == SiteLanguage.en ? item.ShortDescriptionEn : item.ShortDescription,
+                    text = CurrentLang == SiteLanguage.en ? item.TextEn : item.Text,
+                    thumb = item.PreviewImageSrc,
+                    name = item.Name
+                });
+            }
+
+
+
+            ViewBag.Blog = "dataModels.blog = " + JsonConvert.SerializeObject(result);
             return View();
         }
 
         public ActionResult BlogDetails(string id)
         {
+            ViewBag.MainMenu = GenerateMainMenu();
+
+            var item = _context.BlogItems.First(n => n.Name == id);
+
+            ViewBag.BlogDetails = "dataModels.blogDetails = " + JsonConvert.SerializeObject(new
+            {
+                date = item.Date.ToShortDateString(),
+                title = CurrentLang == SiteLanguage.en ? item.TitleEn : item.Title,
+                shortDescription = CurrentLang == SiteLanguage.en ? item.ShortDescriptionEn : item.ShortDescription,
+                text = CurrentLang == SiteLanguage.en ? item.TextEn : item.Text,
+                thumb = item.PreviewImageSrc
+            });
+
             return View();
         }
 

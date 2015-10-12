@@ -46,6 +46,40 @@ namespace GreatBrain.UI
            );
 
             routes.MapRoute(
+           "news-details",
+           "{lang}/news/{id}",
+           new { controller = "Home", action = "NewsDetails" },
+           new { lang = @"ru|en" },
+           new[] { "GreatBrain.UI.Controllers" }
+            );
+
+            routes.MapRoute(
+            "news",
+            "{lang}/news",
+            new { controller = "Home", action = "News" },
+            new { lang = @"ru|en" },
+            new[] { "GreatBrain.UI.Controllers" }
+            );
+
+            routes.MapRoute(
+            "blog-details",
+            "{lang}/blog/{id}",
+            new { controller = "Home", action = "BlogDetails" },
+            new { lang = @"ru|en" },
+            new[] { "GreatBrain.UI.Controllers" }
+            );
+
+            routes.MapRoute(
+            "blog",
+            "{lang}/blog",
+            new { controller = "Home", action = "Blog" },
+            new { lang = @"ru|en" },
+            new[] { "GreatBrain.UI.Controllers" }
+            );
+
+
+
+            routes.MapRoute(
                "services",
                "{lang}/services/{id}",
                new { controller = "Home", action = "Services" },
@@ -77,6 +111,7 @@ namespace GreatBrain.UI
                new[] { "GreatBrain.UI.Controllers" }
            );
 
+            
 
 
           //  routes.MapRoute(
