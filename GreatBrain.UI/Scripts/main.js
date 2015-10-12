@@ -8640,7 +8640,7 @@ GB.intro = function ($parent) {
         u;
 
 
-    build = tp('intro', introData, $parent);
+    build = tp('intro', $parent);
 
     var $asUsual = build.asUsual;
     var $child = build.child;
@@ -8725,7 +8725,7 @@ GB.intro = function ($parent) {
                 ]
                 },
                 tmpls.finalLayout(),
-                {c: 'skip-intro-wrapper',n:'skipIntroWrapperButton', C: {c: 'skip-intro', e: 'a', h: 'index.html', t: l10n('intro_skipIntro')}}]
+                {c: 'skip-intro-wrapper',n:'skipIntroWrapperButton', C: {c: 'skip-intro', e: 'a', h:gb.settings.controlsDescriptors.site.mainPageUrl, t: l10n('intro_skipIntro')}}]
         }
     };
 

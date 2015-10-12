@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using GreatBrain.UI.App_LocalResources;
 using GreatBrain.UI.Models;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Schema;
 using GreatBrain.UI.Helpers;
 
 namespace GreatBrain.UI.Controllers
@@ -20,7 +16,6 @@ namespace GreatBrain.UI.Controllers
         {
             _context = context;
         }
-
 
 
         public ActionResult Index()
@@ -440,6 +435,11 @@ namespace GreatBrain.UI.Controllers
             return View();
         }
 
+        public ActionResult Intro()
+        {
+
+            return View();
+        }
 
 
     }

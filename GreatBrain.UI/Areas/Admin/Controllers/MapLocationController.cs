@@ -39,8 +39,8 @@ namespace GreatBrain.UI.Areas.Admin.Controllers
                     TitleEn = model.TitleEn ?? "",
                     LocationLat = model.LocationLat,
                     LocationLng = model.LocationLng,
-                    LocationContentAddress = model.LocationContentAddress,
-                    LocationContentAddressEn = model.LocationContentAddressEn,
+                    LocationContentAddress = HttpUtility.HtmlDecode(model.LocationContentAddress),
+                    LocationContentAddressEn = HttpUtility.HtmlDecode(model.LocationContentAddressEn),
                     LocationContentEmail = model.LocationContentEmail,
                     LocationContentPhone = model.LocationContentPhone,
                     LocationTitle = model.LocationTitle,
@@ -77,8 +77,8 @@ namespace GreatBrain.UI.Areas.Admin.Controllers
             mapLocation.TitleEn = model.TitleEn ?? "";
             mapLocation.LocationLat = model.LocationLat;
             mapLocation.LocationLng = model.LocationLng;
-            mapLocation.LocationContentAddress = model.LocationContentAddress;
-            mapLocation.LocationContentAddressEn = model.LocationContentAddressEn;
+            mapLocation.LocationContentAddress = HttpUtility.HtmlDecode(model.LocationContentAddress);
+            mapLocation.LocationContentAddressEn = HttpUtility.HtmlDecode(model.LocationContentAddressEn);
             mapLocation.LocationContentEmail = model.LocationContentEmail;
             mapLocation.LocationContentPhone = model.LocationContentPhone;
             mapLocation.LocationTitle = model.LocationTitle;

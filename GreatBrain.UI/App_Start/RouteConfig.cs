@@ -28,6 +28,13 @@ namespace GreatBrain.UI
                new[] { "GreatBrain.UI.Controllers" }
             );
 
+            routes.MapRoute(
+         "main",
+         "{lang}/index",
+         new { controller = "Home", action = "Index", lang = "ru" },
+         new { lang = @"ru|en" },
+         new[] { "NewVision.UI.Controllers" }
+         );
 
             routes.MapRoute(
               "fastcontact",
@@ -36,6 +43,14 @@ namespace GreatBrain.UI
               new { lang = @"ru|en" },
               new[] { "GreatBrain.UI.Controllers" }
           );
+
+            routes.MapRoute(
+               "intro",
+               "{lang}/intro",
+               new { controller = "Home", action = "Intro", lang="ru" },
+               new { lang = @"ru|en" },
+               new[] { "GreatBrain.UI.Controllers" }
+           );
 
             routes.MapRoute(
                "contacts",
@@ -148,7 +163,7 @@ namespace GreatBrain.UI
             routes.MapRoute(
                "Default1",
                "{lang}",
-               new { controller = "Home", action = "Index", lang = "ru" },
+               new { controller = "Home", action = "Intro", lang = "ru" },
                new { lang = @"ru|en" },
               new[] { "GreatBrain.UI.Controllers" }
           );
@@ -156,7 +171,7 @@ namespace GreatBrain.UI
             routes.MapRoute(
                   "Default",
                   "{controller}/{action}/{id}",
-                  new { controller = "Home", action = "Index", id = UrlParameter.Optional, lang = "ru" },
+                  new { controller = "Home", action = "Intro", id = UrlParameter.Optional, lang = "ru" },
                   new { lang = @"ru|en" },
                  new[] { "GreatBrain.UI.Controllers" }
              );

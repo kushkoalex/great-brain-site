@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using GreatBrain.UI.App_LocalResources;
@@ -46,8 +44,6 @@ namespace GreatBrain.UI.Controllers
         public DefaultController(SiteContext context)
         {
             _context = context;
-            
-           
         }
 
         public DefaultController()

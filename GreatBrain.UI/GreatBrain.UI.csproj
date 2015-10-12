@@ -207,7 +207,19 @@
     <Compile Include="Models\ParallaxImage.cs" />
     <Compile Include="Models\ServiceContent.cs" />
     <Compile Include="Models\SiteLanguage.cs" />
+    <Compile Include="Models\Validation\AgeGroupValidation.cs" />
+    <Compile Include="Models\Validation\ArticleValidation.cs" />
+    <Compile Include="Models\Validation\BlogItemValidation.cs" />
+    <Compile Include="Models\Validation\ContentAnnouncementValidation.cs" />
+    <Compile Include="Models\Validation\ContentValidation.cs" />
+    <Compile Include="Models\Validation\EducationalInstitutionValidation.cs" />
+    <Compile Include="Models\Validation\EducationCategoryValidation.cs" />
     <Compile Include="Models\Validation\EducationCountryValidation.cs" />
+    <Compile Include="Models\Validation\MainBannerValidation.cs" />
+    <Compile Include="Models\Validation\MainValidation.cs" />
+    <Compile Include="Models\Validation\MapLocationValidation.cs" />
+    <Compile Include="Models\Validation\ParallaxImageValidation.cs" />
+    <Compile Include="Models\Validation\ServiceContentValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SiteSettings.cs" />
   </ItemGroup>
@@ -261,6 +273,7 @@
     <Content Include="Images\mainPage\main-page-image1.png" />
     <Content Include="Images\mainPage\main-page-image2.png" />
     <Content Include="Images\mainPage\main-page-image3.png" />
+    <Content Include="Images\map-location-info-logo.png" />
     <Content Include="Images\maze.png" />
     <Content Include="Images\mbs-logo.svg" />
     <Content Include="Images\menu-layer1.png" />
@@ -496,6 +509,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\ftp.pubxml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Intro.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

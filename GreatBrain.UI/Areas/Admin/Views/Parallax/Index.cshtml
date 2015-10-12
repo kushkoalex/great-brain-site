@@ -21,6 +21,9 @@
         <th>
             @Html.DisplayNameFor(model => model.ImageSrc)
         </th>
+       @* <th>
+            @Html.DisplayNameFor(model => model.SortOrder)
+        </th>*@
         <th></th>
         <th></th>
     </tr>
@@ -31,6 +34,9 @@
         <td>
             @Html.Raw(Html.CachedImage(SiteSettings.Parallax, item.ImageSrc, SiteSettings.GetThumbnail("parallax")))
         </td>
+        @*<th>
+            @Html.DisplayFor(modelItem => item.SortOrder)
+        </th>*@
         <td>
             @Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new { onclick = "return confirm('Удалить запись?')" })
         </td>

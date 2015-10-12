@@ -66,10 +66,10 @@
             @Html.DisplayFor(modelItem => item.LocationLng)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LocationContentAddress)
+            @Html.Raw(item.LocationContentAddress)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LocationContentAddressEn)
+            @Html.Raw(item.LocationContentAddressEn)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.LocationContentPhone)
