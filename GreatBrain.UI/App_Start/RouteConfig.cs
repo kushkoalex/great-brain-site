@@ -63,11 +63,21 @@ namespace GreatBrain.UI
 
             routes.MapRoute(
                "catalogue",
-               "{lang}/catalogue",
-               new { controller = "Home", action = "Catalogue" },
+               "{lang}/catalogue/{location}/{gender}/{type}",
+               new { controller = "Home", action = "Catalogue", location = UrlParameter.Optional, gender = UrlParameter.Optional, type = UrlParameter.Optional },
                new { lang = @"ru|en" },
                new[] { "GreatBrain.UI.Controllers" }
            );
+
+            routes.MapRoute(
+               "catalogueItemDetails",
+               "{lang}/catalogue-details/{id}",
+               new { controller = "Home", action = "CatalogueItemDetails"},
+               new { lang = @"ru|en" },
+               new[] { "GreatBrain.UI.Controllers" }
+           );
+
+
 
           //  routes.MapRoute(
           //    "EducationKinds",

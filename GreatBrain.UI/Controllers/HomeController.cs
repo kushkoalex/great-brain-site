@@ -8,6 +8,7 @@ using GreatBrain.UI.App_LocalResources;
 using GreatBrain.UI.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Schema;
+using GreatBrain.UI.Helpers;
 
 namespace GreatBrain.UI.Controllers
 {
@@ -231,9 +232,24 @@ namespace GreatBrain.UI.Controllers
             return View();
         }
 
-        public ActionResult Catalogue(string country)
+        public ActionResult Catalogue(string country, string gender, string location, string type)
         {
             ViewBag.MainMenu = GenerateMainMenu(3);
+
+            if (gender == null) {
+                gender = SiteContentHelper.Gender.First().Key;
+            }
+
+            if (type == null)
+            {
+                type = SiteContentHelper.Type.First().Key;
+            }
+
+            if (location == null) {
+                location = "none";
+            }
+            
+            
 
             var educationalInstitutions = new List<object>();
 
@@ -243,14 +259,117 @@ namespace GreatBrain.UI.Controllers
             {
                educationalInstitutions.Add(new
                {
-                   title = 
+                   title = CurrentLang == SiteLanguage.en ? item.TitleEn : item.Title,
+                   titleEng = item.TitleEn,
+                   location = CurrentLang == SiteLanguage.en ?item.LocationTitleEn:item.LocationTitle,
+                   gender = item.Gender,
+                   type = item.Type,
+                   logoSrc = item.LogoImageSrc,
+                   previewImageSrc = item.PreviewImageSrc,
+                   address = CurrentLang == SiteLanguage.en ? item.AddressEn : item.Address,
+                   mapLocation = item.MapLocation,
+                   minAge = item.MinAge,
+                   yearOfFoundation = item.YearOfFoundation,
+                   numberOfStudents = item.NumberOfStudents,
+                   rector = CurrentLang == SiteLanguage.en ? item.RectorNameEn : item.RectorName,
+                   contacts = CurrentLang == SiteLanguage.en ? item.ContactsEn : item.Contacts,
+                   description = CurrentLang == SiteLanguage.en ? item.DescriptionEn : item.Description,
+                   name = item.Name
                }); 
             }
 
             ViewBag.EducationalInstitutions = "dataModels.educationalInstitutions = " + JsonConvert.SerializeObject(educationalInstitutions);
-            
+
+            var educationalInstitutionFilterGender = new List<object>();
+            foreach (var item in SiteContentHelper.Gender) {
+                educationalInstitutionFilterGender.Add(new { title = item.Value, value = item.Key, selected = item.Key == gender });
+            }
+            ViewBag.EducationalInstitutionFilterGender = "dataModels.educationalInstitutionFilterGender = " + JsonConvert.SerializeObject(educationalInstitutionFilterGender);
+
+
+            var locations = new List<object>();
+            locations.Add(new { title = "not selected", value = "none", selected = location==null });
+
+            var otherLocations = ei.Select(c => c.LocationName).Distinct().ToList();
+
+            foreach (var item in otherLocations)
+            {
+                locations.Add(new { title = item, value = item, selected = location == item });
+            }
+
+            ViewBag.EducationalInstitutionFilterLocation = "dataModels.educationalInstitutionFilterLocation = " + JsonConvert.SerializeObject(locations);
+
+
+            var educationalInstitutionFilterType = new List<object>();
+            foreach (var item in SiteContentHelper.Type)
+            {
+                educationalInstitutionFilterType.Add(new { title = item.Value, value = item.Key, selected = item.Key == type });
+            }
+            ViewBag.EducationalInstitutionFilterType = "dataModels.educationalInstitutionFilterType = " + JsonConvert.SerializeObject(educationalInstitutionFilterType);
+
+            ViewBag.SelectedGender = gender;
+            ViewBag.SelectedLocation = location;
+            ViewBag.SelectedType = type;
+
             return View();
         }
+
+
+        public ActionResult CatalogueItemDetails(string id)
+        {
+            ViewBag.MainMenu = GenerateMainMenu(3, true);
+            var item = _context.EducationalInstitutions.First(i => i.Name == id);
+
+
+            var iamges = item.EducationalInstitutionImages.Select(c=>c.ImageSrc).ToArray();
+
+            var educationalInstitutionDetails = new
+            {
+                title = CurrentLang == SiteLanguage.en ? item.TitleEn : item.Title,
+                titleEng = item.TitleEn,
+                location = CurrentLang == SiteLanguage.en ? item.LocationTitleEn : item.LocationTitle,
+                gender = item.Gender,
+                type = item.Type,
+                logoImageSrc = item.LogoImageSrc,
+                previewImageSrc = item.PreviewImageSrc,
+                address = CurrentLang == SiteLanguage.en ? item.AddressEn : item.Address,
+                mapLocation = item.MapLocation,
+                minAge = item.MinAge,
+                yearOfFoundation = item.YearOfFoundation,
+                numberOfStudents = item.NumberOfStudents,
+                rector = CurrentLang == SiteLanguage.en ? item.RectorNameEn : item.RectorName,
+                contacts = CurrentLang == SiteLanguage.en ? item.ContactsEn : item.Contacts,
+                description = CurrentLang == SiteLanguage.en ? item.DescriptionEn : item.Description,
+                email=item.Email,
+                website = item.WebSiteUrl,
+                images = iamges
+            };
+
+            ViewBag.EducationalInstitutionDetails = "dataModels.educationalInstitutionDetails = " + JsonConvert.SerializeObject(educationalInstitutionDetails);
+
+            return View();
+        }
+
+
+        public ActionResult News() {
+            return View();
+        }
+
+        public ActionResult NewsDetails(string id)
+        {
+            return View();
+        }
+
+        public ActionResult Blog()
+        {
+            return View();
+        }
+
+        public ActionResult BlogDetails(string id)
+        {
+            return View();
+        }
+
 
 
     }

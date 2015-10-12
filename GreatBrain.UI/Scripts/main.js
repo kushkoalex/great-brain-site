@@ -8051,9 +8051,12 @@ GB.educationalInstitutionDetails = function($parent){
                 url: descriptors.educationalInstitutionsCatalogueUrl,
                 urlText:l10n('educationalInstitutionsCatalogueTitle'),
                 title:dataItem.title,
-                subTitle:dataItem.titleEng,
-                logo:descriptors.educationalInstitutionDetailsLogo + dataItem.logoImageSrc
+                subTitle:dataItem.titleEng
             };
+
+        if(dataItem.logoImageSrc && dataItem.logoImageSrc!==null && dataItem.logoImageSrc!==''){
+            data.logo = descriptors.educationalInstitutionDetailsLogo + dataItem.logoImageSrc;
+        }
 
 
         return {
@@ -8238,16 +8241,19 @@ GB.educationalInstitutions = function($parent){
 
     var dropDownInstitutionLocationOptions = {
         selectedIndex: dropDownInstitutionLocationSelectedIndex,
-        hasSplitter:true
+        hasSplitter:true,
+        submitUrl:'/'+settings.currentLanguage+'/catalogue/{value}/'+ settings.selectedGenger +'/'+settings.selectedType
     };
 
     var dropDownGenderOptions = {
         selectedIndex: dropDownGenderSelectedIndex,
-        hasSplitter:true
+        hasSplitter:true,
+        submitUrl:'/'+settings.currentLanguage+'/catalogue/'+ settings.selectedLocation +'/{value}/'+settings.selectedType
     };
     var dropDownInstitutionTypeOptions = {
         selectedIndex: dropDownInstitutionTypeSelectedIndex,
-        hasSplitter:true
+        hasSplitter:true,
+        submitUrl:'/'+settings.currentLanguage+'/catalogue/'+ settings.selectedLocation +'/'+ settings.selectedGenger +'/{value}'
     };
 
     a9.dropdown($dropDownInstitutionLocation,dropDownInstitutionLocationListItems,dropDownInstitutionLocationOptions);
@@ -8325,7 +8331,8 @@ GB.educationalInstitutions = function($parent){
         var educationGender,
             itemClassName = 'educational-institutions-catalogue-item',
             itemContent = [],
-            isSpecial = dataItem.special === true;
+            isSpecial = dataItem.special === true,
+            url = a9.supplant(gb.settings.controlsDescriptors.site.educationalInstitutionDetailsUrl,{id:dataItem.name});
 
         switch (dataItem.gender) {
             case 'both':
@@ -8363,10 +8370,8 @@ GB.educationalInstitutions = function($parent){
                 ]
             }
         });
-
         return {
-            c: itemClassName, C: {e: 'a', h:gb.settings.controlsDescriptors.site.educationalInstitutionDetailsUrl, C: itemContent}
-            //c: itemClassName, C: itemContent
+            c: itemClassName, C: {e: 'a', h: url, C: itemContent}
         }
     };
 

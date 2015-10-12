@@ -9,6 +9,9 @@
             var settings = gb.settings,
                     dataModels = settings.dataModels;
             @Html.Raw(ViewBag.EducationalInstitutions);
+            @Html.Raw(ViewBag.EducationalInstitutionFilterGender);
+            @Html.Raw(ViewBag.EducationalInstitutionFilterLocation);
+            @Html.Raw(ViewBag.EducationalInstitutionFilterType);
 
         }(GB, A9));
     </script>

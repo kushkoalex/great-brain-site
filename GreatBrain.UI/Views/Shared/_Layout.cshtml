@@ -59,6 +59,9 @@
                 settings.currentLanguage = '@ViewBag.Locale';
                 settings.locale = settings.currentLanguage;
                 settings.selectedCountry = '@ViewBag.SelectedCountry';
+                settings.selectedGenger = '@ViewBag.SelectedGender';
+                settings.selectedLocation = '@ViewBag.SelectedLocation';
+                settings.selectedType = '@ViewBag.SelectedType';
             }
 
             if (!('dictionary' in settings)) {
@@ -151,7 +154,7 @@
                 educationalTypesUrl: '#',
                 servicesUrl: '#',
                 educationalInstitutionsCatalogueUrl: 'educational-institutions.html',
-                educationalInstitutionDetailsUrl: 'educational-institution-details.html',
+                educationalInstitutionDetailsUrl: '/' + settings.locale + '/catalogue-details/{id}',
                 newsUrl: 'news.html',
                 newsDetailsUrl: 'newsDetails.html',
                 partnersUrl: 'partners.html',
@@ -160,9 +163,9 @@
                 blogDetailsUrl: 'blogDetails.html',
                 roadMapUrl:'/' + settings.locale + '/roadmap',
 
-                educationalInstitutionCataloguePreviewImages: '../images/educational-institutions-catalogue/',
-                educationalInstitutionDetailsCarouselImages: '../images/news/',
-                educationalInstitutionDetailsLogo: '../images/educational-institutions-catalogue/logo/',
+                educationalInstitutionCataloguePreviewImages: '/Content/Images/educationalInstitutionPreview/',
+                educationalInstitutionDetailsCarouselImages: '/Content/Images/educationalInstitutionImages/',
+                educationalInstitutionDetailsLogo: '/Content/Images/educationalInstitutionLogo/',
                 educationKindsImages: '/images/education-kinds/',
                 newsImages: '../images/news/',
                 newsThumbnails: '../images/news/thumb/',
