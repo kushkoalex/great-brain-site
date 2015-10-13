@@ -232,7 +232,9 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\jquery-ui.min.css" />
     <Content Include="Content\css\jquery-ui.structure.min.css" />
+    <Content Include="Content\css\login.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\admin-login-logo.png" />
     <Content Include="Images\banners\banner1.png" />
     <Content Include="Images\banners\banner2.png" />
     <Content Include="Images\banners\banner3.png" />
