@@ -511,6 +511,7 @@
     <None Include="Properties\PublishProfiles\ftp.pubxml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Intro.cshtml" />
+    <Content Include="Views\Shared\_LayoutIntro.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

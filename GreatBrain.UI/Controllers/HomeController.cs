@@ -231,17 +231,19 @@ namespace GreatBrain.UI.Controllers
         {
             ViewBag.MainMenu = GenerateMainMenu(3);
 
-            if (gender == null)
+            if (string.IsNullOrEmpty(gender))
             {
-                gender = SiteContentHelper.Gender.First().Key;
+                //gender = SiteContentHelper.Gender.First().Key;
+                gender = "none";
             }
 
-            if (type == null)
+            if (string.IsNullOrEmpty(type))
             {
-                type = SiteContentHelper.Type.First().Key;
+                //type = SiteContentHelper.Type.First().Key;
+                type = "none";
             }
 
-            if (location == null)
+            if (string.IsNullOrEmpty(location))
             {
                 location = "none";
             }
@@ -250,10 +252,13 @@ namespace GreatBrain.UI.Controllers
 
             var educationalInstitutions = new List<object>();
 
-            var ei = _context.EducationalInstitutions.ToList();
+            var ei =
+                _context.EducationalInstitutions.Where(l =>(l.LocationName == location || location == "none") && (l.Gender == gender || gender == "none") && (l.Type == type || type == "none")).ToList();
 
             foreach (var item in ei)
             {
+
+
                 educationalInstitutions.Add(new
                 {
                     title = CurrentLang == SiteLanguage.en ? item.TitleEn : item.Title,
@@ -278,6 +283,7 @@ namespace GreatBrain.UI.Controllers
             ViewBag.EducationalInstitutions = "dataModels.educationalInstitutions = " + JsonConvert.SerializeObject(educationalInstitutions);
 
             var educationalInstitutionFilterGender = new List<object>();
+            educationalInstitutionFilterGender.Add(new { title = "Пол обучаемых".ToUpper(), value = "none", selected = gender == "none" });
             foreach (var item in SiteContentHelper.Gender)
             {
                 educationalInstitutionFilterGender.Add(new { title = item.Value, value = item.Key, selected = item.Key == gender });
@@ -286,7 +292,7 @@ namespace GreatBrain.UI.Controllers
 
 
             var locations = new List<object>();
-            locations.Add(new { title = "not selected", value = "none", selected = location == null });
+            locations.Add(new { title = "Расположение заведення".ToUpper(), value = "none", selected = location == "none" });
 
             var otherLocations = ei.Select(c => c.LocationName).Distinct().ToList();
 
@@ -299,6 +305,7 @@ namespace GreatBrain.UI.Controllers
 
 
             var educationalInstitutionFilterType = new List<object>();
+            educationalInstitutionFilterType.Add(new { title = "Тип заведения".ToUpper(), value = "none", selected = type == "none" });
             foreach (var item in SiteContentHelper.Type)
             {
                 educationalInstitutionFilterType.Add(new { title = item.Value, value = item.Key, selected = item.Key == type });

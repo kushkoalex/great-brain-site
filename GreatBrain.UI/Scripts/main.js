@@ -1,4 +1,4 @@
-(function(global){
+(function (global) {
     var document = global.document,
         _array = global.Array,
         _object = global.Object,
@@ -16,40 +16,40 @@
     };
 
 //    arrays
-    if (_array.isArray !== u){
+    if (_array.isArray !== u) {
         /**
          * Проверяет является ли переданный параметр массивом
          * @param {*} verifiable
          * @return {Boolean} массив / не массив
          */
-        a9.isArray = function(verifiable){
+        a9.isArray = function (verifiable) {
             return _array.isArray(verifiable);
         };
-    } else{
+    } else {
         /**
          * Проверяет является ли переданный параметр массивом
          * @param {*} verifiable
          * @return {Boolean} массив / не массив
          */
-        a9.isArray = function(verifiable){
+        a9.isArray = function (verifiable) {
             return _object.prototype.toString.call(verifiable) === '[object Array]';
         };
     }
 
 
-    function arrayIndexOfFC(array, value){
-        for (var i = 0, iMax = array.length; i < iMax; i += 1){
-            if (array[i] === value){
+    function arrayIndexOfFC(array, value) {
+        for (var i = 0, iMax = array.length; i < iMax; i += 1) {
+            if (array[i] === value) {
                 return i;
             }
         }
         return -1;
     }
 
-    function arrayLastIndexOfFC(array, value){
+    function arrayLastIndexOfFC(array, value) {
         var i = array.length;
-        for (; i--;){
-            if (array[i] === value){
+        for (; i--;) {
+            if (array[i] === value) {
                 return i;
             }
         }
@@ -79,7 +79,7 @@
      * @return {Number} возвращает номер индэкса элемента или -1, если элемент не найден
      */
     a9.arrayIndexOf = _array.indexOf !== u ?
-        function(array, value){
+        function (array, value) {
             return array.indexOf(value);
         }
         : arrayIndexOfFC;
@@ -91,7 +91,7 @@
      * @return {Number} возвращает номер индэкса элемента или -1, если элемент не найден
      */
     a9.arrayLastIndexOf = _array.lastIndexOf !== u ?
-        function(array, value){
+        function (array, value) {
             return array.lastIndexOf(value);
         }
         : arrayLastIndexOfFC;
@@ -104,17 +104,17 @@
      * @param {*} element элементы которые нужно удалить
      * @return {Array} array переданный массив
      */
-    a9.deleteElementsInArray = function(array, element){
+    a9.deleteElementsInArray = function (array, element) {
         var i = 0,
             iMax = array.length,
             iReal = 0,
             isHasElement = false;
-        for (; i < iMax; i += 1){
-            if (!isHasElement && (array[i] === element)){
+        for (; i < iMax; i += 1) {
+            if (!isHasElement && (array[i] === element)) {
                 isHasElement = true;
                 iReal = i;
             }
-            if (isHasElement && (array[i] !== element)){
+            if (isHasElement && (array[i] !== element)) {
                 array[iReal] = array[i];
                 iReal += 1;
             }
@@ -131,9 +131,9 @@
      * @param {Number} [size] = 1 количество вырезаемых элементов
      * @return {Array} array переданный массив
      */
-    a9.arraySlice = function(array, from, size){
+    a9.arraySlice = function (array, from, size) {
         size = size || 1;
-        for (var start = from + size, i = from, iMax = array.length; i < iMax; start += 1, i += 1){
+        for (var start = from + size, i = from, iMax = array.length; i < iMax; start += 1, i += 1) {
             array[i] = array[start];
         }
         array.length = from + size > iMax ? from : iMax - size;
@@ -148,23 +148,23 @@
      * @param {Number} [to]
      * @return {Array} array
      */
-    a9.copyArray = function(array, arrayForCopy, from, to){
+    a9.copyArray = function (array, arrayForCopy, from, to) {
         var i = from || 0,
             iMax = array.length,
             j,
             u;
-        if ((to === u) || (to > iMax)){
+        if ((to === u) || (to > iMax)) {
             to = iMax;
         }
-        if (arrayForCopy !== u){
+        if (arrayForCopy !== u) {
             arrayForCopy.length = 0;
-        } else{
-            if (a9.isArray(array)){
+        } else {
+            if (a9.isArray(array)) {
                 return array.slice(i, to - i);
             }
             arrayForCopy = [];
         }
-        for (i, j = 0; i < to; j+= 1, i += 1){
+        for (i, j = 0; i < to; j += 1, i += 1) {
             arrayForCopy[j] = array[i];
         }
         return arrayForCopy;
@@ -177,7 +177,7 @@
      * @param {*} verifiable
      * @return {Boolean} объект / не объект
      */
-    a9.isObject = function(verifiable){
+    a9.isObject = function (verifiable) {
         var u;
         return (verifiable !== u)
             && (verifiable !== null)
@@ -189,10 +189,10 @@
      * @param {Object} object
      * @return {Number}
      */
-    a9.objectLength = function(object){
+    a9.objectLength = function (object) {
         var p,
             i = 0;
-        for (p in object){
+        for (p in object) {
             i += 1;
         }
         return i;
@@ -203,29 +203,29 @@
      * @param {Object} object
      * @returns {boolean}
      */
-    a9.isEmptyObject = function(object){
+    a9.isEmptyObject = function (object) {
         return a9.objectLength(object) === 0;
     };
 
-    if (_object.create !== u){
+    if (_object.create !== u) {
         /**
          * copy object
          * @param {Object} object — object for copy
          * @returns {Object}
          */
-        a9.copyObject = function(object){
+        a9.copyObject = function (object) {
             return _object.create(object);
         };
-    } else{
+    } else {
         /**
          * copy object
          * @param {Object} object — object for copy
          * @returns {Object}
          */
-        a9.copyObject = function(object){
+        a9.copyObject = function (object) {
             var p,
                 newObject = {};
-            for (p in object){
+            for (p in object) {
                 newObject[p] = object[p];
             }
             return newObject;
@@ -242,17 +242,17 @@
      * @param {Array} [toArray] массив в который будет производится клонирование
      * @returns {Array}
      */
-    a9.cloneArray = function(array, toArray){
+    a9.cloneArray = function (array, toArray) {
         var i = 0,
             iMax = array.length,
             newArray = toArray || [],
             value;
 
-        for (; i < iMax; i += 1){
+        for (; i < iMax; i += 1) {
             value = array[i];
-            if (a9.isObject(value)){
+            if (a9.isObject(value)) {
                 value = a9.cloneObject(value);
-            } else if (a9.isArray(value)){
+            } else if (a9.isArray(value)) {
                 value = a9.cloneArray(value);
             }
             newArray[i] = value;
@@ -269,16 +269,16 @@
      * @param {Object} [toObject] объект в который будет производится клонирование
      * @returns {Object}
      */
-    a9.cloneObject = function(object, toObject){
+    a9.cloneObject = function (object, toObject) {
         var p,
             newObject = toObject || {},
             value;
 
-        for (p in object){
+        for (p in object) {
             value = object[p];
-            if (a9.isObject(value)){
+            if (a9.isObject(value)) {
                 value = a9.cloneObject(value);
-            } else if (a9.isArray(value)){
+            } else if (a9.isArray(value)) {
                 value = a9.cloneArray(value);
             }
             newObject[p] = value;
@@ -293,7 +293,7 @@
 
 
 //A9.deviceInfo check device
-(function(global, a9){
+(function (global, a9) {
     var document = global.document,
         html = document.documentElement,
         testElemStyle = document.createElement('div').style,
@@ -314,6 +314,7 @@
         deviceInfo = {
             browser: browser,
             os: os,
+            isMobileDevice: false,
             isMac: false,
             isIPad: false,
             iPadVersion: u,
@@ -374,37 +375,37 @@
             eventOnPointerEnd: u
         };
 
-    function testProperty(property, cssProperty){
+    function testProperty(property, cssProperty) {
         upperProperty = property.charAt(0).toUpperCase() + property.substr(1);
-        if (testElemStyle[property] !== u){
+        if (testElemStyle[property] !== u) {
             deviceInfo['s' + upperProperty] = property;
             deviceInfo['css' + upperProperty] = cssProperty || property;
-            if (property === 'transition'){
+            if (property === 'transition') {
                 deviceInfo.eTransitionEnd = 'transitionend';
                 deviceInfo.sTDelay = 'transitionDelay';
                 deviceInfo.sTDuration = 'transitionDuration';
                 deviceInfo.sTProperty = 'transitionProperty';
                 deviceInfo.sTTimingFunction = 'transitionTimingFunction';
-            } else if (property === 'animation'){
+            } else if (property === 'animation') {
                 deviceInfo.cssKeyFrame = '@keyframes';
-            } else if (property === 'perspective'){
+            } else if (property === 'perspective') {
                 deviceInfo.sPerspectiveOrigin = 'perspectiveOrigin';
                 deviceInfo.cssPerspectiveOrigin = 'perspective-origin';
             }
             return true;
         }
-        if (testElemStyle[jsStylePrefixes[prefixIndex] + upperProperty] !== u){
+        if (testElemStyle[jsStylePrefixes[prefixIndex] + upperProperty] !== u) {
             deviceInfo['s' + upperProperty] = jsStylePrefixes[prefixIndex] + upperProperty;
             deviceInfo['css' + upperProperty] = cssStylePrefixes[prefixIndex] + (cssProperty || property);
-            if (property === 'transition'){
+            if (property === 'transition') {
                 deviceInfo.eTransitionEnd = deviceInfo.isFx ? 'transitionend' : jsStylePrefixes[prefixIndex] + 'TransitionEnd';
                 deviceInfo.sTDelay = jsStylePrefixes[prefixIndex] + 'TransitionDelay';
                 deviceInfo.sTDuration = jsStylePrefixes[prefixIndex] + 'TransitionDuration';
                 deviceInfo.sTProperty = jsStylePrefixes[prefixIndex] + 'TransitionProperty';
                 deviceInfo.sTTimingFunction = jsStylePrefixes[prefixIndex] + 'TransitionTimingFunction';
-            } else if (property === 'animation'){
+            } else if (property === 'animation') {
                 deviceInfo.cssKeyFrame = '@' + cssStylePrefixes[prefixIndex] + 'keyframes';
-            } else if (property === 'perspective'){
+            } else if (property === 'perspective') {
                 deviceInfo.sPerspectiveOrigin = jsStylePrefixes[prefixIndex] + 'PerspectiveOrigin';
                 deviceInfo.cssPerspectiveOrigin = cssStylePrefixes[prefixIndex] + 'perspective-origin';
             }
@@ -413,7 +414,7 @@
         return false;
     }
 
-    function addGradientSupport(prefix){
+    function addGradientSupport(prefix) {
         deviceInfo.isCSSGradient = true;
         deviceInfo.cssLinearGradient = prefix + 'linear-gradient';
         deviceInfo.cssRadialGradient = prefix + 'radial-gradient';
@@ -426,37 +427,37 @@
     if ((global.devicePixelRatio !== u) && (global.devicePixelRatio > 1)) {
         deviceInfo.isRetina = true;
         htmlClass += ' isRetina';
-    } else{
+    } else {
         htmlClass += ' isNotRetina';
     }
 
-    if (os.indexOf('Win') !== -1){
+    if (os.indexOf('Win') !== -1) {
         deviceInfo.isWindows = true;
         htmlClass += ' Windows';
-    } else if (os.indexOf('Mac') !== -1){
+    } else if (os.indexOf('Mac') !== -1) {
         deviceInfo.isMac = true;
         htmlClass += ' Mac';
-    } else if ((os.indexOf('iPhone') !== -1) || (os.indexOf('iPod') !== -1)){
+    } else if ((os.indexOf('iPhone') !== -1) || (os.indexOf('iPod') !== -1)) {
         deviceInfo.isIPhone = true;
         htmlClass += ' iPhone';
-    } else if (browser.indexOf('Android') !== -1){
+    } else if (browser.indexOf('Android') !== -1) {
         deviceInfo.isAndroid = true;
         htmlClass += ' Android';
-        if (document.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#Shape', '1.0')){
+        if (document.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#Shape', '1.0')) {
             htmlClass += ' isNewAndroid';
-        } else{
+        } else {
             deviceInfo.isOldAndroid = true;
             htmlClass += ' isOldAndroid';
         }
-    } else if (os.indexOf('iPad') !== -1){
+    } else if (os.indexOf('iPad') !== -1) {
         deviceInfo.isIPad = true;
         htmlClass += ' iPad';
-        if (deviceInfo.isRetina){
+        if (deviceInfo.isRetina) {
             deviceInfo.iPadVersion = 3;
-        } else{
-            iPadVersionTestFunction = function(e){
+        } else {
+            iPadVersionTestFunction = function (e) {
                 deviceInfo.iPadVersion = e.acceleration !== null ? 2 : 1;
-                if (deviceInfo.onIPadVersion !== u){
+                if (deviceInfo.onIPadVersion !== u) {
                     deviceInfo.onIPadVersion();
                 }
                 global.removeEventListener('devicemotion', iPadVersionTestFunction);
@@ -468,98 +469,98 @@
 
     deviceInfo.isTouch = deviceInfo.isIPad || deviceInfo.isIPhone || deviceInfo.isAndroid;
 
-    if (deviceInfo.isTouch){
+    if (deviceInfo.isTouch) {
         htmlClass += ' isTouch';
         deviceInfo.eventOnPointerDown = 'touchstart';
         deviceInfo.eventOnPointerUp = 'touchend';
         deviceInfo.eventOnPointerEnd = 'touchend';
-    } else{
+    } else {
         htmlClass += ' isNotTouch';
         deviceInfo.eventOnPointerDown = 'mousedown';
         deviceInfo.eventOnPointerUp = 'mouseup';
         deviceInfo.eventOnPointerEnd = 'click';
     }
 
-    if (browser.indexOf('Chrome') !== -1){
+    if (browser.indexOf('Chrome') !== -1) {
         prefixIndex = 0;
         deviceInfo.browserVersion = browserVersion = parseFloat(browser.substr(browser.indexOf('Chrome/') + 7, 4));
         deviceInfo.isChrome = deviceInfo.isWebKit = true;
         htmlClass += ' isChrome isWebKit isNoIE Chrome_' + browserVersion;
-        if (browserVersion < 4){
+        if (browserVersion < 4) {
             htmlClass += ' OldCh';
             deviceInfo.isOld = true;
         }
-    } else if (browser.indexOf('Firefox') !== -1){
+    } else if (browser.indexOf('Firefox') !== -1) {
         prefixIndex = 1;
         deviceInfo.browserVersion = browserVersion = parseFloat(browser.substr(browser.lastIndexOf('/') + 1, 4));
         deviceInfo.isFx = true;
         htmlClass += ' isFX isNoIE FX_' + browserVersion;
-        if (browserVersion < 3.5){
+        if (browserVersion < 3.5) {
             deviceInfo.isOld = true;
             htmlClass += ' OldFX';
         }
-    } else if ((browser.indexOf('Safari') !== -1) || ((deviceInfo.isIPad || deviceInfo.isIPhone) && (browser.indexOf('AppleWebKit') !== -1))){
+    } else if ((browser.indexOf('Safari') !== -1) || ((deviceInfo.isIPad || deviceInfo.isIPhone) && (browser.indexOf('AppleWebKit') !== -1))) {
         prefixIndex = 0;
         deviceInfo.browserVersion = browserVersion = parseFloat(browser.substr(browser.indexOf('Version/') + 8, 4));
         deviceInfo.isSafari = deviceInfo.isWebKit = true;
         htmlClass += ' isSafari isWebKit isNoIE Safari_' + browserVersion;
-        if (browserVersion < 4){
+        if (browserVersion < 4) {
             htmlClass += ' OldSF';
             deviceInfo.isOld = true;
         }
-    } else if (browser.indexOf('MSIE') !== -1){
+    } else if (browser.indexOf('MSIE') !== -1) {
         prefixIndex = 3;
-        if (document.documentMode !== u){
+        if (document.documentMode !== u) {
             browserVersion = document.documentMode;
-        } else if (document.compatMode === 'CSS1Compat'){
+        } else if (document.compatMode === 'CSS1Compat') {
             browserVersion = parseFloat(browser.substr(browser.indexOf('MSIE') + 5, 3));
-        } else{
+        } else {
             browserVersion = 5;
         }
         deviceInfo.browserVersion = browserVersion;
         deviceInfo.isIE = true;
         htmlClass += ' isIE IE_' + browserVersion;
-        if (browserVersion < 9){
+        if (browserVersion < 9) {
             deviceInfo.isOldIE = true;
             htmlClass += ' isOldIE';
-            if (browserVersion < 8){
+            if (browserVersion < 8) {
                 deviceInfo.isUbelivableOldIE = true;
             }
-        } else{
+        } else {
             htmlClass += ' isNewIE';
         }
-    } else if ((browser.indexOf('Trident') !== -1)){
+    } else if ((browser.indexOf('Trident') !== -1)) {
         prefixIndex = 3;
         deviceInfo.browserVersion = browserVersion = +(browser.substr(browser.indexOf('rv:') + 3).replace(/[^0-9|\.]|^0+/g, ''));
         deviceInfo.isIE = true;
-    } else if (browser.indexOf('Opera') !== -1){
+    } else if (browser.indexOf('Opera') !== -1) {
         prefixIndex = 2;
         deviceInfo.browserVersion = browserVersion = parseFloat(browser.substr(browser.indexOf('Version/') + 8, 4));
         deviceInfo.isOpera = true;
         htmlClass += ' isOpera isNoIE O_' + browserVersion;
-        if (browserVersion < 11){
+        if (browserVersion < 11) {
             htmlClass += ' OldO';
             deviceInfo.isOld = true;
         }
-    } else{
+    } else {
         prefixIndex = 100;
         htmlClass += ' UndefinedBrowser';
         deviceInfo.isUndefined = true;
     }
 
-    if (!deviceInfo.isWebKit){
+    if (!deviceInfo.isWebKit) {
         htmlClass += ' isNotWebKit';
     }
 
-    if (deviceInfo.isUndefined){
+    if (deviceInfo.isUndefined) {
         htmlClass += ' isBoxShadowUnfriendly isRBSUnfriendly isCSSGradientUnfriendly isCSSNotModernBrowser';
-        deviceInfo.requestAF = function(frameFunction){
+        deviceInfo.requestAF = function (frameFunction) {
             return setTimeout(frameFunction, 16);
         };
-        deviceInfo.cancelAF = function(id){
+        deviceInfo.cancelAF = function (id) {
             clearTimeout(id);
         };
-    } else{
+    } else {
         deviceInfo.cssPrefix = cssStylePrefixes[prefixIndex] || '';
         deviceInfo.sPrefix = jsStylePrefixes[prefixIndex] || '';
         if (!(deviceInfo.isOldAndroid || deviceInfo.isOldIE)) {
@@ -567,108 +568,114 @@
             htmlClass += ' isSVG';
         }
 
-        if (testProperty('transition')){
+        if (testProperty('transition')) {
             deviceInfo.isTransitions = true;
             htmlClass += ' isTransitionsFriendly';
-        } else{
+        } else {
             htmlClass += ' isTransitionsUnfriendly';
         }
 
-        if (testProperty('transform')){
+        if (testProperty('transform')) {
             deviceInfo.isTransforms = true;
             htmlClass += ' isTransformsFriendly';
-        } else{
+        } else {
             htmlClass += ' isTransformsUnfriendly';
         }
 
-        if (deviceInfo.isTransitions && deviceInfo.isTransforms){
+        if (deviceInfo.isTransitions && deviceInfo.isTransforms) {
             htmlClass += ' isTransformsTransitionsFriendly';
-        } else{
+        } else {
             htmlClass += ' isTransformsTransitionsUnfriendly';
         }
 
-        if (testProperty('borderRadius', 'border-radius')){
+        if (testProperty('borderRadius', 'border-radius')) {
             deviceInfo.isBorderRadius = true;
             htmlClass += ' isBoxShadowFriendly';
-        } else{
+        } else {
             htmlClass += ' isBoxShadowUnfriendly';
         }
 
-        if (testProperty('boxShadow', 'box-shadow')){
+        if (testProperty('boxShadow', 'box-shadow')) {
             deviceInfo.isBoxShadow = true;
             htmlClass += ' isRBSFriendly';
-        } else{
+        } else {
             htmlClass += ' isRBSUnfriendly';
         }
 
-        if (testProperty('animation')){
+        if (testProperty('animation')) {
             deviceInfo.isAnimation = true;
             htmlClass += ' isAnimationFriendly';
-        } else{
+        } else {
             htmlClass += ' isAnimationUnfriendly';
         }
 
-        if (testProperty('perspective')){
+        if (testProperty('perspective')) {
             deviceInfo.isPerspective = true;
             htmlClass += ' isPerspectiveFriendly';
-        } else{
+        } else {
             htmlClass += ' isPerspectiveUnfriendly';
         }
 
-        if (testProperty('webkitTextSecurity')){
+        if (testProperty('webkitTextSecurity')) {
             deviceInfo.isWebkitTextSecurity = true;
             htmlClass += ' isWebkitTextSecurityFriendly';
-        } else{
+        } else {
             htmlClass += ' isWebkitTextSecurityUnfriendly';
         }
 
-        if (((deviceInfo.isIPad || deviceInfo.isIPhone) && (browser.indexOf('Safari') !== -1)) || (deviceInfo.isAndroid && (browser.indexOf('Safari') !== -1)) || (deviceInfo.isChrome && (browserVersion >= 16)) || (deviceInfo.isSafari && (browserVersion >= 5))){
+        if (((deviceInfo.isIPad || deviceInfo.isIPhone) && (browser.indexOf('Safari') !== -1)) || (deviceInfo.isAndroid && (browser.indexOf('Safari') !== -1)) || (deviceInfo.isChrome && (browserVersion >= 16)) || (deviceInfo.isSafari && (browserVersion >= 5))) {
             addGradientSupport('-webkit-');
-        } else if (deviceInfo.isFx && (browserVersion >= 3.6)){
+        } else if (deviceInfo.isFx && (browserVersion >= 3.6)) {
             addGradientSupport('-moz-');
-        } else if (deviceInfo.isOpera && (browserVersion >= 11.6)){
+        } else if (deviceInfo.isOpera && (browserVersion >= 11.6)) {
             addGradientSupport('-o-');
-        } else if (deviceInfo.isIE && (browserVersion >= 10)){
+        } else if (deviceInfo.isIE && (browserVersion >= 10)) {
             addGradientSupport('-ms-');
-        } else{
+        } else {
             htmlClass += ' isCSSGradientUnfriendly';
             deviceInfo.isCSSGradient = false;
         }
+
+        if (deviceInfo.isAndroid || deviceInfo.isIPad || deviceInfo.isIPhone) {
+            deviceInfo.isMobileDevice = true;
+            htmlClass += ' isMobile';
+        }
+
 //        attention! reusing var Property!
         upperProperty = jsStylePrefixes[prefixIndex].toLowerCase();
-        if (global.requestAnimationFrame !== u){
-            deviceInfo.requestAF = function(frameFunction){
+        if (global.requestAnimationFrame !== u) {
+            deviceInfo.requestAF = function (frameFunction) {
                 return global.requestAnimationFrame(frameFunction);
             };
-            deviceInfo.cancelAF = function(id){
+            deviceInfo.cancelAF = function (id) {
                 global.cancelAnimationFrame(id);
             }
-        } else if (global[upperProperty + 'RequestAnimationFrame'] !== u){
+        } else if (global[upperProperty + 'RequestAnimationFrame'] !== u) {
             requestAF = upperProperty + 'RequestAnimationFrame';
             cancelAF = upperProperty + 'CancelAnimationFrame';
-            deviceInfo.requestAF = function(frameFunction){
+            deviceInfo.requestAF = function (frameFunction) {
                 return global[requestAF](frameFunction);
             };
-            deviceInfo.cancelAF = function(id){
+            deviceInfo.cancelAF = function (id) {
                 global[cancelAF](id);
             };
-        } else{
-            deviceInfo.requestAF = function(frameFunction){
+        } else {
+            deviceInfo.requestAF = function (frameFunction) {
                 return setTimeout(frameFunction, 16);
             };
-            deviceInfo.cancelAF = function(id){
+            deviceInfo.cancelAF = function (id) {
                 clearTimeout(id);
             };
         }
 //        attention! reusing var Property!
         upperProperty = html.className;
-        if (upperProperty.indexOf('noJS') !== -1){
+        if (upperProperty.indexOf('noJS') !== -1) {
             html.className = upperProperty.replace('noJS', '');
         }
-        if (deviceInfo.isCSSGradient && deviceInfo.isBoxShadow && deviceInfo.isBorderRadius){
+        if (deviceInfo.isCSSGradient && deviceInfo.isBoxShadow && deviceInfo.isBorderRadius) {
             deviceInfo.isCSSModernBrowser = true;
             htmlClass += ' isCSSModernBrowser';
-        } else{
+        } else {
             htmlClass += ' isCSSNotModernBrowser';
         }
     }
@@ -681,12 +688,12 @@
 
 
 //A9.ready();
-(function(global, a9){
+(function (global, a9) {
     /**
      * Эмуляция DOMOnLoad и общий инит библиотеки
      * @param {Function} handler обработчики DOMOnLoad
      */
-    a9.ready = function(handler){
+    a9.ready = function (handler) {
         var document = global.document,
             tryScroll,
             a9Store = a9.store,
@@ -697,36 +704,38 @@
             html,
             isReady = false;
         handler = null;
-        function ready(){
-            if (!isReady){
+        function ready() {
+            if (!isReady) {
                 a9Store.isReady = isReady = true;
-                a9.ready = function(handler){
+                a9.ready = function (handler) {
                     handler(a9, global);
                 };
-                for (; i < iMax; i += 1){
+                for (; i < iMax; i += 1) {
                     callbacks[i](a9, global);
                 }
                 html = body = tryScroll = callbacks = i = iMax = null;
             }
         }
-        if (a9.deviceInfo.isTouch){
+
+        if (a9.deviceInfo.isTouch) {
             callbacks[1] = callbacks[0];
-            callbacks[0] = function(){
+            callbacks[0] = function () {
                 body = document.body;
-                function getTouchedElement(){
+                function getTouchedElement() {
                     return document.elementFromPoint(a9Store.touchX - global.pageXOffset, a9Store.touchY - global.pageYOffset);
                 }
-                body.addEventListener('touchstart', function(e){
+
+                body.addEventListener('touchstart', function (e) {
                     a9Store.touchX = e.targetTouches[0].pageX;
                     a9Store.touchY = e.targetTouches[0].pageY;
                     a9Store.touchOnElement = getTouchedElement();
                 });
-                body.addEventListener('touchmove', function(e){
+                body.addEventListener('touchmove', function (e) {
                     a9Store.touchX = e.targetTouches[0].pageX;
                     a9Store.touchY = e.targetTouches[0].pageY;
                     a9Store.touchOnElement = getTouchedElement();
                 });
-                body.addEventListener('touchend', function(e){
+                body.addEventListener('touchend', function (e) {
                     a9Store.touchX = e.changedTouches[0].pageX;
                     a9Store.touchY = e.changedTouches[0].pageY;
                     a9Store.touchOnElement = getTouchedElement();
@@ -734,36 +743,36 @@
             };
             iMax += 1;
         }
-        a9.ready = function(callback){
+        a9.ready = function (callback) {
             callbacks[iMax] = callback;
             iMax += 1;
         };
-        if ('addEventListener' in global){
+        if ('addEventListener' in global) {
             document.addEventListener('DOMContentLoaded', ready);
             global.addEventListener('load', ready);
-        } else if ('attachEvent' in global){
+        } else if ('attachEvent' in global) {
             html = document.documentElement;
-            if (('doScroll' in html) && (global === global.top)){
-                tryScroll = function(){
-                    if (!isReady || (body === null)){
+            if (('doScroll' in html) && (global === global.top)) {
+                tryScroll = function () {
+                    if (!isReady || (body === null)) {
                         return this;
                     }
-                    try{
+                    try {
                         html.doScroll('left');
                         ready();
-                    } catch (e){
+                    } catch (e) {
                         setTimeout(tryScroll, 16);
                     }
                 };
                 tryScroll();
             }
-            document.attachEvent('onreadystatechange', function(){
-                if (document.readyState === 'complete'){
+            document.attachEvent('onreadystatechange', function () {
+                if (document.readyState === 'complete') {
                     ready();
                 }
             });
             global.attachEvent('onload', ready);
-        } else{
+        } else {
             global.onload = ready;
         }
     }
@@ -6949,7 +6958,7 @@ A9.pureCSS = function(){
         tmpls: {}
     }
 }(this));
-(function (gb,a9) {
+(function (gb, a9) {
     gb.tmpls.dropdown = function (data) {
         var dropDownListItems = [],
             i,
@@ -6991,7 +7000,7 @@ A9.pureCSS = function(){
 
         return [
             {
-                e:'form', n:'selectForm', a:{method:'post', action:''}, C:{
+                e: 'form', n: 'selectForm', a: {method: 'post', action: ''}, C: {
                 c: 'drop-down-list-head',
                 n: 'dropDownListHead',
                 C: dropDownListHeadContent
@@ -7004,7 +7013,7 @@ A9.pureCSS = function(){
         ];
     };
 
-}(GB,A9));
+}(GB, A9));
 
 
 (function (a9, gb) {
@@ -7013,6 +7022,7 @@ A9.pureCSS = function(){
             $body = document.body,
             build,
             $head,
+            marker = 'dropdowncontrolitems',
             $items,
             $selectedText,
             eventOnPointerEnd = a9.deviceInfo.eventOnPointerEnd,
@@ -7024,27 +7034,46 @@ A9.pureCSS = function(){
         $items = build.items;
         $selectedText = build.selectedText;
 
+        a9.addClass($items, marker);
+
         var $form = build.selectForm;
 
-        console.log($form);
+        //console.log($form);
 
-        a9.addEvent($head, eventOnPointerEnd, showItems);
+        a9.addEvent($head, eventOnPointerEnd, toggleItems);
         a9.addEvent($body, eventOnPointerEnd, hideItems);
         a9.addEvent($items, eventOnPointerUp, selectItem);
 
 
-        function showItems(e) {
-            a9.removeClass($items, 'hidden');
+        function toggleItems(e) {
+            hideOtherControlsExceptCurrent($items);
+            if (a9.hasClass($items, 'hidden')) {
+                a9.removeClass($items, 'hidden');
+            }
+            else {
+                a9.addClass($items, 'hidden');
+            }
             preventHideItems(e);
         }
 
-        function hideItems() {
+        function hideOtherControlsExceptCurrent(obj) {
+            var controls = a9.$c(marker);
+            for (var i = 0; i < controls.length; i++) {
+                if (obj !== controls[i]) {
+                    a9.addClass(controls[i], 'hidden');
+                }
+            }
+        }
+
+        function hideItems(e) {
+            //console.log($items);
+            //console.log('hide');
             a9.addClass($items, 'hidden');
         }
 
         function selectItem(e) {
             $selectedText.innerHTML = e.target.innerHTML;
-            $form.setAttribute('action',a9.supplant(options.submitUrl,{value:e.target.getAttribute('value')}));
+            $form.setAttribute('action', a9.supplant(options.submitUrl, {value: e.target.getAttribute('value')}));
             $form.submit();
             //console.log($form.getAttribute('action'));
         }
@@ -7090,7 +7119,7 @@ A9.pureCSS = function(){
         u;
 
 
-    tmpls.header = function (showBlog,showRoadMap) {
+    tmpls.header = function (showBlog, showRoadMap) {
         return {
             c: 'header-top-line', C: [
                 tmpls.languageSwitcher(),
@@ -7103,8 +7132,8 @@ A9.pureCSS = function(){
         }
     };
 
-    tmpls.searchInput = function(){
-        return {e:'input',c:'search-input',a:{placeholder:l10n('searchInputText','firstUpper')}}
+    tmpls.searchInput = function () {
+        return {e: 'input', c: 'search-input', a: {placeholder: l10n('searchInputText', 'firstUpper')}}
     };
 
     tmpls.socials = function () {
@@ -7118,17 +7147,20 @@ A9.pureCSS = function(){
     };
 
     tmpls.blogLink = function (current) {
-        if(current===true){
-            return {c: 'blog-link', C:{H: l10n('brainBlogLink')} }
+        if (current === true) {
+            return {c: 'blog-link', C: {H: l10n('brainBlogLink')}}
         }
-        return {c: 'blog-link', C:{e:'a',h:gb.settings.controlsDescriptors.site.blogUrl, H: l10n('brainBlogLink')} }
+        return {c: 'blog-link', C: {e: 'a', h: gb.settings.controlsDescriptors.site.blogUrl, H: l10n('brainBlogLink')}}
     };
 
     tmpls.roadMapLink = function (current) {
-        if(current===true){
-            return {c: 'road-map-link', C:{H: l10n('roadMapLink')} }
+        if (current === true) {
+            return {c: 'road-map-link', C: {H: l10n('roadMapLink')}}
         }
-        return {c: 'road-map-link', C:{e:'a',h:gb.settings.controlsDescriptors.site.roadMapUrl, H: l10n('roadMapLink')} }
+        return {
+            c: 'road-map-link',
+            C: {e: 'a', h: gb.settings.controlsDescriptors.site.roadMapUrl, H: l10n('roadMapLink')}
+        }
     };
 
     tmpls.languageSwitcher = function () {
@@ -7161,15 +7193,9 @@ A9.pureCSS = function(){
 
         for (var i = 0; i < languages.length; i++) {
             if (languages[i].code == currentLanguage) {
-                languageItem = {e: 'span', t: languages[i].label}
+                languageItem = tmpls.languageSwitcherItemCurrent(languages[i])
             } else {
-
-
-                languageItem = {
-                    e: 'a',
-                    h: '/' + languages[i].code + '/' + locationWithoutLanguage,
-                    t: languages[i].label
-                }
+                languageItem = tmpls.languageSwitcherItem(languages[i], locationWithoutLanguage)
             }
             content.push(languageItem);
         }
@@ -7177,6 +7203,131 @@ A9.pureCSS = function(){
         return {
             c: 'language-switcher', C: content
         }
+    };
+
+    tmpls.languageSwitcherItem = function (lanItem, locationWithoutLanguage) {
+        if (a9.deviceInfo.isMobileDevice) {
+            return {c:'language-switcher-item',
+                C: {
+                    e: 'a',
+                    h: '/' + lanItem.code + '/' + locationWithoutLanguage,
+                    t: lanItem.labelFull
+                }
+            }
+        } else {
+            return {
+                e: 'a',
+                h: '/' + lanItem.code + '/' + locationWithoutLanguage,
+                t: lanItem.label
+            }
+        }
+    };
+
+    tmpls.languageSwitcherItemCurrent = function (lanItem) {
+        if (a9.deviceInfo.isMobileDevice) {
+            return {c:'language-switcher-item',t: lanItem.labelFull}
+        } else {
+            return {e: 'span', t: lanItem.label}
+        }
+    };
+
+
+}(GB));
+(function (gb) {
+    var tmpls = gb.tmpls,
+        a9 = gb.global.A9,
+        l10n = a9.l10n,
+        u;
+
+    tmpls.headerMobile = function () {
+        return {
+            c: 'header-mobile', C: [{n: 'languageSwitcherMobile'}, {n: 'mainMenuMobile'}]
+        }
+    };
+
+    tmpls.languageSwitcherMobile = function () {
+        return [
+            {c: 'language-switcher-icon', n: 'languageSwitcherMobileIcon'},
+            {
+                c: 'language-switcher-wrapper hidden',
+                n: 'languageSwitcherMobileWrapper',
+                C: [{c: 'triangle'}, tmpls.languageSwitcher()]
+            }
+        ]
+    };
+
+    tmpls.mainMenuMobile = function () {
+        return {c: 'main-menu-icon', n: 'mainMenuMobileIcon'}
+    };
+
+    tmpls.mainMenuMobileLayout = function () {
+        var descriptors = gb.settings.controlsDescriptors.site;
+        // TODO: add hidden classname into main-menu-mobile-layout
+
+        return {c: 'main-menu-mobile-layout hidden', C: [
+            tmpls.countriesSelectorMenuMobileLayout(),
+            tmpls.serviceMenuMobileLayout(),
+            {c:'head',C:[{c: 'close', a: {id: 'closeMainMenuMobileBtn'}},{c:'search-container',C:{e:'input', a:{type:'text',placeholder:l10n('searchInputText','firstUpper')}}}]},
+            tmpls.mainMenuMobileContent(),
+            {c:'main-menu-socials',C:[
+                {c: 'google', C: {e: 'a', h: descriptors.googleLink}},
+                {c: 'fb', C: {e: 'a', h: descriptors.fbLink}},
+                {c: 'instagram', C: {e: 'a', h: descriptors.instagramLink}}]}
+        ]}
+    };
+
+    tmpls.mainMenuMobileContent = function () {
+        var
+            menuData = gb.settings.dataModels.mainMenu,
+            menuItem,
+            menuItems = [],
+            i;
+        for (i = 0; i < menuData.length; i++) {
+            if(menuData[i].isServiceMenuItem){
+                menuItem = {c:'service-menu-menu-item', e:'li',C:{e:'a',h:'#',H:menuData[i].title}};
+            }else
+            if(menuData[i].popup){
+                menuItem = {c:'countries-selector-menu-item', e:'li',C:{e:'a',h:'#',H:menuData[i].title}};
+            }else {
+                menuItem = {e: 'li', C: {e: 'a', h: menuData[i].url, H: menuData[i].title}};
+            }
+
+            menuItems.push(menuItem);
+        }
+        menuItems.push({e:'li',C:{ c:'separator'}});
+        menuItems.push({e:'li',C:{e:'a',h:gb.settings.controlsDescriptors.site.blogUrl,t:l10n('brainBlogLink')}});
+        //menuItems.push({e:'li',C:{e:'a',h:gb.settings.controlsDescriptors.site.brainBlogLink,t:l10n('feedbackLinkText')}});
+        return {c:'main-menu-mobile',C:{e:'ul',C:menuItems}}
+
+    };
+
+    tmpls.countriesSelectorMenuMobileLayout = function () {
+        
+
+        var countries = gb.settings.dataModels.educationalCountries,
+            countriesContent=[];
+
+        a9.each(countries,function(country){
+            countriesContent.push({e:'li', C:{e: 'a', h: country.url, t: country.title}});
+        });
+
+        // TODO: hidden
+        console.log(456);
+
+        return{c:'countries-selector-menu-mobile-layout hidden',a:{id:'countriesSelectorMenuMobileLayout'}, C:[{c:'title',t:l10n('selectEducationCountryShort')+':'},{c:'items',C:{e:'ul',C:countriesContent}}]}
+    };
+
+    tmpls.serviceMenuMobileLayout = function(){
+        var items = gb.settings.dataModels.servicesMenu,
+            content=[];
+
+        a9.each(items,function(item){
+            content.push({c:'menu-item', C:{e: 'a', h: item.url, t: item.title}});
+        });
+
+        // TODO: hidden
+
+        return{c:'countries-selector-menu-mobile-layout hidden',a:{id:'serviceMenuMobileLayout'}, C:[{c:'title',t:l10n('ourServices')+':'},{c:'items',C:content}]}
     };
 
 
@@ -7260,7 +7411,7 @@ A9.pureCSS = function(){
             menuData = gb.settings.dataModels.mainMenu,
             menuItems = [],
             menuItem,
-            menuItemInnerContent=[],
+            menuItemInnerContent = [],
             i,
             menuItemClassName,
             linkContent,
@@ -7282,7 +7433,7 @@ A9.pureCSS = function(){
                 menuItemClassName += ' popup-link'
             }
 
-            if(menuData[i].isServiceMenuItem){
+            if (menuData[i].isServiceMenuItem) {
                 menuItemClassName += ' popup-link service-menu-link'
             }
 
@@ -7300,16 +7451,13 @@ A9.pureCSS = function(){
             }
 
 
-
-
-
             menuItemInnerContent = [
                 {c: 'arrow'},
                 linkContent,
                 {c: 'arrow'}
             ];
 
-            if(menuData[i].isServiceMenuItem){
+            if (menuData[i].isServiceMenuItem) {
                 menuItemInnerContent.unshift(tmpls.servicesMenuWrapper())
             }
 
@@ -7472,16 +7620,20 @@ GB.stickyPanels = function () {
     a9.addEvent(global, 'scroll', function () {
         var scrollY = this.scrollY;
 
-        if (scrollY >= 100) {
-            a9.addClass($menu, fixedClassName)
-        } else {
-            a9.removeClass($menu, fixedClassName)
+        if($menu!==null) {
+            if (scrollY >= 100) {
+                a9.addClass($menu, fixedClassName)
+            } else {
+                a9.removeClass($menu, fixedClassName)
+            }
         }
 
-        if (scrollY >= 174) {
-            a9.addClass($logoSign, fixedClassName)
-        } else {
-            a9.removeClass($logoSign, fixedClassName)
+        if($logoSign!==null) {
+            if (scrollY >= 174) {
+                a9.addClass($logoSign, fixedClassName)
+            } else {
+                a9.removeClass($logoSign, fixedClassName)
+            }
         }
 
         if ($scrollToTop != null) {
@@ -8237,8 +8389,6 @@ GB.educationalInstitutions = function($parent){
         }
     });
 
-    console.log(dropDownInstitutionTypeSelectedIndex);
-
 
     var dropDownInstitutionLocationOptions = {
         selectedIndex: dropDownInstitutionLocationSelectedIndex,
@@ -8769,6 +8919,91 @@ GB.intro = function ($parent) {
 
 
 }(GB));
+GB.languageSwitcherMobile = function ($parent) {
+    var gb = this,
+        global = gb.global,
+        a9 = global.A9,
+        tp = global.cnCt.tp,
+        $body = document.body,
+        eventOnPointerEnd = a9.deviceInfo.eventOnPointerEnd,
+        build = tp('languageSwitcherMobile', $parent),
+        $languageSwitcherMobileIcon = build.languageSwitcherMobileIcon,
+        $languageSwitcherMobileWrapper = build.languageSwitcherMobileWrapper;
+
+    function preventCloseLanguageSwitcher(e) {
+        if (e.stopPropagation) {
+            e.stopPropagation();
+        } else {
+            e.cancelBubble = true;
+        }
+    }
+
+    var toggleLanguageSwitcherMobile = function (e) {
+        if (a9.hasClass($languageSwitcherMobileWrapper, 'hidden')) {
+            a9.removeClass($languageSwitcherMobileWrapper, 'hidden');
+        } else {
+            a9.addClass($languageSwitcherMobileWrapper, 'hidden');
+        }
+        preventCloseLanguageSwitcher(e)
+    };
+
+    var closeLanguageSwitcherMobile = function(){
+        a9.addClass($languageSwitcherMobileWrapper, 'hidden');
+    };
+
+    var languageSwitcherMobileWrapperClick = function(e){
+        console.log('languageSwitcherMobileWrapperClick');
+        preventCloseLanguageSwitcher(e);
+    };
+
+    a9.addEvent($languageSwitcherMobileIcon, eventOnPointerEnd, toggleLanguageSwitcherMobile);
+    a9.addEvent($body, eventOnPointerEnd, closeLanguageSwitcherMobile);
+    a9.addEvent($languageSwitcherMobileWrapper, eventOnPointerEnd, languageSwitcherMobileWrapperClick);
+};
+
+GB.mainMenuMobile = function ($parent) {
+    var gb = this,
+        global = gb.global,
+        a9 = global.A9,
+        tp = global.cnCt.tp,
+        eventOnPointerEnd = a9.deviceInfo.eventOnPointerEnd,
+        build = tp('mainMenuMobile', $parent),
+        $mainMenuMobileIcon = build.mainMenuMobileIcon,
+        $mainMenuMobileLayout = a9.$c('main-menu-mobile-layout')[0],
+        $countriesSelectorMenuMobileLayout = a9.$('countriesSelectorMenuMobileLayout'),
+        $serviceMenuMobileLayout = a9.$('serviceMenuMobileLayout'),
+        $closeMainMenuMobileBtn = a9.$('closeMainMenuMobileBtn'),
+        $countriesSelectorLink = a9.$c('countries-selector-menu-item')[0],
+        $serviceMenuLink = a9.$c('service-menu-menu-item')[0],
+        u;
+
+    
+
+    var toggleMainMenuMobile = function () {
+        a9.removeClass($mainMenuMobileLayout, 'hidden');
+    };
+
+    var closeMenu = function(){
+        a9.addClass($mainMenuMobileLayout, 'hidden');
+        a9.addClass($countriesSelectorMenuMobileLayout, 'hidden');
+        a9.addClass($serviceMenuMobileLayout, 'hidden');
+
+    };
+
+    //console.log($countriesSelectorLink);
+    a9.addEvent($countriesSelectorLink,eventOnPointerEnd,function(){
+        a9.removeClass($countriesSelectorMenuMobileLayout, 'hidden');
+    });
+
+    //console.log(33);
+
+    a9.addEvent($serviceMenuLink,eventOnPointerEnd,function(){
+        a9.removeClass($serviceMenuMobileLayout, 'hidden');
+    });
+
+    a9.addEvent($mainMenuMobileIcon, eventOnPointerEnd, toggleMainMenuMobile);
+    a9.addEvent($closeMainMenuMobileBtn,eventOnPointerEnd,closeMenu);
+};
 GB.mainPage = function ($parent) {
     var gb = this,
         global = gb.global,
@@ -8949,7 +9184,7 @@ GB.mainPage = function ($parent) {
             c: 'announcement-info', C: [
                 {c: 'title', t: announcement.title},
                 {c: 'announcement-info-logo'},
-                {c: 'text', t: announcement.text},
+                {c: 'text', H: announcement.text},
                 {e: 'a', h: announcement.url, c: 'link', t: l10n('announcementLinkText')}
             ]
         }
@@ -9017,6 +9252,206 @@ GB.mainPage = function ($parent) {
     tmpls.showMore = function () {
         return {c: 'show-more', H: l10n('showMoreText')}
     }
+
+}(GB));
+GB.mainPageMobile = function ($parent) {
+    var gb = this,
+        global = gb.global,
+        a9 = global.A9,
+        tp = global.cnCt.tp,
+        settings = gb.settings,
+        doc = global.document,
+        eventOnPointerEnd = a9.deviceInfo.eventOnPointerEnd,
+        startY,
+        finishY,
+        startT,
+        i,
+        finishT,
+        duration = gb.settings.scrollToAnnouncementsDuration || 200,
+        mainPageSlideTimeout = settings.controlsDescriptors.site.mainPageSlideTimeout | 3000,
+        $fragment,
+        currentVisibleFrameIndex = -1,
+        mainPageData = settings.dataModels.mainPage,
+        build,
+        buildBanner,
+        $languageSwitcherMobile,
+        $mainMenuMobile,
+        $mainImageContentWrapper,
+        $contentImages = [],
+        u;
+
+
+    build = tp('mainPageMobile', $parent);
+    $mainImageContentWrapper = build.mainImageContentWrapper;
+    $languageSwitcherMobile = build.languageSwitcherMobile;
+    $mainMenuMobile = build.mainMenuMobile;
+
+    
+    
+    gb.languageSwitcherMobile($languageSwitcherMobile);
+    
+    gb.mainMenuMobile($mainMenuMobile);
+    
+    
+    $fragment = global.document.createDocumentFragment();
+
+    var j = 0;
+
+    a9.each(mainPageData.mainBanners, function (mainBanner) {
+        mainBanner.order = j;
+        buildBanner = tp('mainImageContentMobile', mainBanner, $fragment);
+        $contentImages.push(buildBanner.r);
+        j++;
+    });
+
+    var sm = tp('showMore', $fragment);
+    a9.addEvent(sm.r, eventOnPointerEnd, showDetails);
+
+    function showDetails() {
+        scrollToTop();
+    }
+
+    function scrollToTop() {
+        finishY = (a9.$('mainPageAnnouncements').offsetTop || 0);
+        startY = ((global.pageYOffset || doc.scrollTop) || 0) - (doc.clientTop || 0);
+        startT = +(new Date());
+        finishT = startT + duration;
+        setTimeout(animate, 15);
+    }
+
+    function animate() {
+        var now = +(new Date()),
+            shift = (now > finishT) ? 1 : (now - startT) / duration;
+        global.scrollTo(0, interpolate(startY, finishY, easing(shift)));
+        (now > finishT) || setTimeout(animate, 15);
+    }
+
+    function interpolate(source, target, shift) {
+        return (source + ((target - source) * shift));
+    }
+
+    function easing(pos) {
+        return (-Math.cos(pos * Math.PI) / 2) + .5;
+    }
+
+    $mainImageContentWrapper.appendChild($fragment);
+
+    setTimeout(slideImageFrame, 10);
+
+    function slideImageFrame() {
+        setInactiveImages();
+        updateCurrentVisibleFrameIndex();
+        setActiveImage();
+        setTimeout(slideImageFrame, mainPageSlideTimeout);
+    }
+
+    function setInactiveImages() {
+        for (i = 0; i < $contentImages.length; i++) {
+            a9.removeClass($contentImages[i], "active");
+        }
+    }
+
+    function updateCurrentVisibleFrameIndex() {
+        currentVisibleFrameIndex++;
+        if (currentVisibleFrameIndex >= $contentImages.length) {
+            currentVisibleFrameIndex = 0;
+        }
+    }
+
+    function setActiveImage() {
+        for (i = 0; i < $contentImages.length; i++) {
+            if (i == currentVisibleFrameIndex) {
+                a9.addClass($contentImages[i], "active");
+            }
+        }
+    }
+
+
+};
+(function (gb) {
+    var tmpls = gb.tmpls,
+        a9 = gb.global.A9,
+        l10n = a9.l10n,
+        u;
+
+    tmpls.mainPageMobile = function () {
+        return [
+            {c: 'main-banner', n: 'mainImageContentWrapper'},
+            tmpls.headerMobile(),
+            {c:'main-page-logo-mobile'},
+            tmpls.mainPageAnnouncementsMobile(),
+            tmpls.mainMenuMobileLayout()
+
+        ];
+    };
+
+
+
+    tmpls.mainImageContentMobile = function (mainBanner) {
+        var controlsDescriptors = gb.settings.controlsDescriptors,
+            content = [];
+
+
+        if (mainBanner.title && mainBanner.title != '') {
+            content.push({c: 'title', H: mainBanner.title});
+            content.push({c: 'clear'})
+        }
+
+        if (mainBanner.description && mainBanner.description != '') {
+            content.push({c: 'description', C: {e: 'span', c: 'highlight', H: mainBanner.description}});
+            content.push({c: 'clear'})
+        }
+
+        //if (mainBanner.sign && mainBanner.sign != '') {
+        //    content.push({c: 'sign', H: mainBanner.sign});
+        //    content.push({c: 'clear'})
+        //}
+
+        //if (mainBanner.signImage && mainBanner.signImage != '') {
+        //    content.push({
+        //        c: 'sign-image',
+        //        C: {e: 'img', a: {src: controlsDescriptors.site.mainPageImages + mainBanner.signImage}}
+        //    });
+        //    content.push({c: 'clear'})
+        //}
+
+        return {
+            c: 'main-image-content', C: [
+                {
+                    //e: 'img',
+                    c: 'banner', //a: {src: controlsDescriptors.site.mainPageImages + mainBanner.imageSrc}
+                    a: {style: 'background-image:url(' + controlsDescriptors.site.mainBannerImages + mainBanner.imageSrc + ')'}
+                },
+                {
+                    c: 'main-page-info-wrapper', C: content
+                }
+            ]
+        }
+    };
+
+    tmpls.mainPageAnnouncementsMobile = function () {
+        var announcements = gb.settings.dataModels.mainPage.contentAnnouncements,
+            //parallaxImages = gb.settings.dataModels.mainPage.parallaxImages,
+            content = [];
+            //i = 0;
+        a9.each(announcements, function (announcement,index) {
+            content.push(tmpls.announcementInfo(announcement));
+            if(index!==announcements.length-1) {
+                content.push({
+                    c: 'parallax-window',
+                    a: {
+                        'data-parallax': 'scroll',
+                        'data-image-src': gb.settings.controlsDescriptors.site.contentAnnouncementImages + announcement.imageSrc
+                    }
+                });
+            }
+            //content.push({c: 'clear'});
+            //i++;
+        });
+
+        return {a: {id: 'mainPageAnnouncements'}, c: 'main-page-announcements', C: content}
+    };
+
 
 }(GB));
 GB.map = function ($map, $mapLocationLinks) {
@@ -9661,6 +10096,7 @@ A9.ready(function (a9, global) {
     //tp = global.cnCt.tp,
         $ = a9.$,
         $mainPage = $('mainPage'),
+        $mainPageMobile = $('mainPageMobile'),
         $educationalInstitutions = $('educationalInstitutions'),
         $educationalInstitutionDetails = $('educationalInstitutionDetails'),
         $educationKinds = $('educationKinds'),
@@ -9683,11 +10119,26 @@ A9.ready(function (a9, global) {
         u;
 
 
+    a9.deviceInfo.isMobileDevice = true;
+
     global.cnCt.bindTemplates(gb.tmpls);
 
     if ($mainPage !== null) {
-        gb.mainPage($mainPage);
+        
+
+        if (a9.deviceInfo.isMobileDevice) {
+            gb.mainPageMobile($mainPage);
+        }
+        else {
+            gb.mainPage($mainPage);
+        }
+
     }
+
+    if ($mainPageMobile !== null) {
+        gb.mainPageMobile($mainPageMobile);
+    }
+
 
     if ($educationalInstitutions !== null) {
         gb.educationalInstitutions($educationalInstitutions);
@@ -9725,11 +10176,11 @@ A9.ready(function (a9, global) {
         gb.partners($partners);
     }
 
-    if ( $services!== null) {
+    if ($services !== null) {
         gb.services($services);
     }
 
-    if ($siteContent!== null) {
+    if ($siteContent !== null) {
         gb.siteContent($siteContent);
     }
 
@@ -9742,12 +10193,10 @@ A9.ready(function (a9, global) {
     }
 
 
-
     $scrollToTop = $('scrollToTop');
     if ($scrollToTop !== null) {
         gb.scrollToTop($scrollToTop);
     }
-
 
     gb.stickyPanels();
 
