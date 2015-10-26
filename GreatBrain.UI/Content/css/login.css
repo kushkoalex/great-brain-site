@@ -1,0 +1,51 @@
+﻿.login-container {
+    width:500px;
+    position:absolute;
+    top:50%;
+    margin-top:-300px;
+    left:50%;
+    margin-left:-250px;
+
+    font-family: 'Ubuntu', sans-serif;
+    
+}
+
+    .login-container .logo {
+        position:relative;
+        margin:0 auto;
+        width:85px;
+        height:99px;
+        background:url('../../images/admin-login-logo.png');
+    }
+
+.login-container .login-title {
+    font-family: 'Ubuntu', sans-serif;
+   color:#c7c7c7;
+   text-align:center;
+   text-transform:uppercase;
+   font-size:13px;
+   margin-top:25px;
+   letter-spacing:1px;
+}
+
+    .login-container .form-wrapper {
+        width:190px;
+        position:relative;
+        margin:30px auto auto;
+        text-align:center;
+    }
+.login-container .form-wrapper .form-group {
+    margin-top:30px;
+}
+        .login-container .form-wrapper input {
+        text-align:center;
+        font-family: 'Ubuntu', sans-serif;
+        font-style:italic;
+        }
+
+    .login-container .rememberme {
+        margin-top:30px;
+    }
+.login-container  button{
+    margin-top:30px;
+}
