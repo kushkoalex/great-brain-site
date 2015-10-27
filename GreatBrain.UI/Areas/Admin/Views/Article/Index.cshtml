@@ -45,7 +45,14 @@
         <th>
             @Html.DisplayNameFor(model => model.PreviewImageSrc)
         </th>
+         <th>
+            @Html.DisplayNameFor(model => model.BannerImageSrc)
+        </th>
+        
         <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowAsBanner)
+        </th>
         <th></th>
     </tr>
 
@@ -69,25 +76,31 @@
         <td>
             @Html.DisplayFor(modelItem => item.ShortDescriptionEn)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Text)
+       <td>
+            @Html.Raw(item.Text)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TextEn)
+            @Html.Raw(item.TextEn)
         </td>
         <td>
             @Html.Raw(Html.CachedImage(SiteSettings.ArticlePreviewPath, item.PreviewImageSrc, SiteSettings.GetThumbnail("articlePreview")))
         </td>
-         <td>
+        <td>
+            @Html.Raw(Html.CachedImage(SiteSettings.BannersPath, item.BannerImageSrc, SiteSettings.GetThumbnail("bannerPreview")))
+        </td>
+        <td>
             @foreach (var image in item.ArticleImages)
             {
                 <div style="display: inline-block; width: 100px;">
                     <div style="position: absolute">
-                    @Html.ActionLink("Удалить", "DeleteImage", new { id = image.Id }, new { onclick = "return confirm('Удалить изображение?')", style="color:red;" })
-                        </div>
+                        @Html.ActionLink("Удалить", "DeleteImage", new { id = image.Id }, new { onclick = "return confirm('Удалить изображение?')", style="color:red;" })
+                    </div>
                     @Html.Raw(Html.CachedImage(SiteSettings.ArticleImagesPath, image.ImageSrc, SiteSettings.GetThumbnail("articleImagesPreview")))
                 </div>
             }
+        </td>
+         <td>
+            @Html.DisplayFor(modelItem => item.ShowAsBanner)
         </td>
         <td>
             @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |

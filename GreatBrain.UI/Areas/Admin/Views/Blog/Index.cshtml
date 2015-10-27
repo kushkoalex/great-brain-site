@@ -45,6 +45,12 @@
         <th>
             @Html.DisplayNameFor(model => model.PreviewImageSrc)
         </th>
+         <th>
+            @Html.DisplayNameFor(model => model.BannerImageSrc)
+        </th>
+         <th>
+            @Html.DisplayNameFor(model => model.ShowAsBanner)
+        </th>
         <th></th>
     </tr>
 
@@ -69,13 +75,19 @@
             @Html.DisplayFor(modelItem => item.ShortDescriptionEn)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Text)
+            @Html.Raw(item.Text)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TextEn)
+            @Html.Raw(item.TextEn)
         </td>
         <td>
             @Html.Raw(Html.CachedImage(SiteSettings.BlogPreviewPath, item.PreviewImageSrc, SiteSettings.GetThumbnail("blogPreview")))
+        </td>
+         <td>
+            @Html.Raw(Html.CachedImage(SiteSettings.BannersPath, item.BannerImageSrc, SiteSettings.GetThumbnail("bannerPreview")))
+        </td>
+         <td>
+            @Html.DisplayFor(modelItem => item.ShowAsBanner)
         </td>
         <td>
               @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |

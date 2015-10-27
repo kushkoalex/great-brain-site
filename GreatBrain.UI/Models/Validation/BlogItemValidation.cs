@@ -28,5 +28,9 @@ namespace GreatBrain.UI.Models
         public string TextEn { get; set; }
         [Display(Name = "Изображение превью")]
         public string PreviewImageSrc { get; set; }
+        [Display(Name = "Изображение баннера")]
+        public string BannerImageSrc { get; set; }
+        [Display(Name = "Отображать баннер")]
+        public string ShowAsBanner { get; set; }
     }
 }

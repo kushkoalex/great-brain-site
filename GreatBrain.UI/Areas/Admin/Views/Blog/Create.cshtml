@@ -77,6 +77,19 @@
                 <textarea class="form-control ckeditor" rows="10" name="TextEn">@Model.TextEn</textarea>
             </div>
         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ShowAsBanner, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.CheckBoxFor(model=>model.ShowAsBanner)
+            </div>
+            @Html.ValidationMessageFor(model => model.ShowAsBanner)
+        </div>
+         <div class="form-group">
+            @Html.LabelFor(model => model.BannerImageSrc, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                <input type="file" name="BannerImageSrc"/>
+            </div>
+        </div>
 
         
         <div class="form-group">

@@ -201,7 +201,7 @@
                 newsThumbnails: '/Content/images/articlePreview/',
                 blogImages: '../images/blog/',
                 blogThumbnails: '/Content/Images/blogPreview/',
-                bannerImages: '../images/banners/'
+                bannerImages: '/Content/Images/banners/'
                     
                 //urlEM: 'http://eugene-miller.com',
                 //contentImagesPath: '/content/images/',
@@ -247,6 +247,7 @@
             @Html.Raw(ViewBag.MainMenu);
             @Html.Raw(ViewBag.ServiceMenu);
             @Html.Raw(ViewBag.Countries);
+            @Html.Raw(ViewBag.Banners);
         }(GB, A9));
     </script>
     @RenderSection("scripts", required: false)

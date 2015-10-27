@@ -5,7 +5,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 10/08/2015 23:21:11
+-- Date Created: 10/27/2015 01:31:44
 -- Generated from EDMX file: C:\github\great-brain-site\GreatBrain.DataModel\Model1.edmx
 -- Target version: 3.0.0.0
 -- --------------------------------------------------
@@ -189,7 +189,9 @@ CREATE TABLE `BlogItem`(
 	`ShortDescriptionEn` varchar (200), 
 	`Text` longtext, 
 	`TextEn` longtext, 
-	`PreviewImageSrc` varchar (200));
+	`PreviewImageSrc` varchar (200), 
+	`ShowAsBanner` bool NOT NULL, 
+	`BannerImageSrc` varchar (200));
 
 ALTER TABLE `BlogItem` ADD PRIMARY KEY (Id);
 
@@ -225,7 +227,9 @@ CREATE TABLE `Article`(
 	`ShortDescriptionEn` varchar (200), 
 	`Text` longtext, 
 	`TextEn` longtext, 
-	`PreviewImageSrc` varchar (200));
+	`PreviewImageSrc` varchar (200), 
+	`ShowAsBanner` bool NOT NULL, 
+	`BannerImageSrc` varchar (200));
 
 ALTER TABLE `Article` ADD PRIMARY KEY (Id);
 

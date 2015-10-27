@@ -169,6 +169,8 @@
     <Property Name="Text" Type="longtext" Nullable="true" />
     <Property Name="TextEn" Type="longtext" Nullable="true" />
     <Property Name="PreviewImageSrc" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="ShowAsBanner" Type="bool" Nullable="false" />
+    <Property Name="BannerImageSrc" Type="varchar" Nullable="true" MaxLength="200" />
   </EntityType>
   <EntityType Name="MapLocation">
     <Key>
@@ -201,6 +203,8 @@
     <Property Name="Text" Type="longtext" Nullable="true" />
     <Property Name="TextEn" Type="longtext" Nullable="true" />
     <Property Name="PreviewImageSrc" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="ShowAsBanner" Type="bool" Nullable="false" />
+    <Property Name="BannerImageSrc" Type="varchar" Nullable="true" MaxLength="200" />
   </EntityType>
   <EntityType Name="ArticleImage">
     <Key>
@@ -522,6 +526,8 @@
           <Property Type="String" Name="Text" />
           <Property Type="String" Name="TextEn" />
           <Property Type="String" Name="PreviewImageSrc" MaxLength="200" />
+          <Property Type="Boolean" Name="ShowAsBanner" Nullable="false" />
+          <Property Type="String" Name="BannerImageSrc" MaxLength="200" />
         </EntityType>
         <EntityType Name="MapLocation">
           <Key>
@@ -555,6 +561,8 @@
           <Property Type="String" Name="TextEn" />
           <Property Type="String" Name="PreviewImageSrc" MaxLength="200" />
           <NavigationProperty Name="ArticleImages" Relationship="Model1.ArticleArticleImage" FromRole="Article" ToRole="ArticleImage" />
+          <Property Type="Boolean" Name="ShowAsBanner" Nullable="false" />
+          <Property Type="String" Name="BannerImageSrc" MaxLength="200" />
         </EntityType>
         <EntityType Name="ArticleImage">
           <Key>
@@ -746,6 +754,8 @@
           <ScalarProperty Name="Text" ColumnName="Text" />
           <ScalarProperty Name="TextEn" ColumnName="TextEn" />
           <ScalarProperty Name="PreviewImageSrc" ColumnName="PreviewImageSrc" />
+          <ScalarProperty Name="ShowAsBanner" ColumnName="ShowAsBanner" />
+          <ScalarProperty Name="BannerImageSrc" ColumnName="BannerImageSrc" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -780,6 +790,8 @@
           <ScalarProperty Name="Text" ColumnName="Text" />
           <ScalarProperty Name="TextEn" ColumnName="TextEn" />
           <ScalarProperty Name="PreviewImageSrc" ColumnName="PreviewImageSrc" />
+          <ScalarProperty Name="ShowAsBanner" ColumnName="ShowAsBanner" />
+          <ScalarProperty Name="BannerImageSrc" ColumnName="BannerImageSrc" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

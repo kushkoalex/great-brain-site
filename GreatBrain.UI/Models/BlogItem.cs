@@ -15,5 +15,7 @@ namespace GreatBrain.UI.Models
         public string Text { get; set; }
         public string TextEn { get; set; }
         public string PreviewImageSrc { get; set; }
+        public bool ShowAsBanner { get; set; }
+        public string BannerImageSrc { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -40,6 +41,44 @@ namespace GreatBrain.UI.Controllers
 
             return "dataModels.educationalCountries = " + JsonConvert.SerializeObject(result);
         }
+
+
+        public string GetBanners()
+        {
+            var banners = new List<object>();
+
+            var articles = _context.Articles.Where(a => a.ShowAsBanner).ToList();
+            var blogItems = _context.BlogItems.Where(b => b.ShowAsBanner).ToList();
+
+            foreach (var item in articles)
+            {
+                banners.Add(new
+                {
+                    type = "news",
+                    url = "/" + CurrentLangCode + "/news/" + item.Name,
+                    imageSrc = item.BannerImageSrc,
+                    date = item.Date.ToShortDateString(),
+                    title = CurrentLang == SiteLanguage.en ? item.TitleEn : item.Title
+                });
+            }
+
+            foreach (var item in blogItems)
+            {
+                banners.Add(new
+                {
+                    type = "blog",
+                    url = "/" + CurrentLangCode + "/blog/" + item.Name,
+                    imageSrc = item.BannerImageSrc,
+                    date = item.Date.ToShortDateString(),
+                    title = CurrentLang == SiteLanguage.en ? item.TitleEn : item.Title
+                });
+            }
+
+            var result = banners.OrderBy(x => Guid.NewGuid()).Take(3).ToList();
+
+            return "dataModels.banners = " + JsonConvert.SerializeObject(result);
+        }
+
 
         public DefaultController(SiteContext context)
         {
@@ -154,6 +193,7 @@ namespace GreatBrain.UI.Controllers
             }
             ViewBag.Countries = GetCountries();
             ViewBag.ServiceMenu = GenerateServiceMenu();
+            ViewBag.Banners = GetBanners();
 
 
             base.Initialize(requestContext);

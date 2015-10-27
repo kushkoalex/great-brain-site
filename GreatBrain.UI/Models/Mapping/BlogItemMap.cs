@@ -48,6 +48,8 @@ namespace GreatBrain.UI.Models.Mapping
             this.Property(t => t.Text).HasColumnName("Text");
             this.Property(t => t.TextEn).HasColumnName("TextEn");
             this.Property(t => t.PreviewImageSrc).HasColumnName("PreviewImageSrc");
+            this.Property(t => t.BannerImageSrc).HasColumnName("BannerImageSrc");
+            this.Property(t => t.ShowAsBanner).HasColumnName("ShowAsBanner");
         }
     }
 }

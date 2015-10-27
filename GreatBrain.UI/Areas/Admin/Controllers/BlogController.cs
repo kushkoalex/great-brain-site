@@ -43,10 +43,11 @@ namespace GreatBrain.UI.Areas.Admin.Controllers
                     ShortDescriptionEn = model.ShortDescriptionEn,
                     Text = model.Text == null ? "" : HttpUtility.HtmlDecode(model.Text),
                     TextEn = model.TextEn == null ? "" : HttpUtility.HtmlDecode(model.TextEn),
+                    ShowAsBanner = model.ShowAsBanner
                 };
 
 
-                var file = Request.Files[0];
+                var file = Request.Files["PreviewImageSrc"];
                 if (file != null && !string.IsNullOrEmpty(file.FileName))
                 {
                     string fileName = IOHelper.GetUniqueFileName(SiteSettings.BlogPreviewPath, file.FileName);
@@ -59,6 +60,21 @@ namespace GreatBrain.UI.Areas.Admin.Controllers
                 else
                 {
                     blogItem.PreviewImageSrc = blogItem.PreviewImageSrc ?? "";
+                }
+
+                file = Request.Files["BannerImageSrc"];
+                if (file != null && !string.IsNullOrEmpty(file.FileName))
+                {
+                    string fileName = IOHelper.GetUniqueFileName(SiteSettings.BannersPath, file.FileName);
+                    string filePath = Server.MapPath(SiteSettings.BannersPath);
+
+                    filePath = Path.Combine(filePath, fileName);
+                    GraphicsHelper.SaveOriginalImageWithDefinedDimentions(filePath, fileName, file, 380, 170, ScaleMode.Crop);
+                    blogItem.BannerImageSrc = fileName;
+                }
+                else
+                {
+                    blogItem.BannerImageSrc = blogItem.BannerImageSrc ?? "";
                 }
 
 
@@ -98,8 +114,9 @@ namespace GreatBrain.UI.Areas.Admin.Controllers
             blogItem.ShortDescriptionEn = model.ShortDescriptionEn;
             blogItem.Text = model.Text == null ? "" : HttpUtility.HtmlDecode(model.Text);
             blogItem.TextEn = model.TextEn == null ? "" : HttpUtility.HtmlDecode(model.TextEn);
-
-            var file = Request.Files[0];
+            blogItem.ShowAsBanner = model.ShowAsBanner;
+            var file = Request.Files["PreviewImageSrc"];
+            
             if (file != null && !string.IsNullOrEmpty(file.FileName))
             {
                 if (!string.IsNullOrEmpty(blogItem.PreviewImageSrc))
@@ -117,6 +134,26 @@ namespace GreatBrain.UI.Areas.Admin.Controllers
             else
             {
                 blogItem.PreviewImageSrc = blogItem.PreviewImageSrc ?? "";
+            }
+
+            file = Request.Files["BannerImageSrc"];
+            if (file != null && !string.IsNullOrEmpty(file.FileName))
+            {
+                if (!string.IsNullOrEmpty(blogItem.BannerImageSrc))
+                {
+                    ImageHelper.DeleteImage(blogItem.BannerImageSrc, SiteSettings.BannersPath);
+                }
+
+                string fileName = IOHelper.GetUniqueFileName(SiteSettings.BannersPath, file.FileName);
+                string filePath = Server.MapPath(SiteSettings.BannersPath);
+
+                filePath = Path.Combine(filePath, fileName);
+                GraphicsHelper.SaveOriginalImageWithDefinedDimentions(filePath, fileName, file, 380, 170, ScaleMode.Crop);
+                blogItem.BannerImageSrc = fileName;
+            }
+            else
+            {
+                blogItem.BannerImageSrc = blogItem.BannerImageSrc ?? "";
             }
 
             _context.SaveChanges();

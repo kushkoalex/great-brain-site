@@ -20,6 +20,7 @@ namespace GreatBrain.UI
                                     {"educationalInstitutionPreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =200 ,Width = 200 }, CacheFolder = "educationalInstitutionPreview", ScaleMode = ScaleMode.Crop}},
                                     {"educationalInstitutionImagesAdminPreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =100 ,Width = 100 }, CacheFolder = "educationalInstitutionImagesAdminPreview", ScaleMode = ScaleMode.Crop}},
                                     {"articlePreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =200 ,Width = 200 }, CacheFolder = "articlePreview", ScaleMode = ScaleMode.Crop}},
+                                    {"bannerPreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =170 ,Width = 380 }, CacheFolder = "bannerPreview", ScaleMode = ScaleMode.Crop}},
                                     {"blogPreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =200 ,Width = 200 }, CacheFolder = "blogPreview", ScaleMode = ScaleMode.Crop}},
                                     {"articleImagesPreview",new ThumbnailPicture{ PictureSize =new PictureSize {Height =100 ,Width = 100 }, CacheFolder = "articleImagesPreview", ScaleMode = ScaleMode.Crop}},
                                     {"parallax",new ThumbnailPicture{ PictureSize =new PictureSize {Height =200 ,Width = 400 }, CacheFolder = "parallax", ScaleMode = ScaleMode.Crop}},
@@ -41,6 +42,7 @@ namespace GreatBrain.UI
         public static string EducationalInstitutionPreviewImagePath { get { return "~/Content/Images/educationalInstitutionPreview"; } }
         public static string EducationalInstitutionImagesPath { get { return "~/Content/Images/educationalInstitutionImages"; } }
         public static string ArticlePreviewPath { get { return "~/Content/Images/articlePreview"; } }
+        public static string BannersPath { get { return "~/Content/Images/banners"; } }
         
         public static string ArticleImagesPath { get { return "~/Content/Images/articleImages"; } }
         public static string BlogPreviewPath { get { return "~/Content/Images/blogPreview"; } }
