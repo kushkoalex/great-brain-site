@@ -8,6 +8,7 @@ using System.Web.Routing;
 using GreatBrain.UI.App_LocalResources;
 using GreatBrain.UI.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Schema;
 
 namespace GreatBrain.UI.Controllers
 {
@@ -49,6 +50,7 @@ namespace GreatBrain.UI.Controllers
 
             var articles = _context.Articles.Where(a => a.ShowAsBanner).ToList();
             var blogItems = _context.BlogItems.Where(b => b.ShowAsBanner).ToList();
+            var eduInstitutions = _context.EducationalInstitutions.Where(i => i.ShowAsBanner).ToList();
 
             foreach (var item in articles)
             {
@@ -73,6 +75,19 @@ namespace GreatBrain.UI.Controllers
                     title = CurrentLang == SiteLanguage.en ? item.TitleEn : item.Title
                 });
             }
+
+            foreach (var item in eduInstitutions)
+            {
+                banners.Add(new
+                {
+                    type = "specialOffer",
+                    url = "/" + CurrentLangCode + "/catalogue-details/" + item.Name,
+                    imageSrc = item.BannerImageSrc,
+                    title = CurrentLang == SiteLanguage.en ? item.TitleEn : item.Title
+                });
+            }
+
+
 
             var result = banners.OrderBy(x => Guid.NewGuid()).Take(3).ToList();
 

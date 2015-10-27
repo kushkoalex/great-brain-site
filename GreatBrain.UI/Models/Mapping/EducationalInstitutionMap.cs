@@ -115,6 +115,8 @@ namespace GreatBrain.UI.Models.Mapping
             this.Property(t => t.SortOrder).HasColumnName("SortOrder");
             this.Property(t => t.IsSpecial).HasColumnName("IsSpecial");
             this.Property(t => t.EducationCountryId).HasColumnName("EducationCountryId");
+            this.Property(t => t.BannerImageSrc).HasColumnName("BannerImageSrc");
+            this.Property(t => t.ShowAsBanner).HasColumnName("ShowAsBanner");
 
             // Relationships
             this.HasRequired(t => t.EducationCountry)

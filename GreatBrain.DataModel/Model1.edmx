@@ -10,7 +10,7 @@
     <EntitySet Name="ParallaxImage" EntityType="Model1.Store.ParallaxImage" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ContentAnnouncement" EntityType="Model1.Store.ContentAnnouncement" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="EducationCountry" EntityType="Model1.Store.EducationCountry" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="EdicationalInstitution" EntityType="Model1.Store.EdicationalInstitution" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EducationalInstitution" EntityType="Model1.Store.EducationalInstitution" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="EducationalInstitutionImage" EntityType="Model1.Store.EducationalInstitutionImage" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="EducationCategory" EntityType="Model1.Store.EducationCategory" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AgeGroup" EntityType="Model1.Store.AgeGroup" store:Type="Tables" Schema="dbo" />
@@ -22,10 +22,10 @@
     <EntitySet Name="Content" EntityType="Model1.Store.Content" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="EducationCountryEdicationalInstitution" Association="Model1.Store.EducationCountryEdicationalInstitution">
       <End Role="EducationCountry" EntitySet="EducationCountry" />
-      <End Role="EdicationalInstitution" EntitySet="EdicationalInstitution" />
+      <End Role="EdicationalInstitution" EntitySet="EducationalInstitution" />
     </AssociationSet>
     <AssociationSet Name="EdicationalInstitutionEducationalInstitutionImage" Association="Model1.Store.EdicationalInstitutionEducationalInstitutionImage">
-      <End Role="EdicationalInstitution" EntitySet="EdicationalInstitution" />
+      <End Role="EdicationalInstitution" EntitySet="EducationalInstitution" />
       <End Role="EducationalInstitutionImage" EntitySet="EducationalInstitutionImage" />
     </AssociationSet>
     <AssociationSet Name="EducationCountryEducationCategory" Association="Model1.Store.EducationCountryEducationCategory">
@@ -87,7 +87,7 @@
     <Property Name="Name" Type="varchar" Nullable="true" MaxLength="200" />
     <Property Name="SortOrder" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="EdicationalInstitution">
+  <EntityType Name="EducationalInstitution">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -119,6 +119,8 @@
     <Property Name="SortOrder" Type="int" Nullable="false" />
     <Property Name="IsSpecial" Type="bool" Nullable="false" />
     <Property Name="EducationCountryId" Type="int" Nullable="false" />
+    <Property Name="ShowAsBanner" Type="bool" Nullable="false" />
+    <Property Name="BannerImageSrc" Type="varchar" Nullable="true" MaxLength="200" />
   </EntityType>
   <EntityType Name="EducationalInstitutionImage">
     <Key>
@@ -244,7 +246,7 @@
   </EntityType>
   <Association Name="EducationCountryEdicationalInstitution">
     <End Role="EducationCountry" Type="Model1.Store.EducationCountry" Multiplicity="1" />
-    <End Role="EdicationalInstitution" Type="Model1.Store.EdicationalInstitution" Multiplicity="*" />
+    <End Role="EdicationalInstitution" Type="Model1.Store.EducationalInstitution" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="EducationCountry">
         <PropertyRef Name="Id" />
@@ -255,7 +257,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="EdicationalInstitutionEducationalInstitutionImage">
-    <End Role="EdicationalInstitution" Type="Model1.Store.EdicationalInstitution" Multiplicity="1" />
+    <End Role="EdicationalInstitution" Type="Model1.Store.EducationalInstitution" Multiplicity="1" />
     <End Role="EducationalInstitutionImage" Type="Model1.Store.EducationalInstitutionImage" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="EdicationalInstitution">
@@ -311,14 +313,14 @@
           <EntitySet Name="ParallaxImage" EntityType="Model1.ParallaxImage" />
           <EntitySet Name="ContentAnnouncement" EntityType="Model1.ContentAnnouncement" />
           <EntitySet Name="EducationCountry" EntityType="Model1.EducationCountry" />
-          <EntitySet Name="EdicationalInstitution" EntityType="Model1.EducationalInstitution" />
+          <EntitySet Name="EducationalInstitution" EntityType="Model1.EducationalInstitution" />
           <EntitySet Name="EducationalInstitutionImage" EntityType="Model1.EducationalInstitutionImage" />
           <AssociationSet Name="EducationCountryEdicationalInstitution" Association="Model1.EducationCountryEdicationalInstitution">
             <End Role="EducationCountry" EntitySet="EducationCountry" />
-            <End Role="EdicationalInstitution" EntitySet="EdicationalInstitution" />
+            <End Role="EdicationalInstitution" EntitySet="EducationalInstitution" />
           </AssociationSet>
           <AssociationSet Name="EdicationalInstitutionEducationalInstitutionImage" Association="Model1.EdicationalInstitutionEducationalInstitutionImage">
-            <End Role="EdicationalInstitution" EntitySet="EdicationalInstitution" />
+            <End Role="EdicationalInstitution" EntitySet="EducationalInstitution" />
             <End Role="EducationalInstitutionImage" EntitySet="EducationalInstitutionImage" />
           </AssociationSet>
           <EntitySet Name="EducationCategory" EntityType="Model1.EducationCategory" />
@@ -424,6 +426,8 @@
           <Property Type="Boolean" Name="IsSpecial" Nullable="false" />
           <Property Type="Int32" Name="EducationCountryId" Nullable="false" />
           <NavigationProperty Name="EducationalInstitutionImages" Relationship="Model1.EdicationalInstitutionEducationalInstitutionImage" FromRole="EdicationalInstitution" ToRole="EducationalInstitutionImage" />
+          <Property Type="Boolean" Name="ShowAsBanner" Nullable="false" />
+          <Property Type="String" Name="BannerImageSrc" MaxLength="200" />
         </EntityType>
         <EntityType Name="EducationalInstitutionImage">
           <Key>
@@ -669,9 +673,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="EdicationalInstitution">
+    <EntitySetMapping Name="EducationalInstitution">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.EducationalInstitution)">
-        <MappingFragment StoreEntitySet="EdicationalInstitution">
+        <MappingFragment StoreEntitySet="EducationalInstitution">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -700,6 +704,8 @@
           <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
           <ScalarProperty Name="IsSpecial" ColumnName="IsSpecial" />
           <ScalarProperty Name="EducationCountryId" ColumnName="EducationCountryId" />
+          <ScalarProperty Name="ShowAsBanner" ColumnName="ShowAsBanner" />
+          <ScalarProperty Name="BannerImageSrc" ColumnName="BannerImageSrc" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

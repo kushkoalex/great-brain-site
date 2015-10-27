@@ -61,6 +61,10 @@ namespace GreatBrain.UI.Models
         [Display(Name = "Порядок отображения")]
         public int SortOrder { get; set; }
         [Display(Name = "Специальное предложение")]
-        public bool IsSpecial { get; set; } 
+        public bool IsSpecial { get; set; }
+        [Display(Name = "Изображение баннера")]
+        public string BannerImageSrc { get; set; }
+        [Display(Name = "Отображать баннер")]
+        public string ShowAsBanner { get; set; }
     }
 }

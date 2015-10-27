@@ -99,8 +99,14 @@
         <th>
             @Html.DisplayNameFor(model => model.EducationCountry.Title)
         </th>
-         <th>
+        <th>
             @Html.DisplayNameFor(model => model.EducationalInstitutionImages)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BannerImageSrc)
+        </th>
+          <th>
+            @Html.DisplayNameFor(model => model.ShowAsBanner)
         </th>
         <th></th>
     </tr>
@@ -193,11 +199,17 @@
             {
                 <div style="display: inline-block; width: 100px;">
                     <div style="position: absolute">
-                    @Html.ActionLink("Удалить", "DeleteImage", new { id = image.Id }, new { onclick = "return confirm('Удалить изображение?')", style="color:red;" })
-                        </div>
+                        @Html.ActionLink("Удалить", "DeleteImage", new { id = image.Id }, new { onclick = "return confirm('Удалить изображение?')", style="color:red;" })
+                    </div>
                     @Html.Raw(Html.CachedImage(SiteSettings.EducationalInstitutionImagesPath, image.ImageSrc, SiteSettings.GetThumbnail("educationalInstitutionImagesAdminPreview")))
                 </div>
             }
+        </td>
+        <td>
+            @Html.Raw(Html.CachedImage(SiteSettings.BannersPath, item.BannerImageSrc, SiteSettings.GetThumbnail("bannerPreview")))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShowAsBanner)
         </td>
         <td>
             @Html.ActionLink("Редактировать", "Edit", new { id=item.Id }) |

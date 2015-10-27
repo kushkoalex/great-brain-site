@@ -47,6 +47,8 @@ namespace GreatBrain.DataModel
         public int SortOrder { get; set; }
         public bool IsSpecial { get; set; }
         public int EducationCountryId { get; set; }
+        public bool ShowAsBanner { get; set; }
+        public string BannerImageSrc { get; set; }
     
         public virtual EducationCountry EducationCountry { get; set; }
         public virtual ICollection<EducationalInstitutionImage> EducationalInstitutionImages { get; set; }

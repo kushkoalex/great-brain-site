@@ -5,7 +5,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 10/27/2015 01:31:44
+-- Date Created: 10/28/2015 01:06:30
 -- Generated from EDMX file: C:\github\great-brain-site\GreatBrain.DataModel\Model1.edmx
 -- Target version: 3.0.0.0
 -- --------------------------------------------------
@@ -103,7 +103,7 @@ ALTER TABLE `EducationCountry` ADD PRIMARY KEY (Id);
 
 
 
-CREATE TABLE `EdicationalInstitution`(
+CREATE TABLE `EducationalInstitution`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`Name` varchar (200) NOT NULL, 
 	`Title` varchar (200), 
@@ -131,9 +131,11 @@ CREATE TABLE `EdicationalInstitution`(
 	`LogoImageSrc` varchar (200), 
 	`SortOrder` int NOT NULL, 
 	`IsSpecial` bool NOT NULL, 
-	`EducationCountryId` int NOT NULL);
+	`EducationCountryId` int NOT NULL, 
+	`ShowAsBanner` bool NOT NULL, 
+	`BannerImageSrc` varchar (200));
 
-ALTER TABLE `EdicationalInstitution` ADD PRIMARY KEY (Id);
+ALTER TABLE `EducationalInstitution` ADD PRIMARY KEY (Id);
 
 
 
@@ -284,9 +286,9 @@ ALTER TABLE `Content` ADD PRIMARY KEY (Id);
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- Creating foreign key on `EducationCountryId` in table 'EdicationalInstitution'
+-- Creating foreign key on `EducationCountryId` in table 'EducationalInstitution'
 
-ALTER TABLE `EdicationalInstitution`
+ALTER TABLE `EducationalInstitution`
 ADD CONSTRAINT `FK_EducationCountryEdicationalInstitution`
     FOREIGN KEY (`EducationCountryId`)
     REFERENCES `EducationCountry`
@@ -296,7 +298,7 @@ ADD CONSTRAINT `FK_EducationCountryEdicationalInstitution`
 -- Creating non-clustered index for FOREIGN KEY 'FK_EducationCountryEdicationalInstitution'
 
 CREATE INDEX `IX_FK_EducationCountryEdicationalInstitution` 
-    ON `EdicationalInstitution`
+    ON `EducationalInstitution`
     (`EducationCountryId`);
 
 -- Creating foreign key on `EdicationalInstitutionId` in table 'EducationalInstitutionImage'
@@ -304,7 +306,7 @@ CREATE INDEX `IX_FK_EducationCountryEdicationalInstitution`
 ALTER TABLE `EducationalInstitutionImage`
 ADD CONSTRAINT `FK_EdicationalInstitutionEducationalInstitutionImage`
     FOREIGN KEY (`EdicationalInstitutionId`)
-    REFERENCES `EdicationalInstitution`
+    REFERENCES `EducationalInstitution`
         (`Id`)
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 

@@ -64,7 +64,9 @@ namespace GreatBrain.UI.Areas.Admin.Controllers
                     LocationName = model.LocationName,
                     MapLocation = model.MapLocation,
                     NumberOfStudents = model.NumberOfStudents,
-                    MinAge = model.MinAge
+                    MinAge = model.MinAge,
+                    ShowAsBanner = model.ShowAsBanner
+
                 };
 
 
@@ -98,6 +100,22 @@ namespace GreatBrain.UI.Areas.Admin.Controllers
                 {
                     ei.PreviewImageSrc = ei.PreviewImageSrc ?? "";
                 }
+
+                file = Request.Files["BannerImageSrc"];
+                if (file != null && !string.IsNullOrEmpty(file.FileName))
+                {
+                    string fileName = IOHelper.GetUniqueFileName(SiteSettings.BannersPath, file.FileName);
+                    string filePath = Server.MapPath(SiteSettings.BannersPath);
+
+                    filePath = Path.Combine(filePath, fileName);
+                    GraphicsHelper.SaveOriginalImageWithDefinedDimentions(filePath, fileName, file, 380, 170, ScaleMode.Crop);
+                    ei.BannerImageSrc = fileName;
+                }
+                else
+                {
+                    ei.BannerImageSrc = ei.BannerImageSrc ?? "";
+                }
+
 
 
 
@@ -159,6 +177,8 @@ namespace GreatBrain.UI.Areas.Admin.Controllers
                 ei.MapLocation = model.MapLocation;
                 ei.NumberOfStudents = model.NumberOfStudents;
                 ei.MinAge = model.MinAge;
+                ei.ShowAsBanner = model.ShowAsBanner;
+
 
                 var file = Request.Files["LogoImageSrc"];
                 if (file != null && !string.IsNullOrEmpty(file.FileName))
@@ -200,6 +220,25 @@ namespace GreatBrain.UI.Areas.Admin.Controllers
                     ei.PreviewImageSrc = ei.PreviewImageSrc ?? "";
                 }
 
+                file = Request.Files["BannerImageSrc"];
+                if (file != null && !string.IsNullOrEmpty(file.FileName))
+                {
+                    if (!string.IsNullOrEmpty(ei.BannerImageSrc))
+                    {
+                        ImageHelper.DeleteImage(ei.BannerImageSrc, SiteSettings.BannersPath);
+                    }
+                    string fileName = IOHelper.GetUniqueFileName(SiteSettings.BannersPath, file.FileName);
+                    string filePath = Server.MapPath(SiteSettings.BannersPath);
+
+                    filePath = Path.Combine(filePath, fileName);
+                    GraphicsHelper.SaveOriginalImageWithDefinedDimentions(filePath, fileName, file, 380, 170, ScaleMode.Crop);
+                    ei.BannerImageSrc = fileName;
+                }
+                else
+                {
+                    ei.BannerImageSrc = ei.BannerImageSrc ?? "";
+                }
+
 
 
                 _context.SaveChanges();
@@ -221,6 +260,7 @@ namespace GreatBrain.UI.Areas.Admin.Controllers
             var ei = _context.EducationalInstitutions.First(b => b.Id == id);
             ImageHelper.DeleteImage(ei.PreviewImageSrc, SiteSettings.EducationalInstitutionPreviewImagePath);
             ImageHelper.DeleteImage(ei.LogoImageSrc, SiteSettings.EducationalInstitutionLogoImagePath);
+            ImageHelper.DeleteImage(ei.BannerImageSrc, SiteSettings.BannersPath);
 
             while (ei.EducationalInstitutionImages.Any())
             {
