@@ -298,10 +298,14 @@ namespace GreatBrain.UI.Areas.Admin.Controllers
                     if (string.IsNullOrEmpty(file.FileName)) continue;
 
                     string fileName = IOHelper.GetUniqueFileName(SiteSettings.EducationalInstitutionImagesPath, file.FileName);
+
                     string filePath = Server.MapPath(SiteSettings.EducationalInstitutionImagesPath);
+                    string filePathOrig = Server.MapPath(SiteSettings.EducationalInstitutionImagesOrigPath);
 
                     filePath = Path.Combine(filePath, fileName);
+                    filePathOrig = Path.Combine(filePathOrig, fileName);
                     GraphicsHelper.SaveOriginalImageWithDefinedDimentions(filePath, fileName, file, 600, 500, ScaleMode.Crop);
+                    file.SaveAs(filePathOrig);
 
                     var image = new EducationalInstitutionImage
                     {
@@ -324,6 +328,7 @@ namespace GreatBrain.UI.Areas.Admin.Controllers
             if (!string.IsNullOrEmpty(image.ImageSrc))
             {
                 ImageHelper.DeleteImage(image.ImageSrc, SiteSettings.EducationalInstitutionImagesPath);
+                ImageHelper.DeleteImage(image.ImageSrc, SiteSettings.EducationalInstitutionImagesOrigPath);
             }
             _context.EducationalInstitutionImages.Remove(image);
             _context.SaveChanges();

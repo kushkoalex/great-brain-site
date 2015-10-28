@@ -5961,61 +5961,7 @@ A9.pureCSS = function(){
 
 }(this, A9));
 
-(function (a9) {
-    a9.imageSlider = function (object, options) {
-        var $prevButton,
-            $nextButton,
-            callBackValueChange,
-            $images,
-            selectedIndex = 0,
-            eventOnPointerEnd = a9.deviceInfo.eventOnPointerEnd,
-            CSSPrevButton = 'slider-prev-button',
-            CSSNextButton = 'slider-next-button';
 
-        var onPrevButtonClick = function () {
-            if (selectedIndex == 0) {
-                selectedIndex = $images.length - 1;
-            } else {
-                selectedIndex--;
-            }
-            applyValue();
-            if(callBackValueChange) {
-                callBackValueChange();
-            }
-        };
-
-
-        var onNextButtonClick = function () {
-            if (selectedIndex == $images.length - 1) {
-                selectedIndex = 0;
-            } else {
-                selectedIndex++;
-            }
-            applyValue();
-            if(callBackValueChange) {
-                callBackValueChange();
-            }
-        };
-
-        var applyValue = function () {
-            for (var i = 0; i < $images.length; i++) {
-                a9.removeClass($images[i], 'active');
-            }
-            a9.addClass($images[selectedIndex], 'active');
-        };
-
-        $prevButton = a9.$c(CSSPrevButton, object)[0];
-        $nextButton = a9.$c(CSSNextButton, object)[0];
-        $images = a9.$tn('img', object);
-
-        if (options && options.callBackValueChange) {
-            callBackValueChange = options.callBackValueChange;
-        }
-
-        a9.addEvent($prevButton, eventOnPointerEnd, onPrevButtonClick);
-        a9.addEvent($nextButton, eventOnPointerEnd, onNextButtonClick);
-    }
-})(A9);
 (function(global){
     var awareness,
         checkingErrors = {},
@@ -7257,7 +7203,7 @@ A9.pureCSS = function(){
     };
 
     tmpls.mainMenuMobile = function () {
-        return {c: 'main-menu-icon', n: 'mainMenuMobileIcon'}
+        return {e:'a',h:'#', c: 'main-menu-icon', n: 'mainMenuMobileIcon'}
     };
 
     tmpls.mainMenuMobileLayout = function () {
@@ -7301,9 +7247,7 @@ A9.pureCSS = function(){
 
     };
 
-    tmpls.countriesSelectorMenuMobileLayout = function () {
-        
-
+    tmpls.countriesSelectorMenuMobileLayout = function(){
         var countries = gb.settings.dataModels.educationalCountries,
             countriesContent=[];
 
@@ -7312,7 +7256,6 @@ A9.pureCSS = function(){
         });
 
         // TODO: hidden
-        console.log(456);
 
         return{c:'countries-selector-menu-mobile-layout hidden',a:{id:'countriesSelectorMenuMobileLayout'}, C:[{c:'title',t:l10n('selectEducationCountryShort')+':'},{c:'items',C:{e:'ul',C:countriesContent}}]}
     };
@@ -7333,43 +7276,142 @@ A9.pureCSS = function(){
 
 }(GB));
 (function (gb) {
-    var tmpls = gb.tmpls,
-        a9 = gb.global.A9,
-        l10n = a9.l10n,
-        u;
-
-
-    tmpls.imageSlider = function (data) {
+    gb.tmpls.imageSlider = function (data) {
         var images = [],
+            image,
             controls,
             i;
 
         for (i = 0; i < data.images.length; i++) {
-            images.push({
-                e: 'img',
-                c: i === 0 ? 'active' : '',
-                a: {src: data.imagesPath + data.images[i]}
-            })
+
+            if(data.isZoom===true){
+                image = {
+                    n: 'images',
+                    c: i === 0 ? 'img active' : 'img',
+                    a: {style:' background-image:url('+data.imagesPath + data.images[i]+')'}
+                };
+            }else{
+                image = {
+                    e: 'img',
+                    n: 'images',
+                    c: i === 0 ? 'active' : '',
+                    a: {src: data.imagesPath + data.images[i]}
+                };
+            }
+            images.push(image);
         }
-
-        controls = {
-            c: 'controls', C: [
-                {c: 'slider-prev-button'},
-                {c: 'slider-next-button'}
-            ]
-        };
-
+        controls = [
+            {n: 'prevBtn', c: 'slider-prev-button'},
+            {n: 'nextBtn', c: 'slider-next-button'}
+        ];
         return {
-            n: data.n,
-            c: 'image-slider', C: [
-                images,
+            c: 'image-slider', n: 'imageSlider', C: [
+                {n: 'imagesContainer', c: 'images-container', C: images},
                 controls
             ]
         };
-    }
+    };
 
+    gb.tmpls.zoomLayout = function (data) {
+        data.imagesPath = data.imagePathOrig;
+        return {c: 'content-wrapper', C: gb.tmpls.imageSlider(data)};
+    };
 
 }(GB));
+
+
+(function (a9, gb) {
+
+    a9.imageSlider = function ($object, options) {
+        var
+            tp = gb.global.cnCt.tp,
+            callBackValueChange,
+            $images,
+            $imagesZoom,
+            selectedIndex = 0,
+            eventOnPointerEnd = a9.deviceInfo.eventOnPointerEnd,
+            build = tp('imageSlider', options, $object),
+            buildZoom,
+            $prevButton = build.prevBtn,
+            $nextButton = build.nextBtn,
+            $zoomLayout = a9.$('zoomLayout'),
+            u;
+
+        var onPrevButtonClick = function () {
+            if (selectedIndex == 0) {
+                selectedIndex = $images.length - 1;
+            } else {
+                selectedIndex--;
+            }
+            applyValue();
+            if (callBackValueChange) {
+                callBackValueChange();
+            }
+        };
+
+
+        var onNextButtonClick = function () {
+            if (selectedIndex == $images.length - 1) {
+                selectedIndex = 0;
+            } else {
+                selectedIndex++;
+            }
+            applyValue();
+            if (callBackValueChange) {
+                callBackValueChange();
+            }
+        };
+
+        var applyValue = function () {
+            for (var i = 0; i < $images.length; i++) {
+                a9.removeClass($images[i], 'active');
+                if($imagesZoom) {
+                    a9.removeClass($imagesZoom[i], 'active');
+                }
+
+            }
+            a9.addClass($images[selectedIndex], 'active');
+            if($imagesZoom) {
+                a9.addClass($imagesZoom[selectedIndex], 'active');
+            }
+        };
+
+        $images = build.images;
+
+        if (options && options.callBackValueChange) {
+            callBackValueChange = options.callBackValueChange;
+        }
+
+        a9.addEvent($prevButton, eventOnPointerEnd, onPrevButtonClick);
+        a9.addEvent($nextButton, eventOnPointerEnd, onNextButtonClick);
+
+        if ($zoomLayout !== null) {
+            options.isZoom=true;
+            buildZoom = tp('zoomLayout', options, $zoomLayout);
+            $imagesZoom = buildZoom.images;
+            a9.addEvent(build.imagesContainer, eventOnPointerEnd, function () {
+                a9.removeClass($zoomLayout, 'hidden');
+            });
+
+            a9.addEvent($zoomLayout, eventOnPointerEnd, function () {
+                a9.addClass($zoomLayout, 'hidden');
+            });
+
+            a9.addEvent(buildZoom.imageSlider, eventOnPointerEnd, function (e) {
+                if (e.stopPropagation) {
+                    e.stopPropagation();
+                } else {
+                    e.cancelBubble = true;
+                }
+            });
+
+            a9.addEvent(buildZoom.prevBtn, eventOnPointerEnd, onPrevButtonClick);
+            a9.addEvent(buildZoom.nextBtn, eventOnPointerEnd, onNextButtonClick);
+
+        }
+
+    }
+})(A9, GB);
 (function (gb) {
     var tmpls = gb.tmpls,
         a9 = gb.global.A9,
@@ -8169,7 +8211,16 @@ GB.educationalInstitutionDetails = function($parent){
     build = tp('educationalInstitutionDetails', pageData, $parent);
 
     $educationalInstitutionDetailsImagesCarousel = build.educationalInstitutionDetailsImagesCarousel;
-    a9.imageSlider($educationalInstitutionDetailsImagesCarousel);
+
+    var imageSliderOptions = {
+        images: pageData.images,
+        imagesPath: gb.settings.controlsDescriptors.site.educationalInstitutionDetailsCarouselImages,
+        imagePathOrig:gb.settings.controlsDescriptors.site.educationalInstitutionDetailsCarouselImagesOrig
+    };
+
+    a9.imageSlider($educationalInstitutionDetailsImagesCarousel, imageSliderOptions);
+
+
     gb.popupForm($parent);
     $serviceMenuWrapper= build.servicesMenuWrapper;
     gb.servicesMenu($serviceMenuWrapper);
@@ -8232,21 +8283,12 @@ GB.educationalInstitutionDetails = function($parent){
     };
 
     tmpls.educationalInstitutionDetailsContentCarousel = function (pageData) {
-        var carousel = {
-            n: 'educationalInstitutionDetailsImagesCarousel',
-            images: pageData.images,
-            imagesPath:gb.settings.controlsDescriptors.site.educationalInstitutionDetailsCarouselImages
-        };
+
 
         return {
             c: 'educational-institution-details-carousel',
             C: {
-                c: 'educational-institution-details-carousel-wrapper', C:
-                    tmpls.imageSlider(carousel)
-                //{
-                //    e: 'img',
-                //    a: {src: gb.settings.controlsDescriptors.site.educationalInstitutionDetailsCarouselImages + pageData.images[0]}
-                //}
+                c: 'educational-institution-details-carousel-wrapper', n:'educationalInstitutionDetailsImagesCarousel'
             }
         }
     };
@@ -8977,8 +9019,6 @@ GB.mainMenuMobile = function ($parent) {
         $serviceMenuLink = a9.$c('service-menu-menu-item')[0],
         u;
 
-    
-
     var toggleMainMenuMobile = function () {
         a9.removeClass($mainMenuMobileLayout, 'hidden');
     };
@@ -8987,15 +9027,11 @@ GB.mainMenuMobile = function ($parent) {
         a9.addClass($mainMenuMobileLayout, 'hidden');
         a9.addClass($countriesSelectorMenuMobileLayout, 'hidden');
         a9.addClass($serviceMenuMobileLayout, 'hidden');
-
     };
 
-    //console.log($countriesSelectorLink);
     a9.addEvent($countriesSelectorLink,eventOnPointerEnd,function(){
         a9.removeClass($countriesSelectorMenuMobileLayout, 'hidden');
     });
-
-    //console.log(33);
 
     a9.addEvent($serviceMenuLink,eventOnPointerEnd,function(){
         a9.removeClass($serviceMenuMobileLayout, 'hidden');
@@ -9286,13 +9322,9 @@ GB.mainPageMobile = function ($parent) {
     $languageSwitcherMobile = build.languageSwitcherMobile;
     $mainMenuMobile = build.mainMenuMobile;
 
-    
-    
     gb.languageSwitcherMobile($languageSwitcherMobile);
-    
     gb.mainMenuMobile($mainMenuMobile);
-    
-    
+
     $fragment = global.document.createDocumentFragment();
 
     var j = 0;
@@ -9377,8 +9409,8 @@ GB.mainPageMobile = function ($parent) {
     tmpls.mainPageMobile = function () {
         return [
             {c: 'main-banner', n: 'mainImageContentWrapper'},
-            tmpls.headerMobile(),
             {c:'main-page-logo-mobile'},
+            tmpls.headerMobile(),
             tmpls.mainPageAnnouncementsMobile(),
             tmpls.mainMenuMobileLayout()
 
@@ -10119,20 +10151,17 @@ A9.ready(function (a9, global) {
         u;
 
 
-    a9.deviceInfo.isMobileDevice = true;
+    //a9.deviceInfo.isMobileDevice = true;
 
     global.cnCt.bindTemplates(gb.tmpls);
 
     if ($mainPage !== null) {
-        
-
         if (a9.deviceInfo.isMobileDevice) {
             gb.mainPageMobile($mainPage);
         }
         else {
             gb.mainPage($mainPage);
         }
-
     }
 
     if ($mainPageMobile !== null) {

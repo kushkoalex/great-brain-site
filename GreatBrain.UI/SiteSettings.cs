@@ -41,6 +41,7 @@ namespace GreatBrain.UI
         public static string EducationalInstitutionLogoImagePath { get { return "~/Content/Images/educationalInstitutionLogo"; } }
         public static string EducationalInstitutionPreviewImagePath { get { return "~/Content/Images/educationalInstitutionPreview"; } }
         public static string EducationalInstitutionImagesPath { get { return "~/Content/Images/educationalInstitutionImages"; } }
+        public static string EducationalInstitutionImagesOrigPath { get { return "~/Content/Images/educationalInstitutionImages/orig"; } }
         public static string ArticlePreviewPath { get { return "~/Content/Images/articlePreview"; } }
         public static string BannersPath { get { return "~/Content/Images/banners"; } }
         
