@@ -8096,7 +8096,7 @@ GB.educationKinds = function ($parent) {
 
     tmpls.categoryContentWrapper = function (dataModel) {
         return {
-            c: 'category-content-wrapper', C: [tmpls.ageGroupSelector(dataModel),
+            c: 'category-content-wrapper', C: [tmpls.ageGroupSelector(),
                 tmpls.categoryContentInnerWrapper(dataModel)]
         }
     };
@@ -8135,15 +8135,10 @@ GB.educationKinds = function ($parent) {
         }
     };
 
-    tmpls.ageGroupSelector = function (dataModel) {
+    tmpls.ageGroupSelector = function () {
         return {
             c: 'age-group-selector-wrapper', C:
-
             {n:'dropDownAgeGroups',c:'drop-down-list age-group-selector'}
-            //{
-            //    c: 'age-group-selector',
-            //    C: [{c: 'age-group', t: dataModel[0].educationCategories[0].ageGroups[0].age}, {c: 'triangle'}]
-            //}
         }
     };
 
@@ -8160,12 +8155,7 @@ GB.educationKinds = function ($parent) {
 
     tmpls.educationCategoriesMenu = function () {
         var educationKinds = [],
-            menuItem,
-            i,
-            menuItemClassName,
-            linkContent,
-            menuItemState;
-
+            menuItem;
 
         a9.each(gb.settings.dataModels.educationKinds.educationCategories, function (category) {
 
@@ -8186,6 +8176,195 @@ GB.educationKinds = function ($parent) {
 
 
         return {c: 'education-category-menu', C: {e: 'ul', C: educationKinds}}
+    };
+
+
+
+
+}(GB));
+GB.educationKindsMobile = function ($parent) {
+    var gb = this,
+        global = gb.global,
+        a9 = global.A9,
+        tp = global.cnCt.tp,
+        settings = gb.settings,
+        doc = global.document,
+        eventOnPointerEnd = a9.deviceInfo.eventOnPointerEnd,
+        pageData = settings.dataModels.educationKinds,
+        build,
+        $languageSwitcherMobile,
+        $mainMenuMobile,
+        $dropdownCountries,
+        $dropdownAgeGroups,
+        $dropDownEducationCategories,
+        dropdownSelectCountryListItems = [],
+        ageGroupList = [],
+        dropdownAgeGroupListItems = [],
+        dropdownSelectEducationCategoriesListItems = [],
+        countryList = gb.settings.dataModels.educationalCountries,
+        educationCategories = gb.settings.dataModels.educationKinds.educationCategories,
+        u;
+
+    build = tp('educationKindsMobile', pageData, $parent);
+    $languageSwitcherMobile = build.languageSwitcherMobile;
+    $mainMenuMobile = build.mainMenuMobile;
+    $dropdownCountries = build.dropDownCountries;
+    $dropdownAgeGroups = build.dropDownAgeGroups;
+    $dropDownEducationCategories = build.dropDownEducationCategories;
+
+
+    gb.languageSwitcherMobile($languageSwitcherMobile);
+    gb.mainMenuMobile($mainMenuMobile);
+
+
+    var dropDownCountriesOptions = {
+        selectedValue: gb.settings.selectedCountry,
+        submitUrl: '/' + settings.currentLanguage + '/{value}'
+    };
+    a9.each(countryList, function (item) {
+        dropdownSelectCountryListItems.push({text: item.title, value: item.code});
+    });
+    a9.dropdown($dropdownCountries, dropdownSelectCountryListItems, dropDownCountriesOptions);
+
+
+    var dropDownEducationCategoriesOptions = {
+        //selectedValue: gb.settings.selectedCountry,
+        submitUrl: '/' + settings.currentLanguage + '/{value}'
+    };
+
+    a9.each(educationCategories, function (category) {
+        if (category.active === true) {
+            dropDownEducationCategoriesOptions.selectedValue = category.name;
+        }
+        dropdownSelectEducationCategoriesListItems.push({text: category.title+'<br>'+category.age, value: category.name})
+
+    });
+
+    a9.dropdown($dropDownEducationCategories, dropdownSelectEducationCategoriesListItems, dropDownEducationCategoriesOptions);
+
+    var getSelectedAgeGroup = function () {
+        for (var i = 0; i < pageData.educationCategories.length; i++) {
+            if (pageData.educationCategories[i].active === true) {
+                for (var j = 0; j < pageData.educationCategories[i].ageGroups.length; j++) {
+                    if (pageData.educationCategories[i].ageGroups[j].active === true) {
+                        return pageData.educationCategories[i].ageGroups[j].name;
+                    }
+                }
+            }
+        }
+    };
+
+    var getCurrentEducationCategoryName = function(){
+        for (var i = 0; i < pageData.educationCategories.length; i++) {
+            if (pageData.educationCategories[i].active === true) {
+                return pageData.educationCategories[i].name;
+            }
+        }
+    };
+
+
+    for (var i = 0; i < pageData.educationCategories.length; i++) {
+        if (pageData.educationCategories[i].active === true) {
+            ageGroupList = pageData.educationCategories[i].ageGroups
+        }
+    }
+
+    var dropDownAgeGroupsOptions = {
+        //selectedIndex: 1,
+        //selectedValue: gb.settings.selectedAgeGroup,
+        selectedValue: getSelectedAgeGroup(),
+        hasSplitter: true,
+        submitUrl:'/'+settings.currentLanguage+'/'+ settings.selectedCountry +'/'+ getCurrentEducationCategoryName() +'/{value}'
+    };
+
+    a9.each(ageGroupList, function (item) {
+        dropdownAgeGroupListItems.push({text: item.age, value: item.name});
+    });
+
+    a9.dropdown($dropdownAgeGroups, dropdownAgeGroupListItems, dropDownAgeGroupsOptions);
+};
+(function (gb) {
+    var tmpls = gb.tmpls,
+        a9 = gb.global.A9,
+        l10n = a9.l10n,
+        u;
+
+    tmpls.educationKindsMobile = function (pageData) {
+        return [
+            tmpls.educationKindsSelectorsContainer(),
+            tmpls.headerMobile(),
+            tmpls.mainMenuMobileLayout(),
+            tmpls.educationKindsMobileContent(pageData)
+        ];
+    };
+
+    tmpls.educationKindsMobileContent = function (dataModel) {
+        var title;
+        for (var i = 0; i < dataModel.educationCategories.length; i++) {
+            if (dataModel.educationCategories[i].active === true) {
+                title = dataModel.educationCategories[i].title;
+            }
+        }
+
+        return {
+            c: 'education-kinds-mobile-content', C: [
+                {c: 'category-content-title', t: title},
+                tmpls.ageGroupSelectorMobile(),
+                tmpls.categoryContentText(dataModel)
+
+            ]
+        }
+    };
+
+    tmpls.categoryContentText = function(dataModel){
+        var ageGroups,
+            ageGroup,
+            i;
+        for(i=0;i<dataModel.educationCategories.length; i++){
+            if(dataModel.educationCategories[i].active===true) {
+                ageGroups = dataModel.educationCategories[i].ageGroups;
+            }
+        }
+
+        for(i=0;i<ageGroups.length; i++){
+            if(ageGroups[i].active===true){
+                ageGroup = ageGroups[i];
+            }
+        }
+
+        return {c:'category-content-text',H:ageGroup.text}
+    };
+
+    tmpls.ageGroupSelectorMobile = function(){
+        return {
+            c: 'age-group-selector-wrapper', C:[
+                {c: 'select-group', t: l10n('selectAgeGroup')},
+                {n:'dropDownAgeGroups',c:'drop-down-list age-group-mobile-selector'}]
+        }
+    };
+
+    tmpls.educationKindsSelectorsContainer = function () {
+        return {
+            c: 'education-kinds-selectors-container', C: [
+                tmpls.countrySelectorMobile(),
+                tmpls.educationCategoriesSelectorMobile()
+            ]
+        }
+    };
+
+    tmpls.countrySelectorMobile = function () {
+        return {
+            c: 'country-selector-wrapper',
+            C: [
+                {c: 'select-country-text', t: l10n('selectCountry', 'firstUpper')},
+                {n: 'dropDownCountries', c: 'drop-down-list country-selector'}
+            ]
+        }
+    };
+
+
+    tmpls.educationCategoriesSelectorMobile = function () {
+        return {n: 'dropDownEducationCategories', c: 'drop-down-list education-category-selector'}
     };
 
 
@@ -10132,6 +10311,7 @@ A9.ready(function (a9, global) {
         $educationalInstitutions = $('educationalInstitutions'),
         $educationalInstitutionDetails = $('educationalInstitutionDetails'),
         $educationKinds = $('educationKinds'),
+        $educationKindsMobile = $('educationKindsMobile'),
         $news = $('news'),
         $newsDetails = $('newsDetails'),
         $blog = $('blog'),
@@ -10164,8 +10344,21 @@ A9.ready(function (a9, global) {
         }
     }
 
+    if ($educationKinds !== null) {
+        if (a9.deviceInfo.isMobileDevice) {
+            gb.educationKindsMobile($educationKinds);
+        }
+        else {
+            gb.educationKinds($educationKinds);
+        }
+    }
+
     if ($mainPageMobile !== null) {
         gb.mainPageMobile($mainPageMobile);
+    }
+
+    if ($educationKindsMobile !== null) {
+        gb.educationKindsMobile($educationKindsMobile);
     }
 
 
@@ -10175,10 +10368,6 @@ A9.ready(function (a9, global) {
 
     if ($educationalInstitutionDetails !== null) {
         gb.educationalInstitutionDetails($educationalInstitutionDetails);
-    }
-
-    if ($educationKinds !== null) {
-        gb.educationKinds($educationKinds);
     }
 
     if ($news !== null) {

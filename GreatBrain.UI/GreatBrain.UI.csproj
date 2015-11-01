@@ -323,7 +323,9 @@
     <Content Include="Scripts\Vendor\jquery-1.11.2.min.js" />
     <Content Include="Scripts\Vendor\parallax.min.js" />
     <Content Include="Styles\main.min.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
