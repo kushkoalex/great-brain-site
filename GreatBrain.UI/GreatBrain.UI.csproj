@@ -241,6 +241,7 @@
     <Content Include="Images\blog\thumb\Michael.png" />
     <Content Include="Images\close-btn.png" />
     <Content Include="Images\compass.png" />
+    <Content Include="Images\education-kinds-selectors-container-bg.png" />
     <Content Include="Images\education-kinds\girl-with-books.png" />
     <Content Include="Images\education-kinds\girl.png" />
     <Content Include="Images\educational-institutions-catalogue\educationalInstitutionDetailsImage.png" />

@@ -6944,19 +6944,21 @@ A9.pureCSS = function(){
         dropDownListHeadContent.push({c: 'triangle'});
 
 
-        return [
-            {
-                e: 'form', n: 'selectForm', a: {method: 'post', action: ''}, C: {
-                c: 'drop-down-list-head',
-                n: 'dropDownListHead',
-                C: dropDownListHeadContent
-            }
-            },
-            {
-                c: 'drop-down-list-items hidden', n: 'items', C: dropDownListItems
-            }
+        return {
+            c: 'drop-down-list-wrapper', C: [
+                {
+                    e: 'form', n: 'selectForm', a: {method: 'post', action: ''}, C: {
+                    c: 'drop-down-list-head',
+                    n: 'dropDownListHead',
+                    C: dropDownListHeadContent
+                }
+                },
+                {
+                    c: 'drop-down-list-items hidden', n: 'items', C: dropDownListItems
+                }
 
-        ];
+            ]
+        };
     };
 
 }(GB, A9));
@@ -8229,14 +8231,17 @@ GB.educationKindsMobile = function ($parent) {
 
     var dropDownEducationCategoriesOptions = {
         //selectedValue: gb.settings.selectedCountry,
-        submitUrl: '/' + settings.currentLanguage + '/{value}'
+        submitUrl: '/' + settings.currentLanguage + '/' + settings.selectedCountry + '/{value}'
     };
 
     a9.each(educationCategories, function (category) {
         if (category.active === true) {
             dropDownEducationCategoriesOptions.selectedValue = category.name;
         }
-        dropdownSelectEducationCategoriesListItems.push({text: category.title+'<br>'+category.age, value: category.name})
+        dropdownSelectEducationCategoriesListItems.push({
+            text: category.title + '<br>' + category.age,
+            value: category.name
+        })
 
     });
 
@@ -8254,7 +8259,7 @@ GB.educationKindsMobile = function ($parent) {
         }
     };
 
-    var getCurrentEducationCategoryName = function(){
+    var getCurrentEducationCategoryName = function () {
         for (var i = 0; i < pageData.educationCategories.length; i++) {
             if (pageData.educationCategories[i].active === true) {
                 return pageData.educationCategories[i].name;
@@ -8274,7 +8279,7 @@ GB.educationKindsMobile = function ($parent) {
         //selectedValue: gb.settings.selectedAgeGroup,
         selectedValue: getSelectedAgeGroup(),
         hasSplitter: true,
-        submitUrl:'/'+settings.currentLanguage+'/'+ settings.selectedCountry +'/'+ getCurrentEducationCategoryName() +'/{value}'
+        submitUrl: '/' + settings.currentLanguage + '/' + settings.selectedCountry + '/' + getCurrentEducationCategoryName() + '/{value}'
     };
 
     a9.each(ageGroupList, function (item) {
