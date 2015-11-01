@@ -8373,7 +8373,7 @@ GB.educationKindsMobile = function ($parent) {
 
     tmpls.educationKindsSelectorsContainer = function () {
         return {
-            c: 'education-kinds-selectors-container', C: [
+            c: 'mobile-page-head-container', C: [
                 tmpls.countrySelectorMobile(),
                 tmpls.educationCategoriesSelectorMobile()
             ]
@@ -8777,6 +8777,130 @@ GB.educationalInstitutions = function($parent){
 
 }(GB));
 
+GB.educationalInstitutionsMobile = function($parent){
+    var gb = this,
+        global = gb.global,
+        a9 = global.A9,
+        tp = global.cnCt.tp,
+        settings = gb.settings,
+        doc = global.document,
+        eventOnPointerEnd = a9.deviceInfo.eventOnPointerEnd,
+        $feedbackFormWrapper,
+        $serviceMenuWrapper,
+        pageData = settings.dataModels.educationalInstitutions,
+        build,
+        $languageSwitcherMobile,
+        $mainMenuMobile,
+        buildItem,
+        $educationalInstitutionsContentItems,
+
+        $dropDownInstitutionLocation,
+        $dropDownGender,
+        $dropDownInstitutionType,
+
+        dropDownInstitutionLocationListItems=[],
+        dropDownGenderListItems=[],
+        dropDownInstitutionTypeListItems=[],
+
+        dropDownInstitutionLocationSelectedIndex=0,
+        dropDownGenderSelectedIndex=0,
+        dropDownInstitutionTypeSelectedIndex=0,
+
+        $fragment;
+
+
+    build = tp('educationalInstitutionsMobile', $parent);
+    $educationalInstitutionsContentItems = build.educationalInstitutionsContentItems;
+    $languageSwitcherMobile = build.languageSwitcherMobile;
+    $mainMenuMobile = build.mainMenuMobile;
+    $dropDownInstitutionLocation = build.dropDownInstitutionLocation;
+    $dropDownGender=build.dropDownGender;
+    $dropDownInstitutionType=build.dropDownInstitutionType;
+
+    gb.languageSwitcherMobile($languageSwitcherMobile);
+    gb.mainMenuMobile($mainMenuMobile);
+
+    $fragment = global.document.createDocumentFragment();
+
+    a9.each(settings.dataModels.educationalInstitutionFilterLocation, function (item,i) {
+        dropDownInstitutionLocationListItems.push({text: item.title, value: item.value});
+        if(item.selected===true){
+            dropDownInstitutionLocationSelectedIndex=i;
+        }
+    });
+    a9.each(settings.dataModels.educationalInstitutionFilterGender, function (item,i) {
+        dropDownGenderListItems.push({text: item.title, value: item.value});
+        if(item.selected===true){
+            dropDownGenderSelectedIndex=i;
+        }
+    });
+    a9.each(settings.dataModels.educationalInstitutionFilterType, function (item,i) {
+        dropDownInstitutionTypeListItems.push({text: item.title, value: item.value});
+        if(item.selected===true){
+            dropDownInstitutionTypeSelectedIndex=i;
+        }
+    });
+
+    var dropDownInstitutionLocationOptions = {
+        selectedIndex: dropDownInstitutionLocationSelectedIndex,
+        hasSplitter:true,
+        submitUrl:'/'+settings.currentLanguage+'/catalogue/{value}/'+ settings.selectedGenger +'/'+settings.selectedType
+    };
+
+    var dropDownGenderOptions = {
+        selectedIndex: dropDownGenderSelectedIndex,
+        hasSplitter:true,
+        submitUrl:'/'+settings.currentLanguage+'/catalogue/'+ settings.selectedLocation +'/{value}/'+settings.selectedType
+    };
+    var dropDownInstitutionTypeOptions = {
+        selectedIndex: dropDownInstitutionTypeSelectedIndex,
+        hasSplitter:true,
+        submitUrl:'/'+settings.currentLanguage+'/catalogue/'+ settings.selectedLocation +'/'+ settings.selectedGenger +'/{value}'
+    };
+
+    a9.dropdown($dropDownInstitutionLocation,dropDownInstitutionLocationListItems,dropDownInstitutionLocationOptions);
+    a9.dropdown($dropDownGender,dropDownGenderListItems,dropDownGenderOptions);
+    a9.dropdown($dropDownInstitutionType,dropDownInstitutionTypeListItems,dropDownInstitutionTypeOptions);
+
+
+    a9.each(pageData,function(dataItem){
+        buildItem = tp('educationalInstitutionsContentItem', dataItem, $fragment);
+    });
+
+    $educationalInstitutionsContentItems.appendChild($fragment);
+
+};
+(function (gb) {
+    var tmpls = gb.tmpls,
+        a9 = gb.global.A9,
+        l10n = a9.l10n,
+        u;
+
+    tmpls.educationalInstitutionsMobile = function () {
+        return [
+            tmpls.educationalInstitutionsTitleContainerMobile(),
+            tmpls.headerMobile(),
+            tmpls.mainMenuMobileLayout(),
+            {c: 'educational-institutions-mobile-filter-panel', C: tmpls.educationalInstitutionsContentFilter()},
+            tmpls.educationalInstitutionsMobileContent()
+        ];
+    };
+
+    tmpls.educationalInstitutionsTitleContainerMobile = function () {
+        return {
+            c: 'mobile-page-head-container',
+            C: {
+                c: 'category-content-title educational-institutions',
+                t: l10n('educationalInstitutionsCatalogueTitle', 'firstUpper')
+            }
+        }
+    };
+
+    tmpls.educationalInstitutionsMobileContent = function () {
+        return{c:'educational-institutions-mobile-content',n:'educationalInstitutionsContentItems'}
+    };
+
+}(GB));
 GB.feedbackForm = function ($parent) {
     var gb = this,
         global = gb.global,
@@ -10337,6 +10461,7 @@ A9.ready(function (a9, global) {
         $mainPage = $('mainPage'),
         $mainPageMobile = $('mainPageMobile'),
         $educationalInstitutions = $('educationalInstitutions'),
+        $educationalInstitutionsMobile = $('educationalInstitutionsMobile'),
         $educationalInstitutionDetails = $('educationalInstitutionDetails'),
         $educationKinds = $('educationKinds'),
         $educationKindsMobile = $('educationKindsMobile'),
@@ -10381,6 +10506,14 @@ A9.ready(function (a9, global) {
         }
     }
 
+    if ($educationalInstitutions !== null) {
+        if (a9.deviceInfo.isMobileDevice) {
+            gb.educationalInstitutionsMobile($educationalInstitutions);
+        }else {
+            gb.educationalInstitutions($educationalInstitutions);
+        }
+    }
+
     if ($mainPageMobile !== null) {
         gb.mainPageMobile($mainPageMobile);
     }
@@ -10389,9 +10522,8 @@ A9.ready(function (a9, global) {
         gb.educationKindsMobile($educationKindsMobile);
     }
 
-
-    if ($educationalInstitutions !== null) {
-        gb.educationalInstitutions($educationalInstitutions);
+    if($educationalInstitutionsMobile!==null){
+        gb.educationalInstitutionsMobile($educationalInstitutionsMobile);
     }
 
     if ($educationalInstitutionDetails !== null) {
