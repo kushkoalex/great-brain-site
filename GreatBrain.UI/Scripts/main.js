@@ -6970,8 +6970,10 @@ A9.pureCSS = function(){
             $body = document.body,
             build,
             $head,
-            marker = 'dropdowncontrolitems',
+            markerControlItems = 'dropdowncontrolitems',
+            markerControl = 'dropdowncontrol',
             $items,
+            i,
             $selectedText,
             eventOnPointerEnd = a9.deviceInfo.eventOnPointerEnd,
             eventOnPointerUp = a9.deviceInfo.eventOnPointerUp;
@@ -6982,7 +6984,17 @@ A9.pureCSS = function(){
         $items = build.items;
         $selectedText = build.selectedText;
 
-        a9.addClass($items, marker);
+        var $wrapper = build.r;
+
+
+        //console.log(build.r);
+        var $control =  build.r.parentNode;
+        $control.style.width = build.r.offsetWidth+'px';
+        $control.style.height = build.r.offsetHeight+'px';
+
+
+        a9.addClass($items, markerControlItems);
+        a9.addClass($control, markerControl);
 
         var $form = build.selectForm;
 
@@ -6993,22 +7005,33 @@ A9.pureCSS = function(){
         a9.addEvent($items, eventOnPointerUp, selectItem);
 
 
+
+
         function toggleItems(e) {
             hideOtherControlsExceptCurrent($items);
             if (a9.hasClass($items, 'hidden')) {
                 a9.removeClass($items, 'hidden');
+                $control.style['z-index'] = 10000;
             }
             else {
                 a9.addClass($items, 'hidden');
+                $control.style['z-index'] = 0;
             }
             preventHideItems(e);
         }
 
         function hideOtherControlsExceptCurrent(obj) {
-            var controls = a9.$c(marker);
-            for (var i = 0; i < controls.length; i++) {
+            var controls = a9.$c(markerControlItems);
+            for (i = 0; i < controls.length; i++) {
                 if (obj !== controls[i]) {
                     a9.addClass(controls[i], 'hidden');
+                }
+            }
+
+            controls = a9.$c(markerControl);
+            for (i = 0; i < controls.length; i++) {
+                if (obj !== controls[i]) {
+                    controls[i].style['z-index'] = 0;
                 }
             }
         }
