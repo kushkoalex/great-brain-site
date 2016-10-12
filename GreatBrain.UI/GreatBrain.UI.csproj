@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -277,7 +278,6 @@
     <Content Include="Images\mainPage\main-page-image3.png" />
     <Content Include="Images\map-location-info-logo.png" />
     <Content Include="Images\maze.png" />
-    <Content Include="Images\mbs-logo.svg" />
     <Content Include="Images\menu-layer1.png" />
     <Content Include="Images\news-social-fb.png" />
     <Content Include="Images\news-social-gb.png" />
