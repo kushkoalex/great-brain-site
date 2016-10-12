@@ -185,35 +185,43 @@ namespace GreatBrain.UI.Controllers
 
         public ActionResult SiteContent(string id)
         {
-            var content = _context.Contents.First(c => c.Name == id);
+            var content = _context.Contents.FirstOrDefault(c => c.Name == id);
 
-            ViewBag.MainMenu = GenerateMainMenu(content.Id);
+            if (content != null) { 
 
-            ViewBag.SiteContent = "dataModels.siteContent = " +
-                               JsonConvert.SerializeObject(
-                                   new
-                                   {
-                                       title = CurrentLang == SiteLanguage.en ? content.TitleEn : content.Title,
-                                       text = CurrentLang == SiteLanguage.en ? content.TextEn : content.Text
-                                   });
+                ViewBag.MainMenu = GenerateMainMenu(content.Id);
+
+                ViewBag.SiteContent = "dataModels.siteContent = " +
+                                   JsonConvert.SerializeObject(
+                                       new
+                                       {
+                                           title = CurrentLang == SiteLanguage.en ? content.TitleEn : content.Title,
+                                           text = CurrentLang == SiteLanguage.en ? content.TextEn : content.Text
+                                       });
+            }
+
             return View();
         }
 
         public ActionResult RoadMap(string id)
         {
-            var content = _context.Contents.First(c => c.Name == id);
+            var content = _context.Contents.FirstOrDefault(c => c.Name == id);
 
-            ViewBag.MainMenu = GenerateMainMenu();
+            if (content != null)
+            {
+                ViewBag.MainMenu = GenerateMainMenu();
 
-            ViewBag.RoadMap = "dataModels.roadMap = " +
-                               JsonConvert.SerializeObject(
-                                   new
-                                   {
-                                       title = CurrentLang == SiteLanguage.en ? content.TitleEn : content.Title,
-                                       text = CurrentLang == SiteLanguage.en ? content.TextEn : content.Text
-                                   });
+                ViewBag.RoadMap = "dataModels.roadMap = " +
+                                  JsonConvert.SerializeObject(
+                                      new
+                                      {
+                                          title = CurrentLang == SiteLanguage.en ? content.TitleEn : content.Title,
+                                          text = CurrentLang == SiteLanguage.en ? content.TextEn : content.Text
+                                      });
+            }
+
             return View();
-        }
+       }
 
         public ActionResult Services(string id)
         {
