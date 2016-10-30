@@ -9831,6 +9831,11 @@ GB.map = function ($map, $mapLocationLinks) {
     function initMap(index) {
         index = index || 0;
         var location = settings.dataModels.mapLocations[index];
+
+        if (!location) {
+            return;
+        }
+
         var lat = location.location.lat;
         var lng = location.location.lng;
 

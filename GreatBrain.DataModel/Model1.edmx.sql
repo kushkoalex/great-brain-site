@@ -10,9 +10,9 @@
 -- Target version: 3.0.0.0
 -- --------------------------------------------------
 
-DROP DATABASE IF EXISTS `gbua_greatbrain`;
-CREATE DATABASE `gbua_greatbrain`;
-USE `gbua_greatbrain`;
+DROP DATABASE IF EXISTS `great_brain`;
+CREATE DATABASE `great_brain`;
+USE `great_brain`;
 
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
